@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">M3</string>
+    <string name="miracle_morning_mentor">Miracle Morning Mentor</string>
+    <string name="made_by_ai_and_hm">made by AI and HM</string>
+    <string name="email">Email</string>
+    <string name="log_in">Log in</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="create_a_new_account">Create a new account</string>
+</resources>

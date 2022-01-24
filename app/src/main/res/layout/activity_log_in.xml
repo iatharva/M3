@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".LogIn">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/m3logoonly" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/miracle_morning_mentor"
+        android:fontFamily="@font/nunito" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20sp"/>
+
+    <EditText
+        android:id="@+id/emailfield"
+        android:hint="@string/email"
+        android:layout_width="230sp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:autofillHints="Email"
+        android:fontFamily="@font/nunito"/>
+
+    <EditText
+        android:id="@+id/passwordfield"
+        android:paddingTop="20sp"
+        android:hint="@string/password"
+        android:layout_width="230sp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:autofillHints="Password"
+        android:fontFamily="@font/nunito"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@android:color/black"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30sp"
+        tools:ignore="SmallSp" />
+
+    <Button
+        android:layout_width="150sp"
+        android:layout_height="50sp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/log_in"
+        android:textAllCaps="false"
+        android:textSize="18sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="5sp"
+        tools:ignore="SmallSp" />
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="200sp"
+        android:textSize="12sp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:text="@string/forget_password"
+        android:fontFamily="@font/nunito"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25sp"/>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="200sp"
+        android:background="@android:color/transparent"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textAllCaps="false"
+        android:text="@string/create_a_new_account"
+        android:fontFamily="@font/nunito"/>
+</LinearLayout>

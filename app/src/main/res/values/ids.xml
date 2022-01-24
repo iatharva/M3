@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="passwordfield" type="id" />
+    <item name="emailfield" type="id" />
+    <item name="textView" type="id" />
+    <item name="imageView" type="id" />
+</resources>
