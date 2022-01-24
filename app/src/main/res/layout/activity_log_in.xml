@@ -65,14 +65,13 @@
         tools:ignore="SmallSp" />
 
     <Button
-        android:layout_height="wrap_content"
         android:layout_width="200sp"
-        android:textSize="12sp"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:textColor="@color/black"
-        android:textAllCaps="false"
         android:text="@string/forget_password"
-        android:fontFamily="@font/nunito"/>
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
 
     <Space
         android:layout_width="match_parent"
