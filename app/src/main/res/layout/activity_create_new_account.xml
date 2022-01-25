@@ -8,12 +8,6 @@
     android:gravity="center"
     tools:context=".CreateNewAccount">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="left"
-        android:paddingStart="20dp">
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -25,7 +19,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="40sp"/>
+        android:layout_height="30sp"/>
 
     <EditText
         android:id="@+id/EmailField"
@@ -70,12 +64,9 @@
         android:ems="10"
         android:inputType="date" />
 
-
-    </LinearLayout>
-
     <Space
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="50sp"
         tools:ignore="SmallSp" />
     <Button
         android:id="@+id/AddAccountBtn"

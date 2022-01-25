@@ -11,11 +11,11 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="620dp"
-        android:background="@color/white"/>
+        android:background="@color/white" />
 
     <Button
         android:id="@+id/HomeBtn"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="50dp"
@@ -25,13 +25,24 @@
 
     <Button
         android:id="@+id/ProfileBtn"
-        android:layout_width="150dp"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/black"
+        android:text="@string/profile" />
+
+    <ImageButton
+        android:id="@+id/SettingsBtn"
+        android:layout_width="50dp"
         android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/black"
-        android:text="@string/profile" />
+        android:src="@drawable/settingsiconsmallwhite"/>
 
 </RelativeLayout>

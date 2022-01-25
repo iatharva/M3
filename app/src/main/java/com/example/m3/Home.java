@@ -11,18 +11,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.m3.extras.LogoutDialog;
 
 public class Home extends AppCompatActivity {
 
     public Button HomeBtn,ProfileBtn;
+    public ImageButton SettingsBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         HomeBtn = findViewById(R.id.HomeBtn);
         ProfileBtn = findViewById(R.id.ProfileBtn);
+        SettingsBtn = findViewById(R.id.SettingsBtn);
 
         ProfileBtn.setOnClickListener(v -> replaceFragment(new Profile()));
     }
