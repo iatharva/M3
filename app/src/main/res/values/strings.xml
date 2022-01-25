@@ -16,4 +16,5 @@
     <string name="create_account">Create Account</string>
     <string name="home">HOME</string>
     <string name="profile">Profile</string>
+    <string name="user_age">User Age</string>
 </resources>

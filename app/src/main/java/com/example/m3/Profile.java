@@ -17,12 +17,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.MessageFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 public class Profile extends Fragment {
 
-    public EditText EmailField;
-    public TextView EmailText;
+    public EditText EmailField,FNameField,LNameField;
+    public TextView ProfileTitle,DateText;
     public String UID,Email,FName,LName,Dob;
     private FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -32,25 +34,60 @@ public class Profile extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
-        EmailText = view.findViewById(R.id.EmailText);
+        ProfileTitle = view.findViewById(R.id.ProfileTitle);
         EmailField = view.findViewById(R.id.EmailField);
+        FNameField = view.findViewById(R.id.FNameField);
+        LNameField = view.findViewById(R.id.LNameField);
+        DateText = view.findViewById(R.id.DateText);
         fAuth = FirebaseAuth.getInstance();
 
-        EmailText.setOnClickListener(view -> {
-            UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-            DocumentReference typeref = db.collection("Users").document(UID);
-            typeref.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
-                    Email=documentSnapshot.getString("Email");
-                    FName=documentSnapshot.getString("FName");
-                    LName =documentSnapshot.getString("LName");
-                    Dob=documentSnapshot.getString("Dob");
+        ProfileTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+                DocumentReference typeref = db.collection("Users").document(UID);
+                typeref.get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        Email=documentSnapshot.getString("Email");
+                        FName=documentSnapshot.getString("FName");
+                        LName =documentSnapshot.getString("LName");
+                        Dob=documentSnapshot.getString("Dob");
 
-                    EmailField.setText(Email);
-                }
-            });
+                        EmailField.setText(Email);
+                        FNameField.setText(FName);
+                        LNameField.setText(LName);
+                        String[] dob = Dob.split("-");
+                        int year = Integer.parseInt(dob[2]);
+                        int month = Integer.parseInt(dob[1]);
+                        int day = Integer.parseInt(dob[0]);
+                        int age = getAge(year,month,day);
+                        DateText.setText("User Age : "+String.valueOf(age));
+                    }
+                });
+            }
         });
 
         return view;
+    }
+
+    private int getAge(int year, int month, int day) {
+        int age = 0;
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        int currentMonth = calendar.get(Calendar.MONTH)+1;
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        if (currentMonth > month) {
+            age = currentYear - year;
+        } else if (currentMonth == month) {
+            if (currentDay >= day) {
+                age = currentYear - year;
+            } else {
+                age = currentYear - year - 1;
+            }
+        } else {
+            age = currentYear - year - 1;
+        }
+        return age;
     }
 }

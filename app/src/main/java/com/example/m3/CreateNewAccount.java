@@ -66,7 +66,7 @@ public class CreateNewAccount extends AppCompatActivity {
         //Set Date
         mDateSetListener= (view, year, month, dayOfMonth) -> {
             month=month+1;
-            String date= dayOfMonth + " - " + month+" - "+ year;
+            String date= dayOfMonth + "-" + month+"-"+ year;
             DateField.setText(date);
         };
 
