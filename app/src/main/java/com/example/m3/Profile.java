@@ -57,10 +57,7 @@ public class Profile extends Fragment {
                         FNameField.setText(FName);
                         LNameField.setText(LName);
                         String[] dob = Dob.split("-");
-                        int year = Integer.parseInt(dob[2]);
-                        int month = Integer.parseInt(dob[1]);
-                        int day = Integer.parseInt(dob[0]);
-                        int age = getAge(year,month,day);
+                        int age = getAge(Integer.parseInt(dob[2]),Integer.parseInt(dob[1]),Integer.parseInt(dob[0]));
                         DateText.setText("User Age : "+String.valueOf(age));
                     }
                 });
