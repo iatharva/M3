@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/helpButtonHeader"
+        android:title="@string/log_out"
+        app:showAsAction="always"
+        android:icon="@drawable/helpiconwhite"
+        />
+
+    <item
         android:id="@+id/logoutButtonHeader"
         android:title="@string/log_out"
         app:showAsAction="always"

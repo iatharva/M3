@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +27,6 @@ public class Home extends AppCompatActivity {
         HomeBtn = findViewById(R.id.HomeBtn);
         ProfileBtn = findViewById(R.id.ProfileBtn);
         SettingsBtn = findViewById(R.id.SettingsBtn);
-
         ProfileBtn.setOnClickListener(v -> replaceFragment(new Profile()));
     }
 
@@ -42,15 +42,20 @@ public class Home extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.actionbarmenu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.logoutButtonHeader:
-                openDialog();
-                return true;
+        if (item.getItemId() == R.id.logoutButtonHeader) {
+            openDialog();
+            return true;
+        }
+        if (item.getItemId() == R.id.helpButtonHeader){
+            Intent i = new Intent(Home.this,ForgetPassword.class);
+            startActivity(i);
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void openDialog(){
         LogoutDialog logoutdialog=new LogoutDialog();
         logoutdialog.show(getSupportFragmentManager(),"Log out Dialog");

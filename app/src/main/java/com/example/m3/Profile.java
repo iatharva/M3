@@ -41,27 +41,24 @@ public class Profile extends Fragment {
         DateText = view.findViewById(R.id.DateText);
         fAuth = FirebaseAuth.getInstance();
 
-        ProfileTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-                DocumentReference typeref = db.collection("Users").document(UID);
-                typeref.get().addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Email=documentSnapshot.getString("Email");
-                        FName=documentSnapshot.getString("FName");
-                        LName =documentSnapshot.getString("LName");
-                        Dob=documentSnapshot.getString("Dob");
+        ProfileTitle.setOnClickListener(view -> {
+            UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+            DocumentReference typeref = db.collection("Users").document(UID);
+            typeref.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    Email=documentSnapshot.getString("Email");
+                    FName=documentSnapshot.getString("FName");
+                    LName =documentSnapshot.getString("LName");
+                    Dob=documentSnapshot.getString("Dob");
 
-                        EmailField.setText(Email);
-                        FNameField.setText(FName);
-                        LNameField.setText(LName);
-                        String[] dob = Dob.split("-");
-                        int age = getAge(Integer.parseInt(dob[2]),Integer.parseInt(dob[1]),Integer.parseInt(dob[0]));
-                        DateText.setText("User Age : "+String.valueOf(age));
-                    }
-                });
-            }
+                    EmailField.setText(Email);
+                    FNameField.setText(FName);
+                    LNameField.setText(LName);
+                    String[] dob = Dob.split("-");
+                    int age = getAge(Integer.parseInt(dob[2]),Integer.parseInt(dob[1]),Integer.parseInt(dob[0]));
+                    DateText.setText("User Age : "+String.valueOf(age));
+                }
+            });
         });
 
         return view;
