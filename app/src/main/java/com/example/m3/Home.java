@@ -50,6 +50,7 @@ public class Home extends AppCompatActivity {
             return true;
         }
         if (item.getItemId() == R.id.helpButtonHeader){
+            //Add intro activity
             Intent i = new Intent(Home.this,ForgetPassword.class);
             startActivity(i);
         }
