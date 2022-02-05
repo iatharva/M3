@@ -28,6 +28,7 @@ public class Home extends AppCompatActivity {
         ProfileBtn = findViewById(R.id.ProfileBtn);
         SettingsBtn = findViewById(R.id.SettingsBtn);
         ProfileBtn.setOnClickListener(v -> replaceFragment(new Profile()));
+        HomeBtn.setOnClickListener(v -> replaceFragment(new Fhome()));
     }
 
     private void replaceFragment(Fragment fragment) {
