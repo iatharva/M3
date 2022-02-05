@@ -63,21 +63,24 @@ public class CreateNewAccount extends AppCompatActivity {
             dialog.show();
         });
 
-        //Set Date
+        //Set Date in proper format
         mDateSetListener= (view, year, month, dayOfMonth) -> {
             month=month+1;
             String date= dayOfMonth + "-" + month+"-"+ year;
             DateField.setText(date);
         };
 
+        //Add Account in Firebase
         AddAccountBtn.setOnClickListener(view -> {
 
+            //Get all the data from UI
             Email = EmailField.getText().toString().trim();
             Password = PasswordField.getText().toString().trim();
             FName = FNameField.getText().toString().trim();
             LName = LNameField.getText().toString().trim();
             DateOfBirth = DateField.getText().toString().trim();
 
+            //Validations
             if(TextUtils.isEmpty(Email)){
                 Toast.makeText(getApplicationContext(),"Please enter email",Toast.LENGTH_SHORT).show();
                 return;
@@ -99,6 +102,7 @@ public class CreateNewAccount extends AppCompatActivity {
                 return;
             }
 
+            //Firebase operations
             fAuth = FirebaseAuth.getInstance();
             final FirebaseFirestore db = FirebaseFirestore.getInstance();
             fAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(task -> {
@@ -111,21 +115,24 @@ public class CreateNewAccount extends AppCompatActivity {
                     user.put("LName", LName);
                     user.put("Dob", DateOfBirth);
 
-                    //NEW
+                    //Insert and check if user is data is inserted successfully and user is created
                     db.collection("Users").document(UID).set(user).addOnCompleteListener(task1 -> {
                         if(task1.isSuccessful()) {
+                            //Success Case
                             AddAccountBtn.setText(R.string.create_account);
                             Toast.makeText(CreateNewAccount.this,"Welcome to M3", Toast.LENGTH_LONG).show();
                             FirebaseAuth.getInstance().signOut();
                             Intent i = new Intent(CreateNewAccount.this, Home.class);
                             startActivity(i);
                         } else{
+                            //Failure Case
                             AddAccountBtn.setText(R.string.create_account);
                             String errorMessage = Objects.requireNonNull(task1.getException()).getMessage();
                             Toast.makeText(CreateNewAccount.this, "Error: " + errorMessage, Toast.LENGTH_LONG).show();
                         }
                     });
                 }else {
+                    //Exception Case
                     Toast.makeText(CreateNewAccount.this, "Error! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });

@@ -12,13 +12,19 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import com.example.m3.LogIn;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Dialog Box which performs log out of the user
+ */
 public class LogoutDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
+        //Alert Dialog Box
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         builder.setTitle("LogOut")
                 .setMessage("Are you sure want to log out?")
+                //Log out accepted
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -30,6 +36,7 @@ public class LogoutDialog extends AppCompatDialogFragment {
 
                     }
                 })
+                //Log out declined
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

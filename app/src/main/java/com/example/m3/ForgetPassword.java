@@ -30,15 +30,19 @@ public class ForgetPassword extends AppCompatActivity {
         EmailField = findViewById(R.id.EmailField);
         ReceiveMailBtn = findViewById(R.id.ReceiveMailBtn);
 
+        //Method to send the reset link on click
         ReceiveMailBtn.setOnClickListener(view -> {
             String remail= EmailField.getText().toString();
             if(!TextUtils.isEmpty(remail)){
+                //Firebase method for sending Reset Link
                 firebaseAuth.sendPasswordResetEmail(remail).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
+                            //Success case (Email Sent)
                             Toast.makeText(ForgetPassword.this,"Check your email inbox", Toast.LENGTH_LONG).show();
                         }else{
+                            //Failure case (Email not Sent)
                             String errorMessage= Objects.requireNonNull(task.getException()).getMessage();
                             Toast.makeText(ForgetPassword.this,"Error: " + errorMessage, Toast.LENGTH_LONG).show();
                         }

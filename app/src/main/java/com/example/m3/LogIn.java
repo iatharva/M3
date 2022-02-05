@@ -29,46 +29,51 @@ public class LogIn extends AppCompatActivity {
         EmailField = findViewById(R.id.EmailField);
         PasswordField = findViewById(R.id.PasswordField);
 
+        //To open Forget Password Activity
         ForgetPasswordBtn.setOnClickListener(view -> {
             Intent i = new Intent(LogIn.this,ForgetPassword.class);
             startActivity(i);
         });
 
+        //To open Create Account Activity
         CreateAccountBtn.setOnClickListener(view -> {
             Intent i = new Intent(LogIn.this,CreateNewAccount.class);
             startActivity(i);
         });
 
+        //To log in
         LogInBtn.setOnClickListener(view -> {
+            //Getting data from UI
             String email = EmailField.getText().toString().trim();
             String password = PasswordField.getText().toString().trim();
 
+            //Validation
             if (TextUtils.isEmpty(email)) {
                 EmailField.setError("Email ID is Required.");
                 return;
             }
-
-
             if (TextUtils.isEmpty(password)) {
                 PasswordField.setError("Password is Required.");
                 return;
             }
-
             if (password.length() < 6) {
                 PasswordField.setError("Password Must be more than 6 Characters");
                 return;
             }
+
+            // Authenticating the user
             LogInBtn.setText(R.string.signingin);
-            // authenticate the user
             fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful())
                 {
+                    //Success case (go to Home Screen)
                     Intent intent = new Intent(LogIn.this, Home.class);
                     startActivity(intent);
                     finish();
                 }
                 else
                 {
+                    //Failure case (Show error)
                     String errorMessage = Objects.requireNonNull(task.getException()).getMessage();
                     Toast.makeText(LogIn.this, "Error: " + errorMessage, Toast.LENGTH_LONG).show();
                 }

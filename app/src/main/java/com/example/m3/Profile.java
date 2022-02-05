@@ -64,6 +64,9 @@ public class Profile extends Fragment {
         return view;
     }
 
+    /**
+     * Calculate the Age from Data of Birth of user
+     */
     private int getAge(int year, int month, int day) {
         int age = 0;
         Calendar calendar = Calendar.getInstance();

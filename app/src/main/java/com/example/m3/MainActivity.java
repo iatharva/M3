@@ -20,17 +20,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
+
         //Check if user is logged in or not
         fAuth = FirebaseAuth.getInstance();
         mAuthStateListener = firebaseAuth -> {
             FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
             if (mFirebaseUser != null) {
                 new Handler().postDelayed(() -> {
+                    //Success case (Be on Home screen)
                     Intent i = new Intent(MainActivity.this, Home.class);
                     startActivity(i);
                     finish();
                 }, SPLASH_TIME_OUT);
             } else {
+                //Failure case (Go to login screen)
                 new Handler().postDelayed(() -> {
                     Intent i = new Intent(MainActivity.this, LogIn.class);
                     startActivity(i);
@@ -52,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
     }
 
+    /**
+     * Checks if user is logged in
+     */
     public void logincheck(){
         fAuth.addAuthStateListener(mAuthStateListener);
     }

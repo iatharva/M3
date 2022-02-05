@@ -41,9 +41,7 @@ public class Fhome extends Fragment {
 
         demosound1.setOnClickListener(view -> {
             if (mediaPlayer.isPlaying()) {
-                mediaPlayer.stop();
-                mediaPlayer.reset();
-                mediaPlayer.release();
+                stopAudio();
                 Toast.makeText(getActivity(), "Audio has been paused", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getActivity(), "Audio has not played", Toast.LENGTH_SHORT).show();
@@ -52,6 +50,9 @@ public class Fhome extends Fragment {
         return view;
     }
 
+    /**
+     * Starts playing Audio/music from the given link
+     */
     private void playAudio() {
         String audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
         mediaPlayer = new MediaPlayer();
@@ -65,5 +66,19 @@ public class Fhome extends Fragment {
         }
 
     }
+
+    /**
+     * Method stops the audio/music if it is playing
+     */
+    private void stopAudio() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+    
+
 }
 
