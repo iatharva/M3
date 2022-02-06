@@ -49,4 +49,9 @@ dependencies {
     //implementation 'com.matthew-tamlin:sliding-intro-screen:3.2.0'
     //implementation 'com.github.AppIntro:AppIntro:6.2.0'
     //implementation 'com.github.AppIntro:AppIntro:4.2.3'
+    //Typing effect library
+    //implementation 'in.codeshuffle:typewriterview:1.1.0' not documentation
+    //implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3' not building
+    //implementation 'com.github.ar-arvind:TypeWriterTextView:1.0.1' not detecting
+    implementation 'com.krsticdragan:autotypetextview:1.1'
 }
