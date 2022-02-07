@@ -116,7 +116,7 @@ public class Fhome extends Fragment {
             if (documentSnapshot.exists()) {
                 FName=documentSnapshot.getString("FName");
                 Dob=documentSnapshot.getString("Dob");
-
+                //Call message typing method by passing the parameters
                 typeWriterMessages(FName,Dob);
             }
         });
@@ -155,8 +155,6 @@ public class Fhome extends Fragment {
                 AutoTypeLabel.setTextAutoTyping("Hope your day was as you planned :)" + "\n" + "🌃 ");
             }
         }
-
-
     }
 }
 
