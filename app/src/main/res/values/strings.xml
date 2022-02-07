@@ -20,4 +20,11 @@
     <string name="log_out">Log Out</string>
     <string name="about">About</string>
     <string name="settings">Settings</string>
+    <string name="begin_a_new_journey">Begin a new journey</string>
+    <string name="begin_your_morning_with_us">begin your morning with us</string>
+    <string name="begin_every_morning_with_us">Begin every morning with us</string>
+    <string name="surviving_through_the_day_while_living_the_same_routine">surviving through the day while living the same routine</string>
+    <string name="tired_of_starting_day_drained">Tired of starting day with being drained?</string>
+    <string name="get_boosted">Get Boosted</string>
+    <string name="stimulate_your_senses">Stimulate your senses</string>
 </resources>

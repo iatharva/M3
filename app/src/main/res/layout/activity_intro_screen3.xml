@@ -13,11 +13,10 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/circle"
-            android:layout_marginBottom="150dp"
-            />
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/morningillus"
+            android:layout_marginBottom="50dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -49,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reset_password"
+            android:text="@string/begin_a_new_journey"
             android:layout_marginTop="40dp"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -58,18 +57,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_a_new_account"/>
+            android:layout_marginTop="20dp"
+            android:text="@string/begin_every_morning_with_us"/>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/nextBtn3"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:src="@drawable/arrowrightbold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94"/>
+        app:layout_constraintVertical_bias="0.94"
+        tools:ignore="ContentDescription"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

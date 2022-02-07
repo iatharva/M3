@@ -13,11 +13,10 @@
         android:gravity="center">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/circle"
-        android:layout_marginBottom="150dp"
-        />
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/tiredillus"
+        android:layout_marginBottom="50dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -49,27 +48,32 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_a_new_account"
+        android:text="@string/tired_of_starting_day_drained"
         android:layout_marginTop="40dp"
+        android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="23sp"
         android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/create_a_new_account"/>
+        android:layout_marginTop="20dp"
+        android:text="@string/surviving_through_the_day_while_living_the_same_routine"/>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/nextBtn1"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:src="@drawable/arrowright"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.94"/>
+        app:layout_constraintVertical_bias="0.94"
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

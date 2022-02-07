@@ -9,15 +9,25 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/m3logo"
-        />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:lottie_fileName="morninganimation.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/miracle_morning_mentor"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito"
+        android:textSize="17sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/made_by_ai_and_hm"
         android:textSize="13sp" />
 
