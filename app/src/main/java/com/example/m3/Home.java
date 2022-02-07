@@ -65,7 +65,7 @@ public class Home extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.helpButtonHeader){
             //Add intro activity
-            Intent i = new Intent(Home.this,ForgetPassword.class);
+            Intent i = new Intent(Home.this,IntroScreen1.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.m3">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
+        <activity
+            android:name=".IntroScreen3"
+            android:exported="false" />
+        <activity
+            android:name=".IntroScreen2"
+            android:exported="false" />
+        <activity
+            android:name=".IntroScreen1"
+            android:exported="false" />
         <activity
             android:name=".CreateNewAccount"
             android:exported="false" />

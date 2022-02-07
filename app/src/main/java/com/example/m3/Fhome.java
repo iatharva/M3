@@ -144,15 +144,15 @@ public class Fhome extends Fragment {
         else {
             //If time is before 12pm and after 6 am then show message "Good Morning, let's start the day"
             if (currentDateandTime.compareTo("06:00:00") > 0 && currentDateandTime.compareTo("12:00:00") < 0) {
-                AutoTypeLabel.setTextAutoTyping("Good Morning " + FName + ", let's start the day" + "\n" + "🌞");
+                AutoTypeLabel.setTextAutoTyping("Good Morning " + FName + ","+"\n"+"Let's start the day" + "\n" + "🌞");
             }
             //If time is after 12pm and before 6 pm then show message "Hope you are having a great productive day"
             else if (currentDateandTime.compareTo("12:00:00") > 0 && currentDateandTime.compareTo("18:00:00") < 0) {
-                AutoTypeLabel.setTextAutoTyping("Hope you are having a great productive day" + "\n" + "🌤 ");
+                AutoTypeLabel.setTextAutoTyping("Hope you are having a great "+"\n"+"productive day" + "\n" + "🌤 ");
             }
             //If time is after 6 pm and before 12 am then show message "Hope your day was as you planned :)"
             else if (currentDateandTime.compareTo("18:00:00") > 0 && currentDateandTime.compareTo("24:00:00") < 0) {
-                AutoTypeLabel.setTextAutoTyping("Hope your day was as you planned :)" + "\n" + "🌃 ");
+                AutoTypeLabel.setTextAutoTyping("Hope your day was "+"\n"+"as you planned :)" + "\n" + "🌃 ");
             }
         }
     }

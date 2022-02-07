@@ -8,6 +8,7 @@
     <!--Basic colors-->
     <color name="black">#FF000000</color>
     <color name="grey">#DDDDDD</color>
+    <color name="darkGrey">#535353</color>
     <color name="white">#FFFFFFFF</color>
 
     <!--Color for new theme-->
