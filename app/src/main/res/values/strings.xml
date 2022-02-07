@@ -27,4 +27,8 @@
     <string name="tired_of_starting_day_drained">Tired of starting day with being drained?</string>
     <string name="get_boosted">Get Boosted</string>
     <string name="stimulate_your_senses">Stimulate your senses</string>
+    <string name="about_us">About us</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="alarm_settings">Alarm settings</string>
+    <string name="system_settings">System settings</string>
 </resources>

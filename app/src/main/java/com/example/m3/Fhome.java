@@ -152,7 +152,7 @@ public class Fhome extends Fragment {
             }
             //If time is after 6 pm and before 12 am then show message "Hope your day was as you planned :)"
             else if (currentDateandTime.compareTo("18:00:00") > 0 && currentDateandTime.compareTo("24:00:00") < 0) {
-                AutoTypeLabel.setTextAutoTyping("Hope your day was "+"\n"+"as you planned :)" + "\n" + "🌃 ");
+                AutoTypeLabel.setTextAutoTyping("Hope your day was as you "+"\n"+"planned :)" + "\n" + "🌃 ");
             }
         }
     }

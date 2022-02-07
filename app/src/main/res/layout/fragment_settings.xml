@@ -15,6 +15,75 @@
         android:text="@string/settings"
         android:textColor="@color/black"
         android:textSize="30sp"
+
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/alarmBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        android:text="@string/alarm_settings"
+        android:textColor="@color/primaryColor"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="230dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="50dp" />
+
+    <TextView
+        android:id="@+id/sysBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:text="@string/system_settings"
+        android:textColor="@color/primaryColor"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="230dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="50dp" />
+
+    <TextView
+        android:id="@+id/tncBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="350dp"
+        android:text="@string/terms_and_conditions"
+        android:textColor="@color/primaryColor"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="230dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="50dp" />
+
+    <TextView
+        android:id="@+id/aboutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="450dp"
+        android:text="@string/about_us"
+        android:textColor="@color/primaryColor"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="230dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="50dp" />
 
 </RelativeLayout>
