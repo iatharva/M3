@@ -122,7 +122,7 @@ public class CreateNewAccount extends AppCompatActivity {
                             AddAccountBtn.setText(R.string.create_account);
                             Toast.makeText(CreateNewAccount.this,"Welcome to M3", Toast.LENGTH_LONG).show();
                             FirebaseAuth.getInstance().signOut();
-                            Intent i = new Intent(CreateNewAccount.this, Home.class);
+                            Intent i = new Intent(CreateNewAccount.this, IntroScreen1.class);
                             startActivity(i);
                         } else{
                             //Failure Case
