@@ -32,7 +32,6 @@ public class Home extends AppCompatActivity {
         //Setting respective fragment on selection
         ProfileBtn.setOnClickListener(v -> replaceFragment(new Profile()));
         HomeBtn.setOnClickListener(view -> replaceFragment(new Fhome()));
-        SettingsBtn.setOnClickListener(view -> replaceFragment(new Settings()));
     }
 
     /**
