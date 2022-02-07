@@ -19,6 +19,8 @@ Miracle Morning Mentor Android Application (M3) is a Mental Health app which can
 - [x] Update LogIn, ForgetPassword, CreateAccount UI
 - [x] Added Logic for playing music from given link
 - [x] Added Logic for Typing greeting message 
+- [x] App Intro Screens
+- [x] Splash screen UI updation
 - [x] Think on S
 - [x] Think on V
 
