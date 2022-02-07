@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
@@ -24,12 +25,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class Fhome extends Fragment {
 
     //private FirebaseAuth fAuth;
     private MediaPlayer mediaPlayer;
     AutoTypeTextView AutoTypeLabel;
+    public String UID,FName,Dob;
+    public FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     View view;
     @Override
@@ -38,24 +42,22 @@ public class Fhome extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
+
         Button demosound = view.findViewById(R.id.demosound);
         Button demosound1 = view.findViewById(R.id.demosound1);
-        typeWriterMessages();
 
         demosound.setOnClickListener(view -> {
             playAudio();
             AutoTypeLabel.setTextAutoTyping("Audio started playing..");
-            Toast.makeText(getActivity(), "Audio started playing..", Toast.LENGTH_SHORT).show();});
+        });
 
         demosound1.setOnClickListener(view -> {
             if(mediaPlayer!=null) {
                 if (mediaPlayer.isPlaying()) {
                     stopAudio();
                     AutoTypeLabel.setTextAutoTyping("Audio has been paused");
-                    Toast.makeText(getActivity(), "Audio has been paused", Toast.LENGTH_SHORT).show();
                 } else {
                     AutoTypeLabel.setTextAutoTyping("Audio has not played");
-                    Toast.makeText(getActivity(), "Audio has not played", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -97,39 +99,64 @@ public class Fhome extends Fragment {
     public void onResume()
     {
         super.onResume();
-        typeWriterMessages();
+        fAuth = FirebaseAuth.getInstance();
+        getUserData();
+
+
     }
 
     /**
+     * Gets the user data and make call to typeWriterMessages()
+     */
+    public void getUserData()
+    {
+        UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        DocumentReference typeref = db.collection("Users").document(UID);
+        typeref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                FName=documentSnapshot.getString("FName");
+                Dob=documentSnapshot.getString("Dob");
+
+                typeWriterMessages(FName,Dob);
+            }
+        });
+    }
+    /**
      * Shows the message respective to the time
      */
-    private void typeWriterMessages() {
+    public void typeWriterMessages(String FName,String Dob) {
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String currentDateandTime = sdf.format(new Date());
         //Below code is to get current date
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = df.format(c);
         //Below code is to get current day
         DateFormat dayFormat = new SimpleDateFormat("EEEE");
         String day = dayFormat.format(c);
 
-        //If time is before 12pm and after 6 am then show message "Good Morning, let's start the day"
-        if (currentDateandTime.compareTo("06:00:00") > 0 && currentDateandTime.compareTo("12:00:00") < 0) {
-            AutoTypeLabel.setTextAutoTyping("Good Morning, let's start the day");
-            Toast.makeText(getActivity(), "Good Morning, let's start the day", Toast.LENGTH_SHORT).show();
+        //If formattedDate has same dd-MM as Dob then show message "Happy Birthday"
+        if(formattedDate.substring(0,2).equals(Dob.substring(0,2)) && formattedDate.substring(3,5).equals(Dob.substring(3,5)))
+        {
+            AutoTypeLabel.setTextAutoTyping("Today is your birthday, Happy birthday, "+FName+"!"+"\n"+"Hope you make this day one of the best."+"\n"+"🥳 ");
         }
-        //If time is after 12pm and before 6 pm then show message "Hope you are having a great productive day"
-        else if (currentDateandTime.compareTo("12:00:00") > 0 && currentDateandTime.compareTo("18:00:00") < 0) {
-            AutoTypeLabel.setTextAutoTyping("Hope you are having a great productive day");
-            Toast.makeText(getActivity(), "ope you are having a great productive day", Toast.LENGTH_SHORT).show();
+        else {
+            //If time is before 12pm and after 6 am then show message "Good Morning, let's start the day"
+            if (currentDateandTime.compareTo("06:00:00") > 0 && currentDateandTime.compareTo("12:00:00") < 0) {
+                AutoTypeLabel.setTextAutoTyping("Good Morning " + FName + ", let's start the day" + "\n" + "🌞");
+            }
+            //If time is after 12pm and before 6 pm then show message "Hope you are having a great productive day"
+            else if (currentDateandTime.compareTo("12:00:00") > 0 && currentDateandTime.compareTo("18:00:00") < 0) {
+                AutoTypeLabel.setTextAutoTyping("Hope you are having a great productive day" + "\n" + "🌤 ");
+            }
+            //If time is after 6 pm and before 12 am then show message "Hope your day was as you planned :)"
+            else if (currentDateandTime.compareTo("18:00:00") > 0 && currentDateandTime.compareTo("24:00:00") < 0) {
+                AutoTypeLabel.setTextAutoTyping("Hope your day was as you planned :)" + "\n" + "🌃 ");
+            }
         }
-        //If time is after 6 pm and before 12 am then show message "Hope your day was as you planned :)"
-        else if (currentDateandTime.compareTo("18:00:00") > 0 && currentDateandTime.compareTo("24:00:00") < 0) {
-            AutoTypeLabel.setTextAutoTyping("Hope your day was as you planned :)");
-            Toast.makeText(getActivity(), "Hope your day was as you planned :)", Toast.LENGTH_SHORT).show();
-        }
+
+
     }
 }
 

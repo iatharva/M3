@@ -24,10 +24,11 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="100dp"
         android:textSize="18sp"
-        attv:animateTextTypeWithoutMistakes="Hello User, How are you doing today?"
         attv:typingPrecision="1"
         />
-    <!---->
+    <!--
+        attv:animateTextTypeWithoutMistakes="Hello User, How are you doing today?"
+        -->
 
     <Button
         android:id="@+id/demosound"
