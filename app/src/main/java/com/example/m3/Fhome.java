@@ -27,9 +27,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
-public class Fhome extends Fragment {
-
-    //private FirebaseAuth fAuth;
+public class Fhome extends Fragment
+{
     private MediaPlayer mediaPlayer;
     AutoTypeTextView AutoTypeLabel;
     public String UID,FName,Dob;
@@ -67,8 +66,9 @@ public class Fhome extends Fragment {
     /**
      * Starts playing Audio/music from the given link
      */
-    private void playAudio() {
-        String audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+    private void playAudio()
+    {
+        String audioUrl = "https://github.com/iatharva/iatharva.github.io/raw/master/images/03.%20Morph.mp3";
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
@@ -83,7 +83,8 @@ public class Fhome extends Fragment {
     /**
      * Method stops the audio/music if it is playing
      */
-    private void stopAudio() {
+    private void stopAudio()
+    {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.reset();
@@ -124,7 +125,8 @@ public class Fhome extends Fragment {
     /**
      * Shows the message respective to the time
      */
-    public void typeWriterMessages(String FName,String Dob) {
+    public void typeWriterMessages(String FName,String Dob)
+    {
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String currentDateandTime = sdf.format(new Date());
@@ -141,7 +143,8 @@ public class Fhome extends Fragment {
         {
             AutoTypeLabel.setTextAutoTyping("Today is your birthday, Happy birthday, "+FName+"!"+"\n"+"Hope you make this day one of the best."+"\n"+"🥳 ");
         }
-        else {
+        else
+        {
             //If time is before 12pm and after 6 am then show message "Good Morning, let's start the day"
             if (currentDateandTime.compareTo("06:00:00") > 0 && currentDateandTime.compareTo("12:00:00") < 0) {
                 AutoTypeLabel.setTextAutoTyping("Good Morning " + FName + ","+"\n"+"Let's start the day" + "\n" + "🌞");
@@ -152,7 +155,7 @@ public class Fhome extends Fragment {
             }
             //If time is after 6 pm and before 12 am then show message "Hope your day was as you planned :)"
             else if (currentDateandTime.compareTo("18:00:00") > 0 && currentDateandTime.compareTo("24:00:00") < 0) {
-                AutoTypeLabel.setTextAutoTyping("Hope your day was as you "+"\n"+"planned :)" + "\n" + "🌃 ");
+                AutoTypeLabel.setTextAutoTyping("Hope your day was as you "+"\n"+"planned 🌃 :)");
             }
         }
     }
