@@ -31,20 +31,4 @@
         // attv:animateTextTypeWithoutMistakes="Hello User, How are you doing today?"
     -->
 
-    <Button
-        android:id="@+id/demosound"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
-        android:text="Play sound" />
-
-    <Button
-        android:id="@+id/demosound1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
-        android:text="Stop sound" />
-
 </RelativeLayout>

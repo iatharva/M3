@@ -41,25 +41,6 @@ public class Fhome extends Fragment
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
-
-        Button demosound = view.findViewById(R.id.demosound);
-        Button demosound1 = view.findViewById(R.id.demosound1);
-
-        demosound.setOnClickListener(view -> {
-            playAudio();
-            AutoTypeLabel.setTextAutoTyping("Audio started playing..");
-        });
-
-        demosound1.setOnClickListener(view -> {
-            if(mediaPlayer!=null) {
-                if (mediaPlayer.isPlaying()) {
-                    stopAudio();
-                    AutoTypeLabel.setTextAutoTyping("Audio has been paused");
-                } else {
-                    AutoTypeLabel.setTextAutoTyping("Audio has not played");
-                }
-            }
-        });
         return view;
     }
 
