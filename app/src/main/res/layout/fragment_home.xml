@@ -24,11 +24,12 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="100dp"
         android:textSize="18sp"
-        attv:typingPrecision="1"
-        />
+        attv:typingPrecision="1" />
+
     <!--
-        attv:animateTextTypeWithoutMistakes="Hello User, How are you doing today?"
-        -->
+        //To show the default message in the button
+        // attv:animateTextTypeWithoutMistakes="Hello User, How are you doing today?"
+    -->
 
     <Button
         android:id="@+id/demosound"
@@ -45,6 +46,5 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="250dp"
         android:text="Stop sound" />
-
 
 </RelativeLayout>

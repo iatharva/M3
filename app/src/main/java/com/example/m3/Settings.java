@@ -33,11 +33,10 @@ public class Settings extends Fragment {
         tncBtn = view.findViewById(R.id.tncBtn);
         aboutBtn = view.findViewById(R.id.aboutBtn);
         notificationManager = NotificationManagerCompat.from(requireActivity());
+
+        //Buttons which redirects to required pages/activities/fragment
+        //Button which leads to alarm settings
         alarmBtn.setOnClickListener(view -> {
-
-        });
-
-        sysBtn.setOnClickListener(view -> {
 
             Notification notification = new NotificationCompat.Builder(getActivity(), CHANNEL_2_ID)
                     .setSmallIcon(R.drawable.m3logoonly)
@@ -48,9 +47,15 @@ public class Settings extends Fragment {
                     .build();
             notificationManager.notify(2, notification);
             Toast.makeText(getActivity(),"Notification should be visible",Toast.LENGTH_SHORT).show();
-
         });
 
+        //Button which leads to system settings
+        sysBtn.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), SystemSettings.class);
+            startActivity(i);
+        });
+
+        //Button which leads to Terms and Conditions
         tncBtn.setOnClickListener(view -> {
             //Open Terms and Conditions in browser
             String url = "https://www.app-privacy-policy.com/live.php?token=WiEp6mEK8zAcqW7bxc9834c0MQCV8pqE";
@@ -59,10 +64,13 @@ public class Settings extends Fragment {
             startActivity(i);
         });
 
+        //Button which leads to about page
         aboutBtn.setOnClickListener(view -> {
-
+            Intent i = new Intent(getActivity(), About.class);
+            startActivity(i);
         });
 
+        //View for fragment
         return view;
     }
 }

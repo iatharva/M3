@@ -20,10 +20,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="60dp"
-        android:text="(v1.10)"
-        android:textSize="20sp" />
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="65dp"
+        android:text="@string/version_info"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/alarmBtn"

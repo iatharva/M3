@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
         <activity
+            android:name=".About"
+            android:exported="false" />
+        <activity
+            android:name=".SystemSettings"
+            android:exported="false" />
+        <activity
             android:name=".IntroScreen3"
             android:exported="false" />
         <activity
