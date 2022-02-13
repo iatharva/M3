@@ -5,6 +5,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
+import androidx.core.app.NotificationCompat;
+
 public class App extends Application {
     public static final String CHANNEL_1_ID = "channel1";
     public static final String CHANNEL_2_ID = "channel2";
@@ -35,3 +37,12 @@ public class App extends Application {
         }
     }
 }
+
+//Code which should be used for notification
+   /* NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), "My Notification");
+            builder.setContentTitle("Sample M3 notification");
+                    builder.setContentText("This is description");
+                    builder.setSmallIcon(R.drawable.m3logoonly);
+                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getActivity());
+                    managerCompat.notify(1, builder.build());
+                    Toast.makeText(getActivity(),"Notification should be visible",Toast.LENGTH_SHORT).show();*/

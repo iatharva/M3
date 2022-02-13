@@ -47,6 +47,7 @@
     <string name="click_and_hold_to_update_settings">(Click and hold to update settings)</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="visualization_settings">Visualization settings</string>
 
     <!--durations array
     <string-array name="durations">
