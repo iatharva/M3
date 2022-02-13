@@ -40,7 +40,7 @@ Miracle Morning Mentor Android Application (M3) is a Mental Health app which can
 #### Yet to start
 
 - [ ] Write Journal Feature
-- [ ] Alarm user on specific time (to start the routine of morning tasks)
+- [ ] Alarm user on specific time (to start the routine of morning tasks i.e. S,A,V,E,R)
 - [ ] Notify user about his tasks (different time in day)
 - [ ] Notify user to write journal and add to-do for tomorrow
 - [ ] Think on E
