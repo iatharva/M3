@@ -34,6 +34,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'com.google.firebase:firebase-auth:21.0.1'
+    implementation 'com.google.firebase:firebase-storage:20.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.3'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -61,4 +63,11 @@ dependencies {
 
     //Pull to refesh library
     implementation 'com.baoyz.pullrefreshlayout:library:1.2.0'
+
+    //set ImageView from link
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    //Picasso library
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

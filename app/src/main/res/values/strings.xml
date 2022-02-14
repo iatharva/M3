@@ -48,6 +48,8 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="visualization_settings">Visualization settings</string>
+    <string name="current_visualization">current visualization</string>
+    <string name="exercise_settings">Exercise Settings</string>
 
     <!--durations array
     <string-array name="durations">

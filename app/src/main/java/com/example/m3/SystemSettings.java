@@ -2,11 +2,17 @@ package com.example.m3;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -17,16 +23,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +55,7 @@ import java.util.Objects;
 
 public class SystemSettings extends AppCompatActivity {
 
-    public TextView musicPreferred;
+    public TextView musicPreferred,visualizationTitle;
     public ListView affirmationList;
     public Spinner durationPreferred;
     public MediaPlayer mediaPlayer;
@@ -53,6 +73,7 @@ public class SystemSettings extends AppCompatActivity {
         musicPreferred = findViewById(R.id.musicPreferred);
         durationPreferred = findViewById(R.id.durationPreferred);
         affirmationList = findViewById(R.id.affirmationList);
+        visualizationTitle = findViewById(R.id.visualizationTitle);
         fAuth = FirebaseAuth.getInstance();
         //Refresh and reload the data
         pullToRefresh.setOnRefreshListener(() -> {
@@ -72,6 +93,10 @@ public class SystemSettings extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
+        });
+        visualizationTitle.setOnClickListener(view ->
+        {
+            showVisualizationDialog(null);
         });
     }
 
@@ -104,32 +129,15 @@ public class SystemSettings extends AppCompatActivity {
                 getAffirmationSettings(affirmations);
             }
         });
+        DocumentReference visref = db.collection("VisualizationSettings").document(UID);
+        visref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists())
+            {
+                String vName=documentSnapshot.getString("VName");
+                visualizationTitle.setText(vName);
+            }
+        });
 
-    }
-
-    //Shows the Music Dialog box on UI to update
-    private void showMusicDialog(String [] musicNames,int index) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
-        builder.setTitle("Update music choice");
-        Toast.makeText(this,"Select another music to change and listen to it",Toast.LENGTH_SHORT).show();
-        builder.setSingleChoiceItems(musicNames, index, (dialogInterface, i) -> {
-            stopAudio();
-            GetMusicLink(musicNames[i]);
-            updateMusicSettings(musicNames[i],musicNames[index]);
-        })
-                .setOnDismissListener(dialogInterface -> {
-                    stopAudio();
-                    getUserSettings();
-                })
-                .setOnCancelListener(dialogInterface -> {
-                    stopAudio();
-                    getUserSettings();})
-                .setNegativeButton("Cancel", (dialogInterface, i) -> {
-                    stopAudio();
-                    dialogInterface.dismiss();
-                    getUserSettings();
-                });
-        builder.show();
     }
 
     //Returns the whole list of Music Names to display
@@ -244,6 +252,30 @@ public class SystemSettings extends AppCompatActivity {
         {
             Toast.makeText(this,"Please enter something in textbox" + newDuration,Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //Updates the affirmation
+    public void updateVisualizationSettings(Bitmap vData)
+    {
+        String filePathAndName="Visualizations/"+UID;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        vData.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] data = baos.toByteArray();
+        StorageReference ref = FirebaseStorage.getInstance().getReference().child(filePathAndName);
+        ref.putBytes(data)
+                .addOnSuccessListener(taskSnapshot -> {
+                    Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                    while (!uriTask.isSuccessful());
+                    String downloadUri = uriTask.getResult().toString();
+                    if (uriTask.isSuccessful()) {
+                        DocumentReference visualref = db.collection("VisualizationSettings").document(UID);
+                        visualref
+                                .update("VLink", downloadUri)
+                                .addOnSuccessListener(aaVoid -> Toast.makeText(SystemSettings.this, "Visualization Updated", Toast.LENGTH_SHORT).show())
+                                .addOnFailureListener(e -> Log.w(TAG, "Duration not updated. Error :", e));
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(SystemSettings.this, "Failed Uploading image", Toast.LENGTH_SHORT).show());
     }
 
     //delete the affirmation
@@ -361,6 +393,31 @@ public class SystemSettings extends AppCompatActivity {
         return true;
     }
 
+    //Shows the Music Dialog box on UI to update
+    private void showMusicDialog(String [] musicNames,int index) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
+        builder.setTitle("Update music choice");
+        Toast.makeText(this,"Select another music to change and listen to it",Toast.LENGTH_SHORT).show();
+        builder.setSingleChoiceItems(musicNames, index, (dialogInterface, i) -> {
+            stopAudio();
+            GetMusicLink(musicNames[i]);
+            updateMusicSettings(musicNames[i],musicNames[index]);
+        })
+                .setOnDismissListener(dialogInterface -> {
+                    stopAudio();
+                    getUserSettings();
+                })
+                .setOnCancelListener(dialogInterface -> {
+                    stopAudio();
+                    getUserSettings();})
+                .setNegativeButton("Cancel", (dialogInterface, i) -> {
+                    stopAudio();
+                    dialogInterface.dismiss();
+                    getUserSettings();
+                });
+        builder.show();
+    }
+
     //Shows the Input Dialog box on UI to update affirmations
     private void showAffirmationDialog(int position,String [] affirmations) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
@@ -381,4 +438,66 @@ public class SystemSettings extends AppCompatActivity {
                 });;
         builder.show();
     }
-}
+
+    private void showVisualizationDialog(Uri link)
+    {
+        UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        DocumentReference typeref = db.collection("VisualizationSettings").document(UID);
+        typeref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists())
+            {
+                String VName= documentSnapshot.getString("VName");
+                String VLink= documentSnapshot.getString("VLink");
+                AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
+                builder.setTitle(VName);
+                builder.setMessage("Click on image to set new visualization");
+                final ImageView originalVisual = new ImageView(SystemSettings.this);
+                if(link!=null)
+                {
+                    Picasso.get().load(link).into(originalVisual);
+                    Glide.with(getApplicationContext()).load(link).dontAnimate().into(originalVisual);
+                    builder.setPositiveButton("Save", (dialogInterface, i) -> {
+                        //Resolve the error occuring here
+                        //Bitmap bitmap = BitmapFactory.decodeFile(link.getPath());
+                        //updateVisualizationSettings(bitmap);
+                        getUserSettings();
+                    });
+                }
+                else
+                {
+                    Picasso.get().load(VLink).into(originalVisual);
+                    Glide.with(getApplicationContext()).load(VLink).dontAnimate().into(originalVisual);
+                    builder.setPositiveButton("Replace", (dialogInterface, i) -> {
+                        imageChooser();
+                        getUserSettings();
+                    });
+                }
+                builder.setView(originalVisual);
+                builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+                    dialogInterface.dismiss();
+                    getUserSettings();
+                });
+                builder.show();
+            }
+        });
+    }
+
+    void imageChooser()
+    {
+        Intent i = new Intent();
+        i.setType("image/*");
+        i.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(i, "Select Picture"),0);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 0) {
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    showVisualizationDialog(selectedImageUri);
+                }
+            }
+        }
+    }}
