@@ -455,8 +455,11 @@ public class SystemSettings extends AppCompatActivity {
                 if(link!=null)
                 {
                     builder.setMessage("Click on Save to update the visualization");
-                    Picasso.get().load(link).into(originalVisual);
-                    Glide.with(getApplicationContext()).load(link).dontAnimate().into(originalVisual);
+                    Picasso
+                            .get()
+                            .load(link)
+                            .placeholder( R.drawable.loadinganimation)
+                            .into(originalVisual);
                     builder.setPositiveButton("Save", (dialogInterface, i) -> {
                         InputStream is = null;
                         try {
@@ -474,8 +477,11 @@ public class SystemSettings extends AppCompatActivity {
                 else
                 {
                     builder.setMessage("Click on replace to change visualization");
-                    Picasso.get().load(VLink).into(originalVisual);
-                    Glide.with(getApplicationContext()).load(VLink).dontAnimate().into(originalVisual);
+                    Picasso
+                            .get()
+                            .load(VLink)
+                            .placeholder( R.drawable.loadinganimation)
+                            .into(originalVisual);
                     builder.setPositiveButton("Replace", (dialogInterface, i) -> {
                         imageChooser();
                         getUserSettings();
