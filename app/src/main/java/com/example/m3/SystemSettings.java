@@ -16,10 +16,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -57,6 +59,7 @@ import java.util.Objects;
 public class SystemSettings extends AppCompatActivity {
 
     public TextView musicPreferred,visualizationTitle;
+    public ImageView addAffBtn;
     public ListView affirmationList;
     public Spinner durationPreferred;
     public MediaPlayer mediaPlayer;
@@ -75,6 +78,7 @@ public class SystemSettings extends AppCompatActivity {
         durationPreferred = findViewById(R.id.durationPreferred);
         affirmationList = findViewById(R.id.affirmationList);
         visualizationTitle = findViewById(R.id.visualizationTitle);
+        addAffBtn = findViewById(R.id.addAffBtn);
         fAuth = FirebaseAuth.getInstance();
         //Refresh and reload the data
         pullToRefresh.setOnRefreshListener(() -> {
@@ -95,6 +99,9 @@ public class SystemSettings extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
+        //Show Affirmation Dialog
+        addAffBtn.setOnClickListener(view -> AddAffirmationSettings());
+        //Show Visualization Dialog
         visualizationTitle.setOnClickListener(view ->
         {
             showVisualizationDialog(null);
@@ -201,10 +208,27 @@ public class SystemSettings extends AppCompatActivity {
     //Returns the list of affirmations
     private void getAffirmationSettings(List<String> affirmations) {
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,affirmations);
+        ViewGroup.LayoutParams params = affirmationList.getLayoutParams();
+        params.height = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70*affirmations.size(), getResources().getDisplayMetrics());
+        params.width = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, getResources().getDisplayMetrics());
+        affirmationList.setLayoutParams(params);
         affirmationList.setAdapter(adapter);
         registerForContextMenu(affirmationList);
     }
 
+    private void AddAffirmationSettings()
+    {
+        DocumentReference affref = db.collection("AffirmationSettings").document(UID);
+        affref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists())
+            {
+                List<String> affirmationsList=(List<String>)documentSnapshot.get("Sentences");
+                String[] affirmationsArray = affirmationsList.toArray(new String[0]);
+                //Last index + 1
+                showAffirmationDialog(affirmationsList.size() + 1,affirmationsArray,true);
+            }
+        });
+    }
     //Updates the music choice of user
     private void updateMusicSettings(String newMusic,String oldMusic) {
         if(!newMusic.equals(oldMusic))
@@ -238,21 +262,43 @@ public class SystemSettings extends AppCompatActivity {
     }
 
     //Updates the affirmation
-    public void updateAffirmationSettings(String updatedAffirmation,int position, String [] affirmationsList)
+    public void updateAffirmationSettings(String updatedAffirmation,int position, String [] affirmationsList, Boolean IsNew)
     {
-        if(!updatedAffirmation.equals(affirmationsList[position]))
+        if(!IsNew)
         {
-            affirmationsList[position] = updatedAffirmation;
-            DocumentReference musicref = db.collection("AffirmationSettings").document(UID);
-            musicref
-                    .update("Sentences", Arrays.asList(affirmationsList))
-                    .addOnSuccessListener(aVoid -> Toast.makeText(this,"Affirmation Updated",Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(e -> Log.w(TAG, "Duration not updated. Error :", e));
+            if(!updatedAffirmation.equals(affirmationsList[position]))
+            {
+                affirmationsList[position] = updatedAffirmation;
+                DocumentReference musicref = db.collection("AffirmationSettings").document(UID);
+                musicref
+                        .update("Sentences", Arrays.asList(affirmationsList))
+                        .addOnSuccessListener(aVoid -> Toast.makeText(this,"Affirmation Updated",Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e -> Log.w(TAG, "Affirmation not updated. Error :", e));
+            }
+            else
+            {
+                Toast.makeText(this,"Please enter something in textbox" + newDuration,Toast.LENGTH_SHORT).show();
+            }
         }
         else
         {
-            Toast.makeText(this,"Please enter something in textbox" + newDuration,Toast.LENGTH_SHORT).show();
+            if(updatedAffirmation!=null)
+            {
+                //add a new element to to the array
+                affirmationsList = Arrays.copyOf(affirmationsList, affirmationsList.length + 1);
+                affirmationsList[affirmationsList.length - 1] = updatedAffirmation;
+                DocumentReference musicref = db.collection("AffirmationSettings").document(UID);
+                musicref
+                        .update("Sentences", Arrays.asList(affirmationsList))
+                        .addOnSuccessListener(aVoid -> Toast.makeText(this,"Affirmation Added",Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e -> Log.w(TAG, "Affirmation not added. Error :", e));
+            }
+            else
+            {
+                Toast.makeText(this,"Please enter something in textbox" + newDuration,Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
 
     //Updates the affirmation
@@ -373,7 +419,7 @@ public class SystemSettings extends AppCompatActivity {
                 String[] affirmationsArray = affirmationsList.toArray(new String[0]);
 
                 if(item.getItemId()==R.id.editOptn){
-                    showAffirmationDialog(adapter.position,affirmationsArray);
+                    showAffirmationDialog(adapter.position,affirmationsArray,false);
                 }
                 else if(item.getItemId()==R.id.deleteOptn){
                     AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
@@ -420,23 +466,40 @@ public class SystemSettings extends AppCompatActivity {
     }
 
     //Shows the Input Dialog box on UI to update affirmations
-    private void showAffirmationDialog(int position,String [] affirmations) {
+    //AddExtra paramter for new
+    private void showAffirmationDialog(int position,String [] affirmations,Boolean NewAff) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
-        builder.setTitle("Edit affirmation");
         final EditText updatedAffirmation = new EditText(SystemSettings.this);
         updatedAffirmation.setInputType(InputType.TYPE_CLASS_TEXT);
-        updatedAffirmation.setText(affirmations[position]);
-        builder.setView(updatedAffirmation);
-                builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
-                    stopAudio();
-                    dialogInterface.dismiss();
-                    getUserSettings();
-                })
-                .setPositiveButton("Update", (dialogInterface, i) -> {
-                    updateAffirmationSettings(updatedAffirmation.getText().toString(),position,affirmations);
-                    dialogInterface.dismiss();
-                    getUserSettings();
-                });;
+        if(NewAff)
+        {
+            builder.setTitle("Add affirmation");
+            builder.setView(updatedAffirmation);
+            builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+                dialogInterface.dismiss();
+                getUserSettings();
+            });
+            builder.setPositiveButton("Add", (dialogInterface, i) -> {
+                updateAffirmationSettings(updatedAffirmation.getText().toString(),position,affirmations,true);
+                dialogInterface.dismiss();
+                getUserSettings();
+            });
+        }
+        else
+        {
+            builder.setTitle("Edit affirmation");
+            updatedAffirmation.setText(affirmations[position]);
+            builder.setView(updatedAffirmation);
+            builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+                dialogInterface.dismiss();
+                getUserSettings();
+            });
+            builder.setPositiveButton("Update", (dialogInterface, i) -> {
+                updateAffirmationSettings(updatedAffirmation.getText().toString(),position,affirmations,false);
+                dialogInterface.dismiss();
+                getUserSettings();
+            });
+        }
         builder.show();
     }
 

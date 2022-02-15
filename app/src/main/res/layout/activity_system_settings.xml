@@ -83,6 +83,15 @@
             android:layout_marginTop="5dp"
             android:textSize="19sp" />
 
+        <ImageView
+            android:id="@+id/addAffBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/durationPreferred"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="40dp"
+            android:layout_toEndOf="@id/sysSetting2"
+            android:src="@drawable/addicon" />
         <TextView
             android:id="@+id/sysSetting2"
             android:layout_width="wrap_content"
@@ -103,6 +112,7 @@
             android:layout_marginTop="5dp"
             android:text="@string/click_and_hold_to_update_settings" />
 
+
         <ListView
             android:id="@+id/affirmationList"
             android:layout_width="300dp"
@@ -118,7 +128,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/affirmationList"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
         android:text="@string/visualization_settings"
         android:textColor="@color/primaryColor"
         android:textSize="25sp" />
