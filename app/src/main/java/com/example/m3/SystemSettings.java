@@ -44,6 +44,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -259,7 +260,7 @@ public class SystemSettings extends AppCompatActivity {
     {
         String filePathAndName="Visualizations/"+UID;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        vData.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            vData.compress(Bitmap.CompressFormat.PNG, 100, baos);
         byte[] data = baos.toByteArray();
         StorageReference ref = FirebaseStorage.getInstance().getReference().child(filePathAndName);
         ref.putBytes(data)
@@ -450,21 +451,29 @@ public class SystemSettings extends AppCompatActivity {
                 String VLink= documentSnapshot.getString("VLink");
                 AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
                 builder.setTitle(VName);
-                builder.setMessage("Click on image to set new visualization");
                 final ImageView originalVisual = new ImageView(SystemSettings.this);
                 if(link!=null)
                 {
+                    builder.setMessage("Click on Save to update the visualization");
                     Picasso.get().load(link).into(originalVisual);
                     Glide.with(getApplicationContext()).load(link).dontAnimate().into(originalVisual);
                     builder.setPositiveButton("Save", (dialogInterface, i) -> {
-                        //Resolve the error occuring here
-                        //Bitmap bitmap = BitmapFactory.decodeFile(link.getPath());
-                        //updateVisualizationSettings(bitmap);
-                        getUserSettings();
+                        InputStream is = null;
+                        try {
+                            is = getContentResolver().openInputStream(link);
+                            Bitmap bitmap = BitmapFactory.decodeStream(is);
+                            is.close();
+                            updateVisualizationSettings(bitmap);
+                            getUserSettings();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     });
                 }
                 else
                 {
+                    builder.setMessage("Click on replace to change visualization");
                     Picasso.get().load(VLink).into(originalVisual);
                     Glide.with(getApplicationContext()).load(VLink).dontAnimate().into(originalVisual);
                     builder.setPositiveButton("Replace", (dialogInterface, i) -> {
@@ -482,7 +491,7 @@ public class SystemSettings extends AppCompatActivity {
         });
     }
 
-    void imageChooser()
+    public void imageChooser()
     {
         Intent i = new Intent();
         i.setType("image/*");
