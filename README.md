@@ -1,5 +1,6 @@
 # M3
-Miracle Morning Mentor Android Application (M3) is a Mental Health app which can also be used for setting up your own Miracle Morning routine and manage it.
+<center><img src="https://socialify.git.ci/iatharva/M3/image?description=1&font=Raleway&language=1&name=1&owner=1&stargazers=1&theme=Dark" alt="M3" width="640" height="320" />
+</center>
 
 ### Project Progress
 
