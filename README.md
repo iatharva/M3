@@ -31,10 +31,11 @@
 - [x] Add logic for playing music
 - [x] Test music Logic
 - [x] Work on V
+- [x] Resolve the error while updating visualization
+
 
 #### Work in progress
 
-- [ ] Resolve the error while updating visualization
 - [ ] Add Logic for Alarm (Work in Progress)
 - [ ] Test Alarm Logic (Work in Progress)
 - [ ] Add Home -> Home UI (Work in Progress)
