@@ -33,6 +33,7 @@ public class Fhome extends Fragment
     AutoTypeTextView AutoTypeLabel;
     public String UID,FName,Dob;
     public FirebaseAuth fAuth;
+    public Button StartBtn;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     View view;
     @Override
@@ -41,6 +42,12 @@ public class Fhome extends Fragment
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
+        StartBtn = view.findViewById(R.id.StartBtn);
+
+        StartBtn.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), Silence.class);
+            startActivity(i);
+        });
         return view;
     }
 
@@ -83,8 +90,6 @@ public class Fhome extends Fragment
         super.onResume();
         fAuth = FirebaseAuth.getInstance();
         getUserData();
-
-
     }
 
     /**

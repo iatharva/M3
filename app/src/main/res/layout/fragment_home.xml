@@ -20,7 +20,7 @@
     <com.dragankrstic.autotypetextview.AutoTypeTextView
         android:id="@+id/AutoTypeLabel"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="90dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="100dp"
         android:textSize="18sp"
@@ -31,4 +31,12 @@
         // attv:animateTextTypeWithoutMistakes="Hello User, How are you doing today?"
     -->
 
+    <Button
+        android:id="@+id/StartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/AutoTypeLabel"
+        android:text="@string/start_the_routine"/>
 </RelativeLayout>

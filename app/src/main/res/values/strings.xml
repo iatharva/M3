@@ -54,6 +54,10 @@
     <string name="selected_pranayama_s">Selected Pranayama(s)</string>
     <string name="selected_exercise_s">Selected Exercise(s)</string>
     <string name="copyright_m3">&#169; M3 2022</string>
+    <string name="start_the_routine">Start the routine</string>
+    <string name="let_s_start_with_that_daily_mediation_activity_being_with_yourself_let_all_of_your_thoughts_flow_through">Let\'s start with that daily mediation activity. Being with yourself. Let all of your thoughts flow through.</string>
+    <string name="silence">Silence</string>
+    <string name="start_meditation">Start Meditation</string>
 
     <!--durations array
     <string-array name="durations">

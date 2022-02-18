@@ -34,14 +34,14 @@
         android:textColor="@color/primaryColor"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/sysSettingDesc1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/sysSetting1"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/click_to_update_settings" />
+        <TextView
+            android:id="@+id/sysSettingDesc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sysSetting1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/click_to_update_settings" />
 
         <TextView
             android:id="@+id/sysSettingSub1"
