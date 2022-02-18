@@ -32,13 +32,16 @@
 - [x] Test music Logic
 - [x] Work on V
 - [x] Resolve the error while updating visualization
-
+- [x] Think on E
+- [x] Think on R
+- [x] Work on E
 
 #### Work in progress
 
 - [ ] Add Logic for Alarm (Work in Progress)
 - [ ] Test Alarm Logic (Work in Progress)
 - [ ] Add Home -> Home UI (Work in Progress)
+- [ ] Bug in System Settings -> Exercises (Work in Progress)
 
 #### Yet to start
 
@@ -46,7 +49,4 @@
 - [ ] Alarm user on specific time (to start the routine of morning tasks i.e. S,A,V,E,R)
 - [ ] Notify user about his tasks (different time in day)
 - [ ] Notify user to write journal and add to-do for tomorrow
-- [ ] Think on E
-- [ ] Think on R
-- [ ] Work on E
 - [ ] Work on R
