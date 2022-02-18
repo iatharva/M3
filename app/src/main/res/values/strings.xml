@@ -40,16 +40,20 @@
     <string name="about_description4">This application is <b>currently in development</b> and this current version of app is :</string>
     <string name="release_logo">Release logo</string>
     <string name="music_settings">Music settings</string>
-    <string name="selected_music">selected music</string>
-    <string name="selected_duration">selected duration</string>
+    <string name="selected_music">Selected music</string>
+    <string name="selected_duration">Selected duration</string>
     <string name="affirmation_settings">Affirmation settings</string>
     <string name="click_to_update_settings">(Click to update settings)</string>
     <string name="click_and_hold_to_update_settings">(Click and hold to update settings)</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="visualization_settings">Visualization settings</string>
-    <string name="current_visualization">current visualization</string>
+    <string name="current_visualization">Current Visualization</string>
     <string name="exercise_settings">Exercise Settings</string>
+    <string name="click_on_item_to_update_the_settings">(Click on item to update the settings)</string>
+    <string name="selected_pranayama_s">Selected Pranayama(s)</string>
+    <string name="selected_exercise_s">Selected Exercise(s)</string>
+    <string name="copyright_m3">&#169; M3 2022</string>
 
     <!--durations array
     <string-array name="durations">

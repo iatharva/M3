@@ -2,11 +2,11 @@ package com.example.m3;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,35 +30,24 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class SystemSettings extends AppCompatActivity {
 
-    public TextView musicPreferred,visualizationTitle;
+    public TextView musicPreferred,visualizationTitle,ExerciseBtn1,ExerciseBtn2;
     public ImageView addAffBtn;
     public ListView affirmationList;
     public Spinner durationPreferred;
@@ -79,6 +68,8 @@ public class SystemSettings extends AppCompatActivity {
         affirmationList = findViewById(R.id.affirmationList);
         visualizationTitle = findViewById(R.id.visualizationTitle);
         addAffBtn = findViewById(R.id.addAffBtn);
+        ExerciseBtn1 = findViewById(R.id.sysSetting4Sub1);
+        ExerciseBtn2 = findViewById(R.id.sysSetting4Sub2);
         fAuth = FirebaseAuth.getInstance();
         //Refresh and reload the data
         pullToRefresh.setOnRefreshListener(() -> {
@@ -102,11 +93,13 @@ public class SystemSettings extends AppCompatActivity {
         //Show Affirmation Dialog
         addAffBtn.setOnClickListener(view -> AddAffirmationSettings());
         //Show Visualization Dialog
-        visualizationTitle.setOnClickListener(view ->
-        {
-            showVisualizationDialog(null);
-        });
+        visualizationTitle.setOnClickListener(view -> showVisualizationDialog(null));
+        //Show Exercise Dialog
+        ExerciseBtn1.setOnClickListener(view -> getExerciseSettings(false));
+        ExerciseBtn2.setOnClickListener(view -> getExerciseSettings(true));
     }
+
+
 
     //Called on Activity launch
     @Override
@@ -215,6 +208,17 @@ public class SystemSettings extends AppCompatActivity {
         affirmationList.setAdapter(adapter);
         registerForContextMenu(affirmationList);
     }
+    //Returns the list of exercises
+    private void getExerciseSettings(boolean isExercise) {
+        DocumentReference affref = db.collection("ExerciseSettings").document(UID);
+        affref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                List<String> pranayama = (List<String>) documentSnapshot.get("Pranayama");
+                List<String> exercise = (List<String>) documentSnapshot.get("Exercise");
+                showExerciseDialog(pranayama,exercise,isExercise);
+            }
+        });
+    }
 
     private void AddAffirmationSettings()
     {
@@ -319,10 +323,35 @@ public class SystemSettings extends AppCompatActivity {
                         visualref
                                 .update("VLink", downloadUri)
                                 .addOnSuccessListener(aaVoid -> Toast.makeText(SystemSettings.this, "Visualization Updated", Toast.LENGTH_SHORT).show())
-                                .addOnFailureListener(e -> Log.w(TAG, "Duration not updated. Error :", e));
+                                .addOnFailureListener(e -> Log.w(TAG, "Visualization not updated. Error :", e));
                     }
                 })
                 .addOnFailureListener(e -> Toast.makeText(SystemSettings.this, "Failed Uploading image", Toast.LENGTH_SHORT).show());
+    }
+
+    public void updateExerciseSettings(String[] originalPreference,String newItem,boolean isExercise)
+    {
+        if(isExercise)
+        {
+            originalPreference = Arrays.copyOf(originalPreference, originalPreference.length + 1);
+            originalPreference[originalPreference.length - 1] = newItem;
+            DocumentReference exerref = db.collection("ExerciseSettings").document(UID);
+            exerref
+                    .update("Exercise", Arrays.asList(originalPreference))
+                    .addOnSuccessListener(aVoid -> Toast.makeText(this,newItem+" added",Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Log.w(TAG, "Exercise not added. Error :", e));
+        }
+        else
+        {
+            originalPreference = Arrays.copyOf(originalPreference, originalPreference.length + 1);
+            originalPreference[originalPreference.length - 1] = newItem;
+            DocumentReference exerref = db.collection("ExerciseSettings").document(UID);
+            exerref
+                    .update("Pranayama", Arrays.asList(originalPreference))
+                    .addOnSuccessListener(aVoid -> Toast.makeText(this,newItem+" added",Toast.LENGTH_SHORT).show())
+                    .addOnFailureListener(e -> Log.w(TAG, "Pranayama not added. Error :", e));
+        }
+
     }
 
     //delete the affirmation
@@ -339,17 +368,53 @@ public class SystemSettings extends AppCompatActivity {
                 i++;
             }
         }
-        
+
         if(newAffirmations!=null)
         {
-            DocumentReference musicref = db.collection("AffirmationSettings").document(UID);
-            musicref
+            DocumentReference affref = db.collection("AffirmationSettings").document(UID);
+            affref
                     .update("Sentences",Arrays.asList(newAffirmations))
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(this,"Affirmation deleted",Toast.LENGTH_SHORT).show();
                         getUserSettings();})
-                    .addOnFailureListener(e -> Log.w(TAG, "Duration not updated. Error :", e));
+                    .addOnFailureListener(e -> Log.w(TAG, "Affirmation not deleted. Error :", e));
         }
+    }
+
+    //delete the Exercise
+    public void deleteExerciseSettings(int position,String [] originalArray,boolean isExercise)
+    {
+        //Remove affirmation[position] from affirmations array
+        String[] updatedArray = new String[originalArray.length-1];
+        int i=0;
+        for(int j=0;j<originalArray.length;j++)
+        {
+            if(j!=position)
+            {
+                updatedArray[i]=originalArray[j];
+                i++;
+            }
+        }
+        DocumentReference affref = db.collection("ExerciseSettings").document(UID);
+        if(isExercise)
+        {
+            affref
+                    .update("Exercise",Arrays.asList(updatedArray))
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(this,"Exercise removed",Toast.LENGTH_SHORT).show();
+                        getUserSettings();})
+                    .addOnFailureListener(e -> Log.w(TAG, "Exercise not deleted. Error :", e));
+        }
+        else
+        {
+            affref
+                    .update("Pranayama",Arrays.asList(updatedArray))
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(this,"Pranayama deleted",Toast.LENGTH_SHORT).show();
+                        getUserSettings();})
+                    .addOnFailureListener(e -> Log.w(TAG, "Pranayama not deleted. Error :", e));
+        }
+
     }
 
     //Returns the array index of string passed if found in array
@@ -364,6 +429,23 @@ public class SystemSettings extends AppCompatActivity {
             }
         }
         return 0;
+    }
+
+    //Returns the boolean array of the present items in selectedItemsArray
+    public boolean [] getCheckedArray(List<String> original, List<String> selectedItems)
+    {
+        boolean [] checkedItems = new boolean[]{false,false,false,false,false,false,false};
+        String [] originalArray = original.toArray(new String[original.size()]);
+        String [] selectedItemsArray = selectedItems.toArray(new String[selectedItems.size()]);
+        for(int i = 0; i < originalArray.length; i++)
+        {
+            for (String s : selectedItemsArray)
+            {
+                if (originalArray[i].equals(s))
+                    checkedItems[i] = true;
+            }
+        }
+        return checkedItems;
     }
 
     //Starts playing Audio/music from the given link
@@ -555,6 +637,48 @@ public class SystemSettings extends AppCompatActivity {
                     dialogInterface.dismiss();
                     getUserSettings();
                 });
+                builder.show();
+            }
+        });
+    }
+
+    private void showExerciseDialog(List<String> pranayama, List<String> exercise,boolean isExercise)
+    {
+        DocumentReference typeref = db.collection("ExerciseSettings").document("ExerciseMaster");
+        typeref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists())
+            {
+                List<String> pranayamaMaster = (List<String>) documentSnapshot.get("Pranayama");
+                List<String> exerciseMaster = (List<String>) documentSnapshot.get("Exercise");
+                String[] pranayamaArrayMaster = pranayamaMaster.toArray(new String[0]);
+                String[] exerciseArrayMaster = exerciseMaster.toArray(new String[0]);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
+                if(isExercise) {
+                    builder.setTitle("Excercise");
+                    builder.setMultiChoiceItems(
+                            exerciseArrayMaster,
+                            getCheckedArray(exerciseMaster,exercise),
+                            (DialogInterface.OnMultiChoiceClickListener) (dialog, which, isChecked) -> {
+                                if (isChecked)
+                                    updateExerciseSettings(exercise.toArray(new String[0]),exerciseArrayMaster[which],isExercise);
+                                else
+                                    deleteExerciseSettings(getArrayIndex(exercise.toArray(new String[0]),exerciseArrayMaster[which]),exercise.toArray(new String[0]),isExercise);
+                            });
+                }
+                else{
+                    builder.setTitle("Pranayama");
+                    builder.setMultiChoiceItems(
+                            pranayamaArrayMaster,
+                            getCheckedArray(pranayamaMaster,pranayama),
+                            (DialogInterface.OnMultiChoiceClickListener) (dialog, which, isChecked) -> {
+                                if (isChecked)
+                                    updateExerciseSettings(pranayama.toArray(new String[0]),pranayamaArrayMaster[which],isExercise);
+                                else
+                                    deleteExerciseSettings(getArrayIndex(pranayama.toArray(new String[0]),pranayamaArrayMaster[which]),pranayama.toArray(new String[0]),isExercise);
+                            });
+                }
+
                 builder.show();
             }
         });
