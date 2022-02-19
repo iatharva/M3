@@ -329,6 +329,7 @@ public class SystemSettings extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(SystemSettings.this, "Failed Uploading image", Toast.LENGTH_SHORT).show());
     }
 
+    //Updates the exercise settings (adding new)
     public void updateExerciseSettings(String[] originalPreference,String newItem,boolean isExercise)
     {
         if(isExercise)
@@ -585,6 +586,7 @@ public class SystemSettings extends AppCompatActivity {
         builder.show();
     }
 
+    //Returns visualization image and goal name
     private void showVisualizationDialog(Uri link)
     {
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
@@ -664,6 +666,8 @@ public class SystemSettings extends AppCompatActivity {
                                     updateExerciseSettings(exercise.toArray(new String[0]),exerciseArrayMaster[which],isExercise);
                                 else
                                     deleteExerciseSettings(getArrayIndex(exercise.toArray(new String[0]),exerciseArrayMaster[which]),exercise.toArray(new String[0]),isExercise);
+
+                                getUserSettings();
                             });
                 }
                 else{
@@ -676,6 +680,8 @@ public class SystemSettings extends AppCompatActivity {
                                     updateExerciseSettings(pranayama.toArray(new String[0]),pranayamaArrayMaster[which],isExercise);
                                 else
                                     deleteExerciseSettings(getArrayIndex(pranayama.toArray(new String[0]),pranayamaArrayMaster[which]),pranayama.toArray(new String[0]),isExercise);
+
+                                getUserSettings();
                             });
                 }
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -30,6 +31,8 @@ public class Silence extends AppCompatActivity {
     public FirebaseAuth fAuth;
     public int length=0;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CountDownTimer countDownTimer;
+    private long TimeLeftinMillis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class Silence extends AppCompatActivity {
                 IsAnimation=false;
                 animation_view.pauseAnimation();
                 StartBtn.setImageResource(R.drawable.playbutton);
-                length = stopAudio();
+                stopAudio();
                 startTimer(false);
             }
             else
@@ -54,7 +57,8 @@ public class Silence extends AppCompatActivity {
                 IsAnimation=true;
                 animation_view.playAnimation();
                 StartBtn.setImageResource(R.drawable.pausebutton);
-                playAudio(MName.getText().toString());
+                playAudio(MName.getText().toString(),Timer.getText().toString());
+                TimeLeftinMillis=getTimeInMilliSeconds(Timer.getText().toString());
                 startTimer(true);
             }
         });
@@ -92,28 +96,38 @@ public class Silence extends AppCompatActivity {
     //Starts/pause the timer
     private void startTimer(boolean Start)
     {
-         //Get the text from Timer and MName
-        String time = Timer.getText().toString();
-        String[] timeSplit = time.split(":");
-        int minutes = Integer.parseInt(timeSplit[0]);
-        int seconds = Integer.parseInt(timeSplit[1]);
+        if(Start) {
+            countDownTimer = new CountDownTimer(TimeLeftinMillis, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    TimeLeftinMillis = millisUntilFinished;
+                    updateTimer();
+                }
 
-        String musicName = MName.getText().toString();
-
-        if(Start)
-        {
-
+                @Override
+                public void onFinish() {
+                    stopAudio();
+                }
+            }.start();
         }
         else
         {
-
+            countDownTimer.cancel();
         }
+    }
+
+    private void updateTimer()
+    {
+        int minutes = (int) (TimeLeftinMillis/1000) / 60;
+        int seconds = (int) (TimeLeftinMillis/1000) % 60;
+        String timeString = String.format("%02d:%02d", minutes, seconds);
+        Timer.setText(timeString);
     }
 
     /**
      * Starts playing Audio/music from the given link
      */
-    private void playAudio(String musicName)
+    private void playAudio(String musicName,String length)
     {
         DocumentReference musicref = db.collection("MusicSettings").document("MusicMaster");
         musicref.get().addOnSuccessListener(documentSnapshot -> {
@@ -137,23 +151,30 @@ public class Silence extends AppCompatActivity {
             mediaPlayer.start();
         }
          */
-
     }
 
     /**
      * Method stops the audio/music if it is playing
      */
-    private int stopAudio()
+    private void stopAudio()
     {
-        int length=0;
         if (mediaPlayer != null) {
             mediaPlayer.pause();
-            length=mediaPlayer.getCurrentPosition();
-            return length;
-            //mediaPlayer.reset();
-            //mediaPlayer.release();
-            //mediaPlayer = null;
+            //length=mediaPlayer.getCurrentPosition();
+            //return length;
+            mediaPlayer.reset();
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
-        return length;
+    }
+
+    //return time in milliseconds
+    private int getTimeInMilliSeconds(String time)
+    {
+        String[] timeSplit = time.split(":");
+        int minutes = Integer.parseInt(timeSplit[0]);
+        int seconds = Integer.parseInt(timeSplit[1]);
+        int timeInMilliSeconds = (minutes * 60 + seconds) * 1000;
+        return timeInMilliSeconds;
     }
 }

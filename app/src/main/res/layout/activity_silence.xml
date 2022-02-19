@@ -28,30 +28,30 @@
         android:paddingEnd="60dp"
         android:text="@string/let_s_start_with_that_daily_mediation_activity_being_with_yourself_let_all_of_your_thoughts_flow_through" />
 
-    <ImageButton
-        android:id="@+id/StartBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="175dp"
-        android:layout_marginTop="370dp"
-        android:background="@color/white"
-        android:scaleType="fitCenter"
-        android:src="@drawable/playbutton" />
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:layout_below="@id/T1Desc1"
         android:layout_marginTop="10dp"
-        app:lottie_fileName="beatsanimation.json"
+        app:lottie_fileName="breathinganimation.json"
         app:lottie_loop="true" />
+
+    <ImageButton
+        android:id="@+id/StartBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/animation_view"
+        android:layout_marginStart="155dp"
+        android:background="@color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/playbutton" />
 
     <TextView
         android:id="@+id/Timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/animation_view"
+        android:layout_below="@id/StartBtn"
         android:layout_marginStart="155dp"
         android:textColor="@color/black"
         android:textSize="30sp" />
