@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Affirmations">
+
+    <TextView
+        android:id="@+id/T1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/affirmations"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/T1Desc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/affirmations_added_by_you_will_be_showed_to_you_app_you_proceed_with_your_day" />
+
+    <ListView
+        android:id="@+id/affirmationList"
+        android:layout_width="300dp"
+        android:layout_height="190dp"
+        android:layout_below="@id/T1Desc1"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="20dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/toDoneScreenBtn"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="27dp"
+        android:contentDescription="@string/go_to_next_screen"
+        android:src="@drawable/arrowright"
+        app:rippleColor="@color/white" />
+
+</RelativeLayout>

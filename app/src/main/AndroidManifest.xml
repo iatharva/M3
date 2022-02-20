@@ -15,6 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
         <activity
+            android:name=".Reading"
+            android:exported="false" />
+        <activity
+            android:name=".Exercises"
+            android:exported="false" />
+        <activity
+            android:name=".Visualization"
+            android:exported="false" />
+        <activity
+            android:name=".Affirmations"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityCompleted"
+            android:exported="false" />
+        <activity
             android:name=".Silence"
             android:exported="false" />
         <activity

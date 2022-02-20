@@ -58,6 +58,20 @@
     <string name="let_s_start_with_that_daily_mediation_activity_being_with_yourself_let_all_of_your_thoughts_flow_through">Let\'s start with that daily mediation activity. Being with yourself. Let all of your thoughts flow through.</string>
     <string name="silence">Silence</string>
     <string name="start_meditation">Start Meditation</string>
+    <string name="goal_completed">Goal completed :)</string>
+    <string name="button_to_next_activity">Button to next activity</string>
+    <string name="activity_completed">activity completed!</string>
+    <string name="activities_completed">activities completed!</string>
+    <string name="affirmations">Affirmations</string>
+    <string name="affirmations_added_by_you_will_be_showed_to_you_app_you_proceed_with_your_day">Affirmations added by you will be showed to you app you proceed with your day</string>
+    <string name="visualization">Visualization</string>
+    <string name="go_to_next_screen">Go to next screen</string>
+    <string name="play_pause">Play/Pause</string>
+    <string name="go_to_next_activity">Go to next activity</string>
+    <string name="hurrey">Hurrey</string>
+    <string name="congrats">Congrats</string>
+    <string name="exercises">Exercises</string>
+    <string name="reading">Reading</string>
 
     <!--durations array
     <string-array name="durations">

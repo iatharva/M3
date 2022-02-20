@@ -1,22 +1,33 @@
 package com.example.m3;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +35,8 @@ public class Silence extends AppCompatActivity {
 
     public LottieAnimationView animation_view;
     private MediaPlayer mediaPlayer;
-    public TextView Timer,MName;
+    public FloatingActionButton toDoneScreenBtn;
+    public TextView Timer,MName,TimerOriginal;
     public ImageButton StartBtn;
     public boolean IsAnimation=false;
     public String UID;
@@ -32,7 +44,8 @@ public class Silence extends AppCompatActivity {
     public int length=0;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CountDownTimer countDownTimer;
-    private long TimeLeftinMillis;
+    private long TimeLeftInMillis;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +53,14 @@ public class Silence extends AppCompatActivity {
         animation_view = findViewById(R.id.animation_view);
         StartBtn = findViewById(R.id.StartBtn);
         Timer = findViewById(R.id.Timer);
+        TimerOriginal = findViewById(R.id.TimerOriginal);
         MName = findViewById(R.id.MName);
+        toDoneScreenBtn = findViewById(R.id.toDoneScreenBtn);
+
+        //Takes to next screen
+        toDoneScreenBtn.setOnClickListener(view -> {
+            showCustomDialog();
+        });
 
         //Starts the animation timer
         StartBtn.setOnClickListener(view -> {
@@ -57,8 +77,8 @@ public class Silence extends AppCompatActivity {
                 IsAnimation=true;
                 animation_view.playAnimation();
                 StartBtn.setImageResource(R.drawable.pausebutton);
-                playAudio(MName.getText().toString(),Timer.getText().toString());
-                TimeLeftinMillis=getTimeInMilliSeconds(Timer.getText().toString());
+                playAudio(MName.getText().toString(),Timer.getText().toString(),TimerOriginal.getText().toString());
+                TimeLeftInMillis=getTimeInMilliSeconds(Timer.getText().toString());
                 startTimer(true);
             }
         });
@@ -88,6 +108,7 @@ public class Silence extends AppCompatActivity {
                 int seconds = 00;
                 String timeString = String.format("%02d:%02d", minutes, seconds);
                 Timer.setText(timeString);
+                TimerOriginal.setText(timeString);
                 MName.setText(musicName);
             }
         });
@@ -97,16 +118,17 @@ public class Silence extends AppCompatActivity {
     private void startTimer(boolean Start)
     {
         if(Start) {
-            countDownTimer = new CountDownTimer(TimeLeftinMillis, 1000) {
+            countDownTimer = new CountDownTimer(TimeLeftInMillis, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    TimeLeftinMillis = millisUntilFinished;
+                    TimeLeftInMillis = millisUntilFinished;
                     updateTimer();
                 }
 
                 @Override
                 public void onFinish() {
                     stopAudio();
+                    toDoneScreenBtn.setVisibility(View.VISIBLE);
                 }
             }.start();
         }
@@ -118,8 +140,8 @@ public class Silence extends AppCompatActivity {
 
     private void updateTimer()
     {
-        int minutes = (int) (TimeLeftinMillis/1000) / 60;
-        int seconds = (int) (TimeLeftinMillis/1000) % 60;
+        int minutes = (int) (TimeLeftInMillis/1000) / 60;
+        int seconds = (int) (TimeLeftInMillis/1000) % 60;
         String timeString = String.format("%02d:%02d", minutes, seconds);
         Timer.setText(timeString);
     }
@@ -127,8 +149,9 @@ public class Silence extends AppCompatActivity {
     /**
      * Starts playing Audio/music from the given link
      */
-    private void playAudio(String musicName,String length)
+    private void playAudio(String musicName,String length,String originalLength)
     {
+        int playFrom = getTimeInMilliSeconds(originalLength) - getTimeInMilliSeconds(length);
         DocumentReference musicref = db.collection("MusicSettings").document("MusicMaster");
         musicref.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
@@ -138,6 +161,7 @@ public class Silence extends AppCompatActivity {
                 try {
                     mediaPlayer.setDataSource(audioUrl);
                     mediaPlayer.prepare();
+                    mediaPlayer.seekTo(playFrom);
                     mediaPlayer.start();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -160,8 +184,6 @@ public class Silence extends AppCompatActivity {
     {
         if (mediaPlayer != null) {
             mediaPlayer.pause();
-            //length=mediaPlayer.getCurrentPosition();
-            //return length;
             mediaPlayer.reset();
             mediaPlayer.release();
             mediaPlayer = null;
@@ -176,5 +198,18 @@ public class Silence extends AppCompatActivity {
         int seconds = Integer.parseInt(timeSplit[1]);
         int timeInMilliSeconds = (minutes * 60 + seconds) * 1000;
         return timeInMilliSeconds;
+    }
+
+    private void showCustomDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Silence.this);
+        final View customLayout = getLayoutInflater().inflate(R.layout.completed_dialog, null);
+        builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
+            Intent intent = new Intent(Silence.this, Affirmations.class);
+            startActivity(intent);
+        });
+        builder.setCancelable(false);
+        builder.setView(customLayout);
+        builder.show();
     }
 }

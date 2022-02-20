@@ -45,7 +45,8 @@
         android:layout_marginStart="155dp"
         android:background="@color/white"
         android:scaleType="fitCenter"
-        android:src="@drawable/playbutton" />
+        android:src="@drawable/playbutton"
+        android:contentDescription="@string/play_pause" />
 
     <TextView
         android:id="@+id/Timer"
@@ -57,10 +58,30 @@
         android:textSize="30sp" />
 
     <TextView
+        android:id="@+id/TimerOriginal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/StartBtn"
+        android:visibility="invisible"
+        android:layout_marginStart="155dp" />
+
+    <TextView
         android:id="@+id/MName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/Timer"
         android:layout_marginStart="130dp"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/toDoneScreenBtn"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="27dp"
+        android:contentDescription="@string/go_to_next_screen"
+        android:src="@drawable/arrowright"
+        app:rippleColor="@color/white" />
 </RelativeLayout>
