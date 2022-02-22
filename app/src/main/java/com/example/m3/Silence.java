@@ -3,20 +3,15 @@ package com.example.m3;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -24,11 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 import java.util.Objects;
 
 public class Silence extends AppCompatActivity {
@@ -45,11 +37,13 @@ public class Silence extends AppCompatActivity {
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CountDownTimer countDownTimer;
     private long TimeLeftInMillis;
+    public Vibrator vibe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_silence);
+        vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         animation_view = findViewById(R.id.animation_view);
         StartBtn = findViewById(R.id.StartBtn);
         Timer = findViewById(R.id.Timer);
@@ -202,8 +196,9 @@ public class Silence extends AppCompatActivity {
 
     private void showCustomDialog()
     {
+        vibe.vibrate(100);
         AlertDialog.Builder builder = new AlertDialog.Builder(Silence.this);
-        final View customLayout = getLayoutInflater().inflate(R.layout.completed_dialog, null);
+        final View customLayout = getLayoutInflater().inflate(R.layout.dialog_completedactivity, null);
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
             Intent intent = new Intent(Silence.this, Affirmations.class);
             startActivity(intent);

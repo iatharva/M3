@@ -63,7 +63,6 @@
     <string name="activity_completed">activity completed!</string>
     <string name="activities_completed">activities completed!</string>
     <string name="affirmations">Affirmations</string>
-    <string name="affirmations_added_by_you_will_be_showed_to_you_app_you_proceed_with_your_day">Affirmations added by you will be showed to you app you proceed with your day</string>
     <string name="visualization">Visualization</string>
     <string name="go_to_next_screen">Go to next screen</string>
     <string name="play_pause">Play/Pause</string>
@@ -72,6 +71,15 @@
     <string name="congrats">Congrats</string>
     <string name="exercises">Exercises</string>
     <string name="reading">Reading</string>
+    <string name="below_are_the_affirmations_choosen_by_you_which_you_will_be_reminded_of_throughout_the_day_you_can_proceed_with_your_next_task">Below are the affirmations choosen by you, which you will be reminded of throughout the day. You can proceed with your next task</string>
+    <string name="remember_user_if_you_see_your_goal_you_are_more_likely_to_achieve_it">Remember User, if you “see” your goal, you are more likely to achieve it.</string>
+    <string name="read_more">Read more</string>
+    <string name="you_will_achieve_it">You will achieve it ✨✨</string>
+    <string name="these_are_the_daily_activities_you_have_choosen_please_complete_the_following_then_click_on_button">These are the daily activities you have choosen. Please complete the following then click on button :</string>
+    <string name="exercises_to_do">Exercises to do:</string>
+    <string name="pranayam_to_do">Pranayam to do:</string>
+    <string name="please_perform_this_activity_for_at_least_5_minutes_and_then_mark_it_as_complete">Please perform this activity for at least 5 minutes and then mark it as complete</string>
+    <string name="i_have_performed_the_above_exercise_pranayama_and_i_am_not_just_clicking_without_doing_the_exercise_pranayama">I have performed the above exercise/pranayama, and I am not just clicking without doing the exercise/pranayama.</string>
 
     <!--durations array
     <string-array name="durations">

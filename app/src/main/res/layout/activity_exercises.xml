@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Exercises">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/T1"
@@ -26,7 +30,47 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="" />
+        android:text="@string/these_are_the_daily_activities_you_have_choosen_please_complete_the_following_then_click_on_button" />
+
+        <TextView
+            android:id="@+id/T1Desc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/T1Desc1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:text="@string/exercises_to_do" />
+
+    <ListView
+        android:id="@+id/ExerciseList"
+        android:layout_width="300dp"
+        android:layout_height="190dp"
+        android:layout_below="@id/T1Desc2"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp" />
+
+        <TextView
+            android:id="@+id/T1Desc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ExerciseList"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:text="@string/pranayam_to_do" />
+
+    <ListView
+        android:id="@+id/PranayamList"
+        android:layout_width="300dp"
+        android:layout_height="190dp"
+        android:layout_below="@id/T1Desc3"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toDoneScreenBtn"
@@ -36,7 +80,10 @@
         android:layout_marginTop="500dp"
         android:layout_marginEnd="27dp"
         android:contentDescription="@string/go_to_next_screen"
+        android:visibility="invisible"
         android:src="@drawable/arrowright"
         app:rippleColor="@color/white" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>

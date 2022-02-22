@@ -23,10 +23,58 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/T1"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/remember_user_if_you_see_your_goal_you_are_more_likely_to_achieve_it"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/T1Desc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:textColor="@color/primaryColor"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/read_more"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/T1Desc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc2"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="" />
+        android:text="@string/you_will_achieve_it" />
+
+    <TextView
+        android:id="@+id/T1Desc4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc3"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/you_will_achieve_it" />
+
+    <ImageView
+        android:id="@+id/Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc4"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toDoneScreenBtn"

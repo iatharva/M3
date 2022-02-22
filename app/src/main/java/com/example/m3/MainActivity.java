@@ -1,13 +1,21 @@
 package com.example.m3;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -15,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int SPLASH_TIME_OUT=1500;
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public String UID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         int SPLASH_TIME_OUT = 1700;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                logincheck();
-            }
-        }, SPLASH_TIME_OUT);
+        new Handler().postDelayed(() -> logincheck(), SPLASH_TIME_OUT);
     }
 
     /**
@@ -61,4 +66,5 @@ public class MainActivity extends AppCompatActivity {
     public void logincheck(){
         fAuth.addAuthStateListener(mAuthStateListener);
     }
+
 }

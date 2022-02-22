@@ -26,7 +26,7 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="@string/affirmations_added_by_you_will_be_showed_to_you_app_you_proceed_with_your_day" />
+        android:text="@string/below_are_the_affirmations_choosen_by_you_which_you_will_be_reminded_of_throughout_the_day_you_can_proceed_with_your_next_task" />
 
     <ListView
         android:id="@+id/affirmationList"
