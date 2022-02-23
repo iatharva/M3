@@ -8,21 +8,24 @@
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/drawable/circle.xml" value="0.2703125" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/drawable/loadinganimation.xml" value="0.1578125" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/drawable/round_corner_filled.xml" value="0.2703125" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/drawable/round_corner_hollow.xml" value="0.2703125" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/font/nunito.xml" value="0.284375" />
-        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_about.xml" value="0.176" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_about.xml" value="0.4" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_affirmations.xml" value="0.1802536231884058" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_completed.xml" value="0.264" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_create_new_account.xml" value="0.152" />
-        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_exercises.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_exercises.xml" value="0.3403068340306834" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_forget_password.xml" value="0.136" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_home.xml" value="0.12" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_intro_screen1.xml" value="0.2" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_intro_screen2.xml" value="0.264" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_intro_screen3.xml" value="0.42397914856646396" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_journaling.xml" value="0.20208333333333334" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_log_in.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_main.xml" value="0.20153985507246377" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_profile.xml" value="0.16770833333333332" />
-        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_reading.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_reading.xml" value="0.2" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_silence.xml" value="0.176" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_system_settings.xml" value="0.2" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/activity_visualization.xml" value="0.1802536231884058" />
@@ -32,7 +35,7 @@
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/exercise_dialog.xml" value="0.23007246376811594" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/fragment_profile.xml" value="0.1625" />
-        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/fragment_settings.xml" value="0.176" />
+        <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/fragment_settings.xml" value="0.536" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/layout/habit_list_item.xml" value="0.4" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/menu/actionbarmenu.xml" value="0.264" />
         <entry key="..\:/Users/Atharva/AndroidStudioProjects/M3/app/src/main/res/menu/affirmation_menu.xml" value="0.25416666666666665" />

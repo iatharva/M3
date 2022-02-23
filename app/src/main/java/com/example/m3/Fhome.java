@@ -25,6 +25,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Fhome extends Fragment
@@ -45,40 +46,72 @@ public class Fhome extends Fragment
         StartBtn = view.findViewById(R.id.StartBtn);
 
         StartBtn.setOnClickListener(view -> {
-            Intent i = new Intent(getActivity(), Silence.class);
-            startActivity(i);
+
+            DocumentReference userlogref = db.collection("UserLogs").document(UID);
+            userlogref.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    Date date = new Date();
+                    String currentDate = dateFormat.format(date);
+                    List<Boolean> ActivityLog=(List<Boolean>) documentSnapshot.get(currentDate);
+                    if(ActivityLog!=null)
+                    {
+                        boolean[] arrayActivityLog = new boolean[ActivityLog.size()];
+                        for(int i=0;i<ActivityLog.size();i++)
+                            arrayActivityLog[i]=ActivityLog.get(i);
+                        int currentActivityIndex = 0;
+                        
+                        //execute only if last element is false
+                        if(!arrayActivityLog[arrayActivityLog.length-1])
+                        {
+                            for(int i=0;i<arrayActivityLog.length;i++)
+                            {
+                                if(arrayActivityLog[i]==true && arrayActivityLog[i+1]==false)
+                                {
+                                    currentActivityIndex = i;
+                                    break;
+                                }
+                            }
+
+                            if(currentActivityIndex==0)
+                            {
+                                Intent intent = new Intent(getActivity(), Affirmations.class);
+                                startActivity(intent);
+                            }
+                            else if(currentActivityIndex==1)
+                            {
+                                Intent intent = new Intent(getActivity(), Visualization.class);
+                                startActivity(intent);
+                            }
+                            else if(currentActivityIndex==2)
+                            {
+                                Intent intent = new Intent(getActivity(), Exercises.class);
+                                startActivity(intent);
+                            }
+                            else if(currentActivityIndex==3)
+                            {
+                                Intent intent = new Intent(getActivity(), Reading.class);
+                                startActivity(intent);
+                            }
+                            else if(currentActivityIndex==4)
+                            {
+                                //To be added
+                                Intent intent = new Intent(getActivity(), Journaling.class);
+                                startActivity(intent);
+                                Toast.makeText(getActivity(),"I am journal demo", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Intent i = new Intent(getActivity(), Silence.class);
+                        startActivity(i);
+                    }
+
+                }
+            });
         });
         return view;
-    }
-
-    /**
-     * Starts playing Audio/music from the given link
-     */
-    private void playAudio()
-    {
-        String audioUrl = "https://github.com/iatharva/iatharva.github.io/raw/master/images/03.%20Morph.mp3";
-        mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-            mediaPlayer.setDataSource(audioUrl);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Method stops the audio/music if it is playing
-     */
-    private void stopAudio()
-    {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
     }
 
     /**
@@ -105,6 +138,45 @@ public class Fhome extends Fragment
                 Dob=documentSnapshot.getString("Dob");
                 //Call message typing method by passing the parameters
                 typeWriterMessages(FName,Dob);
+            }
+        });
+
+        DocumentReference userlogref = db.collection("UserLogs").document(UID);
+        userlogref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                //get current date and make it in DD-MM-YYYY format and then check if array exists
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                Date date = new Date();
+                String currentDate = dateFormat.format(date);
+                List<Boolean> ActivityLog=(List<Boolean>) documentSnapshot.get(currentDate);
+
+                if(ActivityLog!=null)
+                {
+                    boolean[] arrayActivityLog = new boolean[ActivityLog.size()];
+                    for(int i=0;i<ActivityLog.size();i++)
+                        arrayActivityLog[i]=ActivityLog.get(i);
+
+                    //if last element is true then StartBtn visibility is gone else below if
+                    if(arrayActivityLog[arrayActivityLog.length-1]==true)
+                        StartBtn.setVisibility(View.GONE);
+                    else
+                    {
+                        //if the first value is false then set Text to Start the routine
+                        if(!ActivityLog.get(0))
+                        {
+                            StartBtn.setText("Start routine");
+                        }
+                        else
+                        {
+                            StartBtn.setText("Continue routine");
+                        }
+                    }
+                }
+                else
+                {
+                    StartBtn.setText("Start routine");
+                }
+
             }
         });
     }

@@ -27,10 +27,12 @@ public class Exercises extends AppCompatActivity {
 
     public FloatingActionButton toDoneScreenBtn;
     public ListView exerciseList,pranayamList;
+    public TextView trackExercise;
     private FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     public String UID;
     public Vibrator vibe;
+    public int exerciseCount=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class Exercises extends AppCompatActivity {
         toDoneScreenBtn = findViewById(R.id.toDoneScreenBtn);
         exerciseList = findViewById(R.id.ExerciseList);
         pranayamList = findViewById(R.id.PranayamList);
+        trackExercise = findViewById(R.id.TrackExercise);
         fAuth = FirebaseAuth.getInstance();
         toDoneScreenBtn.setOnClickListener(view -> {
             showCustomDialog();
@@ -80,76 +83,131 @@ public class Exercises extends AppCompatActivity {
                 List<String> exerciseMaster = (List<String>) documentSnapshot.get("Exercise");
                 String[] pranayamaArrayMaster = pranayamaMaster.toArray(new String[0]);
                 String[] exerciseArrayMaster = exerciseMaster.toArray(new String[0]);
-
-                //Make a check list of the both the array and show on UI using exerciseList
-                exerciseList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, exerciseArrayMaster));
-                //On click of any item in the list, show the dialog which will show the details of the exercise and at the end of it, will show a button to mark exercise as completed
-                exerciseList.setOnItemClickListener((adapterView, view, i, l) -> {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Exercises.this);
-                    final View customLayout = getLayoutInflater().inflate(R.layout.dialog_exercises, null);
-                    TextView et = customLayout.findViewById(R.id.ExerciseTitle);
-                    TextView es = customLayout.findViewById(R.id.ExerciseSubtitle);
-                    ImageView eim = customLayout.findViewById(R.id.ExerciseImage);
-                    TextView ed = customLayout.findViewById(R.id.ExerciseDescription);
-                    TextView ei = customLayout.findViewById(R.id.ExerciseInstructions);
-                    CheckBox mc = customLayout.findViewById(R.id.MarkComplete);
-                    et.setText(exerciseArrayMaster[i]);
-                    DocumentReference specexerciseref = db.collection("ExerciseSettings").document((exerciseArrayMaster[i]).toString());
-                    specexerciseref.get().addOnSuccessListener(documentSnapshot1 -> {
-                        if (documentSnapshot1.exists()) {
-                            String exerciseSubtitle=documentSnapshot1.getString("ExerciseSubtitle");
-                            String exerciseImage=documentSnapshot1.getString("ExerciseImage");
-                            String exerciseDescription=documentSnapshot1.getString("ExerciseDescription");
-                            String exerciseInstructions=documentSnapshot1.getString("ExerciseInstructions");
-                            es.setText(exerciseSubtitle);
-                            ed.setText(exerciseDescription);
-                            ei.setText(exerciseInstructions);
-                            Picasso
-                                    .get()
-                                    .load(exerciseImage)
-                                    .placeholder( R.drawable.loadinganimation)
-                                    .into(eim);
-                        }
-                    });
-                    builder.setCancelable(true);
-                    builder.setView(customLayout);
-                    builder.show();
-                });
-
-                pranayamList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pranayamaArrayMaster));
-                //On click of any item in the list, show the dialog which will show the details of the exercise and at the end of it, will show a button to mark exercise as completed
-                pranayamList.setOnItemClickListener((adapterView, view, i, l) -> {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(Exercises.this);
-                    final View customLayout = getLayoutInflater().inflate(R.layout.dialog_exercises, null);
-                    TextView et = customLayout.findViewById(R.id.ExerciseTitle);
-                    TextView es = customLayout.findViewById(R.id.ExerciseSubtitle);
-                    ImageView eim = customLayout.findViewById(R.id.ExerciseImage);
-                    TextView ed = customLayout.findViewById(R.id.ExerciseDescription);
-                    TextView ei = customLayout.findViewById(R.id.ExerciseInstructions);
-                    CheckBox mc = customLayout.findViewById(R.id.MarkComplete);
-                    et.setText(pranayamaArrayMaster[i]);
-                    DocumentReference specexerciseref = db.collection("ExerciseSettings").document(pranayamaArrayMaster[i]);
-                    specexerciseref.get().addOnSuccessListener(documentSnapshot2 -> {
-                        if (documentSnapshot2.exists()) {
-                            String exerciseSubtitle=documentSnapshot2.getString("ExerciseSubtitle");
-                            String exerciseImage=documentSnapshot2.getString("ExerciseImage");
-                            String exerciseDescription=documentSnapshot2.getString("ExerciseDescription");
-                            String exerciseInstructions=documentSnapshot2.getString("ExerciseInstructions");
-                            es.setText(exerciseSubtitle);
-                            ed.setText(exerciseDescription);
-                            ei.setText(exerciseInstructions);
-                            Picasso
-                                    .get()
-                                    .load(exerciseImage)
-                                    .placeholder( R.drawable.loadinganimation)
-                                    .into(eim);
-                        }
-                    });
-                    builder.setCancelable(true);
-                    builder.setView(customLayout);
-                    builder.show();
-                });
+                boolean[] exerciseCompleted = new boolean[(pranayamaArrayMaster.length+exerciseArrayMaster.length)];
+                trackExercise.setText("Exercises Completed : "+exerciseCount+"/"+(pranayamaArrayMaster.length+exerciseArrayMaster.length));
+                setUserSettings(pranayamaArrayMaster,exerciseArrayMaster,exerciseCompleted);
             }
         });
+    }
+
+    public void setUserSettings(String[] pranayamaArrayMaster, String[] exerciseArrayMaster,boolean[] exerciseCompleted)
+    {
+        exerciseList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, exerciseArrayMaster));
+        exerciseList.setOnItemClickListener((adapterView, view, i, l) -> {
+            AlertDialog builder = new AlertDialog.Builder(Exercises.this).create();
+            final View customLayout = getLayoutInflater().inflate(R.layout.dialog_exercises, null);
+            TextView et = customLayout.findViewById(R.id.ExerciseTitle);
+            TextView es = customLayout.findViewById(R.id.ExerciseSubtitle);
+            ImageView eim = customLayout.findViewById(R.id.ExerciseImage);
+            TextView ed = customLayout.findViewById(R.id.ExerciseDescription);
+            TextView ei = customLayout.findViewById(R.id.ExerciseInstructions);
+            CheckBox mc = customLayout.findViewById(R.id.MarkComplete);
+
+            if(exerciseCompleted[i])
+                mc.setChecked(true);
+            else
+                mc.setChecked(false);
+
+            et.setText(exerciseArrayMaster[i]);
+            DocumentReference specexerciseref = db.collection("ExerciseSettings").document(exerciseArrayMaster[i]);
+            specexerciseref.get().addOnSuccessListener(documentSnapshot1 -> {
+                if (documentSnapshot1.exists()) {
+                    String exerciseSubtitle=documentSnapshot1.getString("ExerciseSubtitle");
+                    String exerciseImage=documentSnapshot1.getString("ExerciseImage");
+                    String exerciseDescription=documentSnapshot1.getString("ExerciseDescription");
+                    String exerciseInstructions=documentSnapshot1.getString("ExerciseInstructions");
+                    es.setText(exerciseSubtitle);
+                    ed.setText(exerciseDescription);
+                    ei.setText(exerciseInstructions);
+                    Picasso
+                            .get()
+                            .load(exerciseImage)
+                            .placeholder( R.drawable.loadinganimation)
+                            .into(eim);
+                }
+            });
+            mc.setOnClickListener(view1 -> {
+                if(mc.isChecked())
+                {
+                    if(exerciseCount<(pranayamaArrayMaster.length+exerciseArrayMaster.length))
+                    {
+                        exerciseCount++;
+                    }
+                    exerciseCompleted[i]=true;
+                    checkCompletion(exerciseCompleted);
+                    trackExercise.setText("Exercises Completed : "+exerciseCount+"/"+(pranayamaArrayMaster.length+exerciseArrayMaster.length));
+                    builder.dismiss();
+                }
+            });
+
+            builder.setCancelable(true);
+            builder.setView(customLayout);
+            builder.show();
+        });
+
+        pranayamList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, pranayamaArrayMaster));
+        pranayamList.setOnItemClickListener((adapterView, view, i, l) -> {
+            AlertDialog builder = new AlertDialog.Builder(Exercises.this).create();
+            final View customLayout = getLayoutInflater().inflate(R.layout.dialog_exercises, null);
+            TextView et = customLayout.findViewById(R.id.ExerciseTitle);
+            TextView es = customLayout.findViewById(R.id.ExerciseSubtitle);
+            ImageView eim = customLayout.findViewById(R.id.ExerciseImage);
+            TextView ed = customLayout.findViewById(R.id.ExerciseDescription);
+            TextView ei = customLayout.findViewById(R.id.ExerciseInstructions);
+            CheckBox mc = customLayout.findViewById(R.id.MarkComplete);
+
+            if(exerciseCompleted[exerciseArrayMaster.length+i])
+                mc.setChecked(true);
+            else
+                mc.setChecked(false);
+
+            et.setText(pranayamaArrayMaster[i]);
+            DocumentReference specexerciseref = db.collection("ExerciseSettings").document(pranayamaArrayMaster[i]);
+            specexerciseref.get().addOnSuccessListener(documentSnapshot2 -> {
+                if (documentSnapshot2.exists()) {
+                    String exerciseSubtitle=documentSnapshot2.getString("ExerciseSubtitle");
+                    String exerciseImage=documentSnapshot2.getString("ExerciseImage");
+                    String exerciseDescription=documentSnapshot2.getString("ExerciseDescription");
+                    String exerciseInstructions=documentSnapshot2.getString("ExerciseInstructions");
+                    es.setText(exerciseSubtitle);
+                    ed.setText(exerciseDescription);
+                    ei.setText(exerciseInstructions);
+                    Picasso
+                            .get()
+                            .load(exerciseImage)
+                            .placeholder( R.drawable.loadinganimation)
+                            .into(eim);
+                }
+            });
+            mc.setOnClickListener(view1 -> {
+                if(mc.isChecked())
+                {
+                    if(exerciseCount<(pranayamaArrayMaster.length+exerciseArrayMaster.length))
+                    {
+                        exerciseCount++;
+                    }
+                    exerciseCompleted[exerciseArrayMaster.length+i]=true;
+                    checkCompletion(exerciseCompleted);
+                    trackExercise.setText("Exercises Completed : "+exerciseCount+"/"+(pranayamaArrayMaster.length+exerciseArrayMaster.length));
+                    builder.dismiss();
+                }
+            });
+            builder.setCancelable(true);
+            builder.setView(customLayout);
+            builder.show();
+        });
+    }
+
+    private void checkCompletion(boolean[] array)
+    {
+        int count=0;
+        for (boolean b : array)
+            if (!b)
+                count++;
+
+        if(count==0)
+        {
+            toDoneScreenBtn.setVisibility(View.VISIBLE);
+        }
     }
 }

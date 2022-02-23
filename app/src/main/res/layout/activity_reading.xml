@@ -26,7 +26,97 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="" />
+        android:text="@string/to_keep_track_of_your_reading_habit_you_can_enter_the_data_now_or_skip_it_for_later" />
+
+    <TextView
+        android:id="@+id/T1Desc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:textSize="18sp"
+        android:text="@string/reading_type" />
+
+    <!--Toggle Code here-->
+    <LinearLayout
+        android:id="@+id/readingType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc2"
+        android:layout_marginStart="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:id="@+id/booktype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/book"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginEnd="20dp" />
+
+        <TextView
+            android:id="@+id/articletype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/articles" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/T1Desc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/readingType"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/how_many_pages_articles_have_you_read"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/count"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc3"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:gravity="left"
+        android:inputType="number"
+        android:hint="@string/_1"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp" />
+
+    <TextView
+        android:id="@+id/T1Desc4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/count"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/book_name_notes" />
+
+    <EditText
+        android:id="@+id/bNameOrNotes"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/T1Desc4"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:inputType="textMultiLine"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toDoneScreenBtn"

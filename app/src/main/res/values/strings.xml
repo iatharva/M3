@@ -80,6 +80,17 @@
     <string name="pranayam_to_do">Pranayam to do:</string>
     <string name="please_perform_this_activity_for_at_least_5_minutes_and_then_mark_it_as_complete">Please perform this activity for at least 5 minutes and then mark it as complete</string>
     <string name="i_have_performed_the_above_exercise_pranayama_and_i_am_not_just_clicking_without_doing_the_exercise_pranayama">I have performed the above exercise/pranayama, and I am not just clicking without doing the exercise/pranayama.</string>
+    <string name="to_keep_track_of_your_reading_habit_you_can_enter_the_data_now_or_skip_it_for_later">To keep track of your reading habit, You can enter the data now or skip it for later</string>
+    <string name="how_many_pages_articles_have_you_read">How many pages/articles have you read?</string>
+    <string name="notes">Notes</string>
+    <string name="reading_type">Reading type</string>
+    <string name="_1">1</string>
+    <string name="bookname">BookName</string>
+    <string name="book">Book</string>
+    <string name="articles">Articles</string>
+    <string name="book_name_notes">Book Name/Notes</string>
+    <string name="journaling">Journaling</string>
+    <string name="speak_your_mind_how_you_felt_through_out_the_day_any_highlight_which_made_it_special">Speak your mind, how you felt through out the day, any highlight which made it special.</string>
 
     <!--durations array
     <string-array name="durations">

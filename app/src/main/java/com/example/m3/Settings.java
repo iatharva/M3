@@ -25,6 +25,7 @@ public class Settings extends Fragment {
         aboutBtn = view.findViewById(R.id.aboutBtn);
         notificationManager = NotificationManagerCompat.from(requireActivity());
         //Buttons which redirects to required pages/activities/fragment
+
         //Button which leads to alarm settings
         alarmBtn.setOnClickListener(view -> {
 

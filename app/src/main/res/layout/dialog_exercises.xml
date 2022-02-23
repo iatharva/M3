@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -33,6 +33,8 @@
     <ImageView
         android:id="@+id/ExerciseImage"
         android:layout_width="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
         android:layout_height="200dp"
         android:layout_gravity="center" />
 
@@ -70,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/i_have_performed_the_above_exercise_pranayama_and_i_am_not_just_clicking_without_doing_the_exercise_pranayama"
         android:textSize="15sp"
         android:textColor="@color/black" />
