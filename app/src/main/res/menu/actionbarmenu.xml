@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/shareButtonHeader"
+        android:title="@string/share"
+        app:showAsAction="always"
+        android:icon="@drawable/shareiconlinksmall"
+        />
+
+    <item
         android:id="@+id/helpButtonHeader"
         android:title="@string/about"
         app:showAsAction="always"

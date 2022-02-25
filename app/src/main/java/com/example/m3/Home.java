@@ -68,6 +68,15 @@ public class Home extends AppCompatActivity {
             Intent i = new Intent(Home.this,IntroScreen1.class);
             startActivity(i);
         }
+        if(item.getItemId() == R.id.shareButtonHeader){
+            //Share the app link
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+            String shareBody = "Hey, checkout my new favourite app, which helps you in your daily routine. \n To download the app click here \n https://github.com/iatharva/M3/releases";
+            intent.setType("text/plain");
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.share_subject));
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            startActivity(Intent.createChooser(intent, getString(R.string.share_using)));
+        }
         return super.onOptionsItemSelected(item);
     }
 

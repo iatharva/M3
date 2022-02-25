@@ -18,13 +18,15 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 public class Profile extends Fragment {
 
     public EditText EmailField,FNameField,LNameField;
-    public TextView ProfileTitle,DateText;
+    public TextView ProfileTitle,DateText,creationDate;
     public String UID,Email,FName,LName,Dob;
     private FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -35,6 +37,7 @@ public class Profile extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         ProfileTitle = view.findViewById(R.id.ProfileTitle);
+        creationDate = view.findViewById(R.id.creationDate);
         EmailField = view.findViewById(R.id.EmailField);
         FNameField = view.findViewById(R.id.FNameField);
         LNameField = view.findViewById(R.id.LNameField);
@@ -82,6 +85,10 @@ public class Profile extends Fragment {
     public void getUserData()
     {
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        Date currDate = new Date(Objects.requireNonNull(fAuth.getCurrentUser().getMetadata().getCreationTimestamp()));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = dateFormat.format(currDate);
+        creationDate.setText("created on "+date);
         DocumentReference typeref = db.collection("Users").document(UID);
         typeref.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {

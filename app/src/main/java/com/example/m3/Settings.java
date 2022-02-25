@@ -1,18 +1,39 @@
 package com.example.m3;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+
+import com.example.m3.extras.AlarmReceiver;
+
+import java.util.Calendar;
 
 public class Settings extends Fragment {
     public TextView tncBtn,alarmBtn,sysBtn,aboutBtn;
     public NotificationManagerCompat notificationManager;
+    private Calendar mCalendar;
+    private int mYear, mMonth, mHour, mMinute, mDay;
+    private long mRepeatTime;
+    private String mRepeatNo;
+    private static final long milDay = 86400000L;
+    TimePickerDialog timepickerdialog1;
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +49,7 @@ public class Settings extends Fragment {
 
         //Button which leads to alarm settings
         alarmBtn.setOnClickListener(view -> {
+            //setUpAlarmNotification();
 
         });
 
@@ -54,5 +76,33 @@ public class Settings extends Fragment {
 
         //View for fragment
         return view;
+    }
+
+    //Setup notification everyday at a given time
+    private void setUpAlarmNotification() {
+        //Show time picker in custom dialog
+        Calendar now = Calendar.getInstance();
+        final int[] hour = {0};
+        final int[] minute = {0};
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(getActivity(),AlertDialog.THEME_HOLO_LIGHT, (timePicker, selectedHour, selectedMinute) -> {
+            hour[0] =selectedHour; minute[0] =selectedMinute;
+        }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false);
+        mTimePicker.setTitle("Wake up Time");
+        mTimePicker.show();
+
+        //set the notification for everyday at the hour[0]:minute[0]
+        /*
+        mCalendar = Calendar.getInstance();
+        mCalendar.set(Calendar.HOUR_OF_DAY, hour[0]);
+        mCalendar.set(Calendar.MINUTE, minute[0]);
+        mCalendar.set(Calendar.SECOND, 0);
+        mCalendar.set(Calendar.MILLISECOND, 0);
+        mRepeatTime = mCalendar.getTimeInMillis();
+        mRepeatNo = "0";
+
+        //Set up notification
+        AlarmReceiver alarm = new AlarmReceiver();
+        alarm.SetAlarm(getActivity());*/
     }
 }

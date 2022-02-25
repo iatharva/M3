@@ -16,6 +16,14 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <TextView
+        android:id="@+id/creationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/ProfileTitle"/>
+
 
     <TextView
         android:layout_width="wrap_content"

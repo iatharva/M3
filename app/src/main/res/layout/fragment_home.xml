@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:attv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +17,15 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/searchDates"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="53dp"
+        android:padding="10dp" />
 
     <com.dragankrstic.autotypetextview.AutoTypeTextView
         android:id="@+id/AutoTypeLabel"
@@ -39,4 +49,25 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
         android:text="@string/start_the_routine" />
+
+    <com.white.progressview.CircleProgressView
+        android:id="@+id/circle_progress"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/AutoTypeLabel"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/StartBtn"
+        android:padding="10dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/timeline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/StartBtn"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"/>
+
+
 </RelativeLayout>

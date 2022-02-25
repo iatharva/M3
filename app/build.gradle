@@ -49,6 +49,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-inappmessaging-display'
 
     //App Intro Library
     //implementation 'com.matthew-tamlin:sliding-intro-screen:3.2.0'
@@ -70,4 +71,12 @@ dependencies {
 
     //Picasso library
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.wdullaer:materialdatetimepicker:1.2.1'
+
+    //Progress animation
+    implementation 'com.white:progressview:1.0.1'
+
+    //Timelineview
+    implementation 'com.github.vipulasri:timelineview:1.1.5'
+    implementation 'com.github.lriccardo:TimelineView:1.1.2'
 }

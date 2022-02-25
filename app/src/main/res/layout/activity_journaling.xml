@@ -28,4 +28,32 @@
         android:paddingEnd="60dp"
         android:text="@string/speak_your_mind_how_you_felt_through_out_the_day_any_highlight_which_made_it_special" />
 
+    <EditText
+        android:id="@+id/myJournalEntry"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/T1Desc1"
+        android:padding="15sp"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        android:hint="@string/so_today_was_a_great_day"
+        android:gravity="top" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/toDoneScreenBtn"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="550dp"
+        android:layout_marginEnd="27dp"
+        android:contentDescription="@string/go_to_next_screen"
+        android:src="@drawable/arrowright"
+        app:rippleColor="@color/white" />
+
 </RelativeLayout>

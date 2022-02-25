@@ -101,7 +101,7 @@ public class Reading extends AppCompatActivity {
         TextView message = customLayout.findViewById(R.id.message);
         message.setText("Reading completed !");
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
-            Intent intent = new Intent(Reading.this, ActivityCompleted.class);
+            Intent intent = new Intent(Reading.this, Journaling.class);
             startActivity(intent);
         });
         builder.setCancelable(false);
