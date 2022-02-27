@@ -24,12 +24,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
 import com.example.m3.extras.AlarmReceiver;
-import com.github.vipulasri.timelineview.TimelineView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,7 +58,7 @@ public class Fhome extends Fragment
     public FirebaseAuth fAuth;
     public Button StartBtn;
     public Spinner searchDates;
-    public RecyclerView timeline;
+    public ListView timeline;
     public CircleProgressView circle_progress;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     public long hourInMilliSecond = 3600000;
@@ -74,20 +74,6 @@ public class Fhome extends Fragment
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
         StartBtn = view.findViewById(R.id.StartBtn);
         createNotificationChannel();
-        /*
-        timeline.addItemDecoration(
-                TimelineD
-                TimelineDecorator(
-                        indicatorSize = 24f,
-                        lineWidth = 15f,
-                        padding = 48f,
-                        position = TimelineDecorator.Position.Left,
-                        indicatorColor = Color.RED,
-                        lineColor = Color.RED
-                )
-        );
-
-         */
         StartBtn.setOnClickListener(view -> {
 
             DocumentReference userlogref = db.collection("UserLogs").document(UID);
@@ -265,10 +251,11 @@ public class Fhome extends Fragment
 
                         }
                     }
+
                 }
                 else
                 {
-                    createTodaysUserLogs();
+                    createTodayUserLogs();
                     StartBtn.setText("Start routine");
                 }
 
@@ -295,7 +282,8 @@ public class Fhome extends Fragment
         });
     }
 
-    private void createTodaysUserLogs() {
+    //Create Array for recording Time Logs of the user
+    private void createTodayUserLogs() {
         //create boolean with 6 elements in list all set to false
         List<Boolean> ActivityLog = new ArrayList<>();
         for(int i=0;i<6;i++)
@@ -312,6 +300,15 @@ public class Fhome extends Fragment
 
         //Add a new field in the existing document of UID
         db.collection("UserLogs").document(UID).set(map, SetOptions.merge()).addOnSuccessListener(aVoid -> {
+            Log.d("TAG", "DocumentSnapshot successfully written!");
+        });
+
+        List<String> ActivityTimeLogString = new ArrayList<>();
+        for(int i=0;i<6;i++)
+            ActivityTimeLogString.add("");
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put(currentDate+"-TimeLog",ActivityTimeLogString);
+        db.collection("UserLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
             Log.d("TAG", "DocumentSnapshot successfully written!");
         });
     }

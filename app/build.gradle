@@ -77,6 +77,4 @@ dependencies {
     implementation 'com.white:progressview:1.0.1'
 
     //Timelineview
-    implementation 'com.github.vipulasri:timelineview:1.1.5'
-    implementation 'com.github.lriccardo:TimelineView:1.1.2'
 }

@@ -1,5 +1,7 @@
 package com.example.m3;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +12,11 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,6 +25,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 public class Silence extends AppCompatActivity {
@@ -50,7 +62,7 @@ public class Silence extends AppCompatActivity {
         TimerOriginal = findViewById(R.id.TimerOriginal);
         MName = findViewById(R.id.MName);
         toDoneScreenBtn = findViewById(R.id.toDoneScreenBtn);
-
+        //toDoneScreenBtn.setVisibility(View.GONE);
         //Takes to next screen
         toDoneScreenBtn.setOnClickListener(view -> {
             showCustomDialog();
@@ -85,6 +97,15 @@ public class Silence extends AppCompatActivity {
         super.onResume();
         fAuth = FirebaseAuth.getInstance();
         getUserSettings(0);
+    }
+
+    //Go to home screen on back button press
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(Silence.this, Home.class));
+        finish();
     }
 
     //Gets the data to show on screen
@@ -122,6 +143,8 @@ public class Silence extends AppCompatActivity {
                 @Override
                 public void onFinish() {
                     stopAudio();
+                    animation_view.pauseAnimation();
+                    showCustomDialog();
                     toDoneScreenBtn.setVisibility(View.VISIBLE);
                 }
             }.start();
@@ -162,13 +185,6 @@ public class Silence extends AppCompatActivity {
                 }
             }
         });
-        /*
-        else
-        {
-            mediaPlayer.seekTo(length);
-            mediaPlayer.start();
-        }
-         */
     }
 
     /**
@@ -196,6 +212,7 @@ public class Silence extends AppCompatActivity {
 
     private void showCustomDialog()
     {
+        updateUserLogs();
         vibe.vibrate(100);
         AlertDialog.Builder builder = new AlertDialog.Builder(Silence.this);
         final View customLayout = getLayoutInflater().inflate(R.layout.dialog_completedactivity, null);
@@ -206,5 +223,50 @@ public class Silence extends AppCompatActivity {
         builder.setCancelable(false);
         builder.setView(customLayout);
         builder.show();
+    }
+
+    private void updateUserLogs()
+    {
+        //get timestamp of current date and time in a string
+        //get the timestamp of the current date and time in Date object
+        Date date = new Date();
+        String timestamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
+        //get timestamp of today's date in "dd-MM-yyyy" format
+        String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+
+        //Add TimeLog
+        List<String> ActivityTimeLogString = new ArrayList<>();
+        for(int i=0;i<6;i++)
+        {
+            if(i==0)
+            {
+                ActivityTimeLogString.add(timestamp);
+            }
+            else
+                ActivityTimeLogString.add("");
+        }
+        DocumentReference usertimelogref = db.collection("UserLogs").document(UID);
+        usertimelogref
+                .update(today+"-TimeLog", ActivityTimeLogString)
+                .addOnSuccessListener(aVoid -> Toast.makeText(this,"Let's go",Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Log.w(TAG, "Time log not updated. Error :", e));
+
+        //Add UserLog
+        List<Boolean> ActivityLogString = new ArrayList<>();
+        for(int i=0;i<6;i++)
+        {
+            if(i==0)
+            {
+                ActivityLogString.add(true);
+            }
+            else
+                ActivityLogString.add(false);
+        }
+        DocumentReference userlogref = db.collection("UserLogs").document(UID);
+        userlogref
+                .update(today, ActivityLogString)
+                .addOnSuccessListener(aVoid -> Toast.makeText(this,"Let's go",Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Log.w(TAG, "Routine log not updated. Error :", e));
+
     }
 }
