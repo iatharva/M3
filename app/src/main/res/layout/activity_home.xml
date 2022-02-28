@@ -13,6 +13,16 @@
         android:layout_height="620dp"
         android:background="@color/white" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/frameLayout"
+        android:scaleType="fitXY"
+        android:rotation="180"
+        app:lottie_fileName="menubackground.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
     <Button
         android:id="@+id/HomeBtn"
         android:layout_width="120dp"

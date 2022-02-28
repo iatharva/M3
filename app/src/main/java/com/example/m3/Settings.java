@@ -49,7 +49,7 @@ public class Settings extends Fragment {
 
         //Button which leads to alarm settings
         alarmBtn.setOnClickListener(view -> {
-            //setUpAlarmNotification();
+            setUpAlarmNotification();
 
         });
 

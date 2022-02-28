@@ -95,6 +95,20 @@
     <string name="share">Share</string>
     <string name="share_subject">Share the app</string>
     <string name="share_using">Share</string>
+    <string name="not_yet_attempted">Not yet attempted</string>
+    <string name="s_image">S image</string>
+    <string name="a_image">A image</string>
+    <string name="v_image">V image</string>
+    <string name="e_image">E image</string>
+    <string name="r_image">R image</string>
+    <string name="j_image">J image</string>
+    <string name="s">S</string>
+    <string name="a">A</string>
+    <string name="v">V</string>
+    <string name="e">E</string>
+    <string name="r">R</string>
+    <string name="not_attempted">Not attempted</string>
+    <string name="timeline">Timeline</string>
 
     <!--durations array
     <string-array name="durations">

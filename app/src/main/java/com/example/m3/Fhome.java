@@ -19,13 +19,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
@@ -53,15 +56,17 @@ import java.util.Objects;
 
 public class Fhome extends Fragment
 {
+    private ImageView saver_image_0,saver_image_1,saver_image_2,saver_image_3,saver_image_4,saver_image_5;
+    private TextView saver_description_0,saver_description_1,saver_description_2,saver_description_3,saver_description_4,saver_description_5;
+    private View join_0_1,join_1_2,join_2_3,join_3_4,join_4_5;
     AutoTypeTextView AutoTypeLabel;
-    public String UID,FName,Dob;
-    public FirebaseAuth fAuth;
-    public Button StartBtn;
-    public Spinner searchDates;
-    public ListView timeline;
-    public CircleProgressView circle_progress;
+    private String UID,FName,Dob;
+    private FirebaseAuth fAuth;
+    private Button StartBtn;
+    private Spinner searchDates;
+    private CircleProgressView circle_progress;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    public long hourInMilliSecond = 3600000;
+    private long hourInMilliSecond = 3600000;
     View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,9 +74,25 @@ public class Fhome extends Fragment
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         searchDates = view.findViewById(R.id.searchDates);
-        timeline = view.findViewById(R.id.timeline);
         circle_progress = view.findViewById(R.id.circle_progress);
         AutoTypeLabel = view.findViewById(R.id.AutoTypeLabel);
+        saver_image_0 = view.findViewById(R.id.saver_image_0);
+        saver_image_1 = view.findViewById(R.id.saver_image_1);
+        saver_image_2 = view.findViewById(R.id.saver_image_2);
+        saver_image_3 = view.findViewById(R.id.saver_image_3);
+        saver_image_4 = view.findViewById(R.id.saver_image_4);
+        saver_image_5 = view.findViewById(R.id.saver_image_5);
+        saver_description_0 = view.findViewById(R.id.saver_description_0);
+        saver_description_1 = view.findViewById(R.id.saver_description_1);
+        saver_description_2 = view.findViewById(R.id.saver_description_2);
+        saver_description_3 = view.findViewById(R.id.saver_description_3);
+        saver_description_4 = view.findViewById(R.id.saver_description_4);
+        saver_description_5 = view.findViewById(R.id.saver_description_5);
+        join_0_1 = view.findViewById(R.id.join_0_1);
+        join_1_2 = view.findViewById(R.id.join_1_2);
+        join_2_3 = view.findViewById(R.id.join_2_3);
+        join_3_4 = view.findViewById(R.id.join_3_4);
+        join_4_5 = view.findViewById(R.id.join_4_5);
         StartBtn = view.findViewById(R.id.StartBtn);
         createNotificationChannel();
         StartBtn.setOnClickListener(view -> {
@@ -206,6 +227,7 @@ public class Fhome extends Fragment
                     {
                         StartBtn.setVisibility(View.GONE);
                         circle_progress.setProgressInTime(100,2500);
+                        //set all data
                     }
                     else
                     {
@@ -248,7 +270,7 @@ public class Fhome extends Fragment
                             {
                                 circle_progress.setProgressInTime(0,83,2500);
                             }
-
+                            setTimeline(currentActivityIndex,"Middle");
                         }
                     }
 
@@ -282,6 +304,117 @@ public class Fhome extends Fragment
         });
     }
 
+    private void setTimeline(int index,String position)
+    {
+        String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        DocumentReference affref = db.collection("UserTimeLogs").document(UID);
+        affref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists())
+            {
+                List<String> timeLogs=(List<String>)documentSnapshot.get(today+"-TimeLog");
+                String[] timeLogsArray = timeLogs.toArray(new String[0]);
+
+                if(position.equals("First"))
+                {
+                    //Do nothing as visual is already set
+                }
+                else if (position.equals("Middle"))
+                {
+                    if(index==0)
+                    {
+                        saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_0.setImageResource(R.drawable.s_filled);
+                        saver_description_0.setText(timeLogsArray[0]);
+                    }
+                    else if (index==1)
+                    {
+                        saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_0.setImageResource(R.drawable.s_filled);
+                        saver_description_0.setText("Completed on "+timeLogsArray[0]);
+
+                        saver_image_1.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_1.setImageResource(R.drawable.a_filled);
+                        saver_description_1.setText("Completed on "+timeLogsArray[1]);
+                    }
+                    else if(index==2)
+                    {
+                        saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_0.setImageResource(R.drawable.s_filled);
+                        saver_description_0.setText("Completed on "+timeLogsArray[0]);
+
+                        saver_image_1.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_1.setImageResource(R.drawable.a_filled);
+                        saver_description_1.setText("Completed on "+timeLogsArray[1]);
+
+                        saver_image_2.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_2.setImageResource(R.drawable.v_filled);
+                        saver_description_2.setText("Completed on "+timeLogsArray[2]);
+                    }
+                    else if(index==3)
+                    {
+                        saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_0.setImageResource(R.drawable.s_filled);
+                        saver_description_0.setText("Completed on "+timeLogsArray[0]);
+
+                        saver_image_1.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_1.setImageResource(R.drawable.a_filled);
+                        saver_description_1.setText("Completed on "+timeLogsArray[1]);
+
+                        saver_image_2.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_2.setImageResource(R.drawable.v_filled);
+                        saver_description_2.setText("Completed on "+timeLogsArray[2]);
+
+                        saver_image_3.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_3.setImageResource(R.drawable.e_filled);
+                        saver_description_3.setText("Completed on "+timeLogsArray[3]);
+                    }
+                    else if(index==4)
+                    {
+                        saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_0.setImageResource(R.drawable.s_filled);
+                        saver_description_0.setText("Completed on "+timeLogsArray[0]);
+
+                        saver_image_1.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_1.setImageResource(R.drawable.a_filled);
+                        saver_description_1.setText("Completed on "+timeLogsArray[1]);
+
+                        saver_image_3.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_3.setImageResource(R.drawable.e_filled);
+                        saver_description_3.setText("Completed on "+timeLogsArray[3]);
+
+                        saver_image_4.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_4.setImageResource(R.drawable.r_filled);
+                        saver_description_4.setText("Completed on "+timeLogsArray[4]);
+                    }
+                }
+                else if(position.equals("Last"))
+                {
+                    //Image
+                    saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                    saver_image_1.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                    saver_image_2.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                    saver_image_3.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                    saver_image_4.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                    saver_image_5.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                    saver_image_0.setImageResource(R.drawable.s_filled);
+                    saver_image_1.setImageResource(R.drawable.a_filled);
+                    saver_image_2.setImageResource(R.drawable.v_filled);
+                    saver_image_3.setImageResource(R.drawable.e_filled);
+                    saver_image_4.setImageResource(R.drawable.r_filled);
+                    saver_image_5.setImageResource(R.drawable.j_filled);
+
+                    //TextView
+                    saver_description_0.setText("Completed on "+timeLogsArray[0]);
+                    saver_description_1.setText("Completed on "+timeLogsArray[1]);
+                    saver_description_2.setText("Completed on "+timeLogsArray[2]);
+                    saver_description_3.setText("Completed on "+timeLogsArray[3]);
+                    saver_description_4.setText("Completed on "+timeLogsArray[4]);
+                    saver_description_5.setText("Completed on "+timeLogsArray[5]);
+                }
+            }
+        });
+    }
+
     //Create Array for recording Time Logs of the user
     private void createTodayUserLogs() {
         //create boolean with 6 elements in list all set to false
@@ -308,7 +441,7 @@ public class Fhome extends Fragment
             ActivityTimeLogString.add("");
         Map<String, Object> map2 = new HashMap<>();
         map2.put(currentDate+"-TimeLog",ActivityTimeLogString);
-        db.collection("UserLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
+        db.collection("UserTimeLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
             Log.d("TAG", "DocumentSnapshot successfully written!");
         });
     }

@@ -126,7 +126,7 @@ public class Visualization extends AppCompatActivity {
     private void getUserTimeLogs()
     {
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        DocumentReference affref = db.collection("UserLogs").document(UID);
+        DocumentReference affref = db.collection("UserTimeLogs").document(UID);
         affref.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists())
             {
@@ -143,7 +143,7 @@ public class Visualization extends AppCompatActivity {
         String timestamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         timeLogsArray[2] = timestamp;
-        DocumentReference usertimelogref = db.collection("UserLogs").document(UID);
+        DocumentReference usertimelogref = db.collection("UserTimeLogs").document(UID);
         usertimelogref
                 .update(today+"-TimeLog", Arrays.asList(timeLogsArray))
                 .addOnSuccessListener(aVoid -> Toast.makeText(this,"Let's go",Toast.LENGTH_SHORT).show())

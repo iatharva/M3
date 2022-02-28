@@ -77,4 +77,8 @@ dependencies {
     implementation 'com.white:progressview:1.0.1'
 
     //Timelineview
+    //implementation 'com.github.qapqap:TimelineView:v1.6' [Not working/build error]
+
+    //CIrcular imageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

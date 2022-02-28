@@ -245,7 +245,7 @@ public class Silence extends AppCompatActivity {
             else
                 ActivityTimeLogString.add("");
         }
-        DocumentReference usertimelogref = db.collection("UserLogs").document(UID);
+        DocumentReference usertimelogref = db.collection("UserTimeLogs").document(UID);
         usertimelogref
                 .update(today+"-TimeLog", ActivityTimeLogString)
                 .addOnSuccessListener(aVoid -> Toast.makeText(this,"Let's go",Toast.LENGTH_SHORT).show())
