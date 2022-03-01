@@ -23,13 +23,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class Reading extends AppCompatActivity {
 
@@ -102,6 +106,8 @@ public class Reading extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
+        fAuth = FirebaseAuth.getInstance();
+        UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
         Toast.makeText(Reading.this,"Please select reading type and then proceed", Toast.LENGTH_LONG).show();
     }
 
@@ -161,11 +167,11 @@ public class Reading extends AppCompatActivity {
     private void getUserTimeLogs()
     {
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        DocumentReference affref = db.collection("UserTimeLogs").document(UID);
-        affref.get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists())
+        DocumentReference tl = db.collection("UserTimeLogs").document(UID);
+        tl.get().addOnSuccessListener(documentSnapshot0 -> {
+            if (documentSnapshot0.exists())
             {
-                List<String> timeLogs=(List<String>)documentSnapshot.get(today+"-TimeLog");
+                List<String> timeLogs=(List<String>)documentSnapshot0.get(today+"-TimeLog");
                 String[] timeLogsArray = timeLogs.toArray(new String[0]);
                 updateUserLogs(timeLogsArray);
             }
@@ -175,6 +181,7 @@ public class Reading extends AppCompatActivity {
     //Updates the TimeLogs
     private void updateUserLogs(String[] timeLogsArray)
     {
+        //Add TimeLogs
         String timestamp = new SimpleDateFormat("dd-MMM HH:mm a", Locale.getDefault()).format(new Date());
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         timeLogsArray[4] = timestamp;
@@ -200,5 +207,20 @@ public class Reading extends AppCompatActivity {
                 .update(today, ActivityLogString)
                 .addOnSuccessListener(aVoid -> Toast.makeText(this,"Let's go",Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Log.w(TAG, "Routine log not updated. Error :", e));
+
+        //Add reading record
+        List<String> ReadingRecord = new ArrayList<>();
+        if(readingtype[0])
+            ReadingRecord.add("Book");
+        else
+            ReadingRecord.add("Articles");
+        ReadingRecord.add(count.getText().toString());
+        ReadingRecord.add(bNameOrNotes.getText().toString());
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put(today,ReadingRecord);
+        db.collection("ReadingLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
+            Log.d("TAG", "DocumentSnapshot successfully written!");
+        });
+
     }
 }

@@ -61,14 +61,14 @@
     <string name="goal_completed">Goal completed :)</string>
     <string name="button_to_next_activity">Button to next activity</string>
     <string name="activity_completed">activity completed!</string>
-    <string name="activities_completed">activities completed!</string>
+    <string name="activities_completed">All activities completed!</string>
     <string name="affirmations">Affirmations</string>
     <string name="visualization">Visualization</string>
     <string name="go_to_next_screen">Go to next screen</string>
     <string name="play_pause">Play/Pause</string>
     <string name="go_to_next_activity">Go to next activity</string>
     <string name="hurrey">Hurrey</string>
-    <string name="congrats">Congrats</string>
+    <string name="congrats">Congratulations!</string>
     <string name="exercises">Exercises</string>
     <string name="reading">Reading</string>
     <string name="below_are_the_affirmations_choosen_by_you_which_you_will_be_reminded_of_throughout_the_day_you_can_proceed_with_your_next_task">Below are the affirmations choosen by you, which you will be reminded of throughout the day. You can proceed with your next task</string>
@@ -109,6 +109,7 @@
     <string name="r">R</string>
     <string name="not_attempted">Not attempted</string>
     <string name="timeline">Timeline</string>
+    <string name="see_you_tomorrow_with_a_brand_new_day">See you tomorrow with a brand new day</string>
 
     <!--durations array
     <string-array name="durations">

@@ -26,18 +26,31 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="@string/activities_completed" />
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="@string/see_you_tomorrow_with_a_brand_new_day" />
+
+    <TextView
+        android:id="@+id/T1Desc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/T1Desc1"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="60dp"
+        android:text="@string/activities_completed"/>
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
-        android:layout_below="@id/T1Desc1"
+        android:layout_below="@id/T1Desc2"
         android:layout_marginTop="90dp"
         app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_fileName="achievedanimation.json" />
+        app:lottie_fileName="achievedanimation.json"
+        app:lottie_loop="true" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

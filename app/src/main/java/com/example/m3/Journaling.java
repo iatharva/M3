@@ -22,13 +22,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class Journaling extends AppCompatActivity {
 
@@ -66,6 +70,13 @@ public class Journaling extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        fAuth = FirebaseAuth.getInstance();
+        UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+    }
     //Go to home screen on back button press
     @Override
     public void onBackPressed()
@@ -111,6 +122,7 @@ public class Journaling extends AppCompatActivity {
     //Updates the TimeLogs
     private void updateUserLogs(String[] timeLogsArray)
     {
+        //Add timelogs
         String timestamp = new SimpleDateFormat("dd-MMM HH:mm a", Locale.getDefault()).format(new Date());
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         timeLogsArray[5] = timestamp;
@@ -136,6 +148,17 @@ public class Journaling extends AppCompatActivity {
                 .update(today, ActivityLogString)
                 .addOnSuccessListener(aVoid -> Toast.makeText(this,"Let's go",Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Log.w(TAG, "Routine log not updated. Error :", e));
+
+        //Add reading record
+        List<String> JournalingRecord = new ArrayList<>();
+        JournalingRecord.add(myJournalEntry.getText().toString());
+        JournalingRecord.add("Happy");
+        JournalingRecord.add("3");
+        Map<String, Object> map2 = new HashMap<>();
+        map2.put(today,JournalingRecord);
+        db.collection("JournalingLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
+            Log.d("TAG", "DocumentSnapshot successfully written!");
+        });
 
     }
 

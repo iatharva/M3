@@ -387,6 +387,10 @@ public class Fhome extends Fragment
                         saver_image_1.setImageResource(R.drawable.a_filled);
                         saver_description_1.setText("Completed on "+timeLogsArray[1]);
 
+                        saver_image_2.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        saver_image_2.setImageResource(R.drawable.v_filled);
+                        saver_description_2.setText("Completed on "+timeLogsArray[2]);
+
                         saver_image_3.setBackgroundResource(R.drawable.round_corner_filled_saver);
                         saver_image_3.setImageResource(R.drawable.e_filled);
                         saver_description_3.setText("Completed on "+timeLogsArray[3]);

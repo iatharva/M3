@@ -32,18 +32,18 @@
         android:id="@+id/myJournalEntry"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_below="@id/T1Desc1"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_below="@id/T1Desc1"
-        android:padding="15sp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@null"
         android:ems="10"
-        android:inputType="textMultiLine"
-        android:singleLine="false"
+        android:gravity="top"
         android:hint="@string/so_today_was_a_great_day"
-        android:gravity="top" />
+        android:inputType="textMultiLine"
+        android:padding="15sp"
+        android:singleLine="false" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toDoneScreenBtn"
