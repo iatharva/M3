@@ -23,14 +23,14 @@
             android:textStyle="bold"
             tools:ignore="RelativeOverlap" />
 
-    <Spinner
-        android:id="@+id/searchDates"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="53dp"
-        android:padding="10dp" />
+        <Spinner
+            android:id="@+id/searchDates"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="53dp"
+            android:padding="10dp" />
 
         <com.dragankrstic.autotypetextview.AutoTypeTextView
             android:id="@+id/AutoTypeLabel"

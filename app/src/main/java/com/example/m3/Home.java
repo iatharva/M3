@@ -66,6 +66,7 @@ public class Home extends AppCompatActivity {
         if (item.getItemId() == R.id.helpButtonHeader){
             //Add intro activity
             Intent i = new Intent(Home.this,IntroScreen1.class);
+            //Intent i = new Intent(Home.this,InitialAffirmationSettings.class);
             startActivity(i);
         }
         if(item.getItemId() == R.id.shareButtonHeader){

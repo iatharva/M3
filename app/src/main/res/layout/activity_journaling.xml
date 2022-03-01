@@ -1,59 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Journaling">
 
-    <TextView
-        android:id="@+id/T1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/journaling"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/T1Desc1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/T1"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="60dp"
-        android:text="@string/speak_your_mind_how_you_felt_through_out_the_day_any_highlight_which_made_it_special" />
+        <TextView
+            android:id="@+id/T1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/journaling"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/myJournalEntry"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_below="@id/T1Desc1"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:ems="10"
-        android:gravity="top"
-        android:hint="@string/so_today_was_a_great_day"
-        android:inputType="textMultiLine"
-        android:padding="15sp"
-        android:singleLine="false" />
+        <TextView
+            android:id="@+id/T1Desc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/T1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:text="@string/speak_your_mind_how_you_felt_through_out_the_day_any_highlight_which_made_it_special" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/toDoneScreenBtn"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="550dp"
-        android:layout_marginEnd="27dp"
-        android:contentDescription="@string/go_to_next_screen"
-        android:src="@drawable/arrowright"
-        app:rippleColor="@color/white" />
+        <EditText
+            android:id="@+id/myJournalEntry"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_below="@id/T1Desc1"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="@string/so_today_was_a_great_day"
+            android:inputType="textMultiLine"
+            android:padding="15sp"
+            android:singleLine="false" />
 
-</RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/toDoneScreenBtn"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="550dp"
+            android:layout_marginEnd="27dp"
+            android:contentDescription="@string/go_to_next_screen"
+            android:src="@drawable/arrowright"
+            app:rippleColor="@color/white" />
+
+        <TextView
+            android:id="@+id/SubtitleT1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/myJournalEntry"
+            android:text="@string/feelings"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/T2Desc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SubtitleT1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:text="@string/which_feeling_you_felt_mostly_throughout_the_day" />
+
+        <Spinner
+            android:id="@+id/moodSpinner"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/T2Desc1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/T2Desc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moodSpinner"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:text="@string/how_intense_is_that_feeling" />
+
+        <SeekBar
+            android:id="@+id/moodScale"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_height="20dp"
+            android:layout_width="250dp"
+            android:layout_below="@+id/T2Desc2"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="30dp"
+            android:maxHeight="20dp"
+            android:minHeight="20dp"
+            android:max="5"
+            android:progress="1" />
+
+    </RelativeLayout>
+</ScrollView>

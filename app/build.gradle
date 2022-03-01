@@ -50,6 +50,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-inappmessaging-display'
+    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
 
     //App Intro Library
     //implementation 'com.matthew-tamlin:sliding-intro-screen:3.2.0'

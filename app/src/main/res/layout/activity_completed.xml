@@ -6,6 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ActivityCompleted">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/background_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="backgroundpopper.json"
+        app:lottie_loop="true" />
+
     <TextView
         android:id="@+id/T1"
         android:layout_width="wrap_content"
@@ -26,9 +34,9 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:textSize="16sp"
+        android:text="@string/see_you_tomorrow"
         android:textColor="@color/black"
-        android:text="@string/see_you_tomorrow_with_a_brand_new_day" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/T1Desc2"
@@ -39,7 +47,7 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="@string/activities_completed"/>
+        android:text="@string/activities_completed" />
 
 
     <com.airbnb.lottie.LottieAnimationView
@@ -49,8 +57,8 @@
         android:layout_below="@id/T1Desc2"
         android:layout_marginTop="90dp"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="achievedanimation.json"
-        app:lottie_loop="true" />
+        app:lottie_fileName="completedanimation.json"
+        app:lottie_loop="false" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

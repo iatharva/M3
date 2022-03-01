@@ -61,7 +61,7 @@
     <string name="goal_completed">Goal completed :)</string>
     <string name="button_to_next_activity">Button to next activity</string>
     <string name="activity_completed">activity completed!</string>
-    <string name="activities_completed">All activities completed!</string>
+    <string name="activities_completed">All activities completed for today!</string>
     <string name="affirmations">Affirmations</string>
     <string name="visualization">Visualization</string>
     <string name="go_to_next_screen">Go to next screen</string>
@@ -109,7 +109,12 @@
     <string name="r">R</string>
     <string name="not_attempted">Not attempted</string>
     <string name="timeline">Timeline</string>
-    <string name="see_you_tomorrow_with_a_brand_new_day">See you tomorrow with a brand new day</string>
+    <string name="see_you_tomorrow">See you tomorrow</string>
+    <string name="feelings">Feelings</string>
+    <string name="which_feeling_you_felt_mostly_throughout_the_day">Which feeling you felt mostly throughout the day?</string>
+    <string name="how_intense_is_that_feeling">How intense is that feeling?</string>
+    <string name="music">Music</string>
+    <string name="duration">Duration</string>
 
     <!--durations array
     <string-array name="durations">

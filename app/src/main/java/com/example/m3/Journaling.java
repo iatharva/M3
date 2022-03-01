@@ -13,8 +13,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,12 +40,14 @@ import java.util.Objects;
 
 public class Journaling extends AppCompatActivity {
 
-    FloatingActionButton toDoneScreenBtn;
-    EditText myJournalEntry;
+    private FloatingActionButton toDoneScreenBtn;
+    private EditText myJournalEntry;
     private FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     public String UID;
     public Vibrator vibe;
+    private Spinner moodSpinner;
+    private SeekBar moodScale;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,8 @@ public class Journaling extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         myJournalEntry = findViewById(R.id.myJournalEntry);
         toDoneScreenBtn = findViewById(R.id.toDoneScreenBtn);
+        moodSpinner = findViewById(R.id.moodSpinner);
+        moodScale = findViewById(R.id.moodScale);
         vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         toDoneScreenBtn.setVisibility(View.GONE);
 
@@ -58,8 +66,10 @@ public class Journaling extends AppCompatActivity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() != 0)
+                if(charSequence.length() != 0) {
                     toDoneScreenBtn.setVisibility(View.VISIBLE);
+                    Toast.makeText(Journaling.this,"Please also tell me how you feeling before saving journal",Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void afterTextChanged(Editable editable) { }
@@ -76,6 +86,19 @@ public class Journaling extends AppCompatActivity {
         super.onResume();
         fAuth = FirebaseAuth.getInstance();
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        Toast.makeText(this,"You can do today's journaling at the end of the day too",Toast.LENGTH_SHORT).show();
+
+        DocumentReference typeref = db.collection("JournalingLogs").document("JournalingMaster");
+        typeref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                List<String> moodMaster=(List<String>)documentSnapshot.get("MoodMaster");
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(Journaling.this,
+                        android.R.layout.simple_spinner_item, moodMaster);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                moodSpinner.setSelection(0);
+                moodSpinner.setAdapter(dataAdapter);
+            }
+        });
     }
     //Go to home screen on back button press
     @Override
@@ -137,9 +160,7 @@ public class Journaling extends AppCompatActivity {
         for(int i=0;i<6;i++)
         {
             if(i<=6)
-            {
                 ActivityLogString.add(true);
-            }
             else
                 ActivityLogString.add(false);
         }
@@ -152,8 +173,8 @@ public class Journaling extends AppCompatActivity {
         //Add reading record
         List<String> JournalingRecord = new ArrayList<>();
         JournalingRecord.add(myJournalEntry.getText().toString());
-        JournalingRecord.add("Happy");
-        JournalingRecord.add("3");
+        JournalingRecord.add(moodSpinner.getSelectedItem().toString());
+        JournalingRecord.add(Integer.toString(moodScale.getProgress()));
         Map<String, Object> map2 = new HashMap<>();
         map2.put(today,JournalingRecord);
         db.collection("JournalingLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
