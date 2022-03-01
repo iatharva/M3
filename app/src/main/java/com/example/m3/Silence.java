@@ -230,7 +230,7 @@ public class Silence extends AppCompatActivity {
         //get timestamp of current date and time in a string
         //get the timestamp of the current date and time in Date object
         Date date = new Date();
-        String timestamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
+        String timestamp = new SimpleDateFormat("dd-MMM HH:mm a", Locale.getDefault()).format(new Date());
         //get timestamp of today's date in "dd-MM-yyyy" format
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 

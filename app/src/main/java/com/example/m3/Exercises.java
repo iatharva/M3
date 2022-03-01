@@ -248,7 +248,7 @@ public class Exercises extends AppCompatActivity {
     //Updates the TimeLogs
     private void updateUserLogs(String[] timeLogsArray)
     {
-        String timestamp = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date());
+        String timestamp = new SimpleDateFormat("dd-MMM HH:mm a", Locale.getDefault()).format(new Date());
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
         timeLogsArray[3] = timestamp;
         DocumentReference usertimelogref = db.collection("UserTimeLogs").document(UID);

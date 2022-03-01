@@ -1,7 +1,10 @@
 package com.example.m3;
 
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -15,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -181,16 +185,21 @@ public class Fhome extends Fragment
         getUserData();
         //Logic for notification
         //Use for affirmation
-        /*
+/*
         Intent i = new Intent(getActivity(), AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getContext(),0,i,0);
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         long time = System.currentTimeMillis();
         long tenSecondsInMillis = 1000*10;
         alarmManager.set(AlarmManager.RTC_WAKEUP,
-                time+tenSecondsInMillis,pendingIntent);*/
-    }
+                time+tenSecondsInMillis,pendingIntent);
+ */
+        //Call setAlarm method in ALarmReceiver class to set notification with title "Heloo" and message "hehe"
+        AlarmReceiver a  = new AlarmReceiver();
+        a.setAlarm(requireActivity(),0,0,"Heloo","hehe", true);
+        
 
+    }
     /**
      * Gets the user data and make call to typeWriterMessages()
      */
@@ -324,7 +333,7 @@ public class Fhome extends Fragment
                     {
                         saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
                         saver_image_0.setImageResource(R.drawable.s_filled);
-                        saver_description_0.setText(timeLogsArray[0]);
+                        saver_description_0.setText("Completed on "+timeLogsArray[0]);
                     }
                     else if (index==1)
                     {

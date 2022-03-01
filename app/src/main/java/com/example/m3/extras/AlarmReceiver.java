@@ -22,10 +22,10 @@ import com.example.m3.R;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    final public static String ONE_TIME = "onetime";
     @Override
     public void onReceive(Context context, Intent intent) {
         /*
@@ -69,13 +69,17 @@ public class AlarmReceiver extends BroadcastReceiver {
         notificationManager.notify(200,builder.build());
     }
 
-    public void SetAlarm(Context context)
-       {
-           AlarmManager am=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-           Intent intent = new Intent(context, AlarmReceiver.class);
-           intent.putExtra(ONE_TIME, Boolean.FALSE);
-           PendingIntent pi = PendingIntent.getBroadcast(context, 0, intent, 0);
-           //After after 5 seconds
-           am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000 * 5 , pi);
-       }
+    //Create a method to send a notification after 1 min where the user can click on the notification to open the app
+    //and Title and Text can be changed as per the requirement
+    public void setAlarm(Context context, int hour, int min
+            , String title, String text, boolean isOnetime){
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis()+1000);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, min);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+    }
 }
