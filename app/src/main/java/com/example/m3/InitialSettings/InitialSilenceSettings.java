@@ -1,4 +1,4 @@
-package com.example.m3;
+package com.example.m3.InitialSettings;
 
 import android.content.Intent;
 import android.media.AudioManager;
@@ -14,12 +14,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
-import com.example.m3.extras.LogoutDialog;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.example.m3.Intros.IntroScreen1;
+import com.example.m3.R;
+import com.example.m3.Extras.LogoutDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -240,7 +239,7 @@ public class InitialSilenceSettings extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.helpButtonHeader){
             //Add intro activity
-            Intent i = new Intent(InitialSilenceSettings.this,IntroScreen1.class);
+            Intent i = new Intent(InitialSilenceSettings.this, IntroScreen1.class);
             //Intent i = new Intent(Home.this,InitialAffirmationSettings.class);
             startActivity(i);
         }

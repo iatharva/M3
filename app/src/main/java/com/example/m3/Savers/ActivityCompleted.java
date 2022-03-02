@@ -1,12 +1,12 @@
-package com.example.m3;
+package com.example.m3.Savers;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import com.bumptech.glide.load.model.FileLoader;
+import com.example.m3.Home;
+import com.example.m3.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ActivityCompleted extends AppCompatActivity {

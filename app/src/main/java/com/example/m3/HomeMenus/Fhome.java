@@ -1,53 +1,41 @@
-package com.example.m3;
+package com.example.m3.HomeMenus;
 
 
-import static android.content.Context.NOTIFICATION_SERVICE;
-
-import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
-import com.example.m3.extras.AlarmReceiver;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.m3.R;
+import com.example.m3.Extras.AlarmReceiver;
+import com.example.m3.Savers.Affirmations;
+import com.example.m3.Savers.Exercises;
+import com.example.m3.Savers.Journaling;
+import com.example.m3.Savers.Reading;
+import com.example.m3.Savers.Silence;
+import com.example.m3.Savers.Visualization;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.white.progressview.CircleProgressView;
 
-import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,7 +50,6 @@ public class Fhome extends Fragment
 {
     private ImageView saver_image_0,saver_image_1,saver_image_2,saver_image_3,saver_image_4,saver_image_5;
     private TextView saver_description_0,saver_description_1,saver_description_2,saver_description_3,saver_description_4,saver_description_5;
-    private View join_0_1,join_1_2,join_2_3,join_3_4,join_4_5;
     AutoTypeTextView AutoTypeLabel;
     private String UID,FName,Dob;
     private FirebaseAuth fAuth;
@@ -92,11 +79,6 @@ public class Fhome extends Fragment
         saver_description_3 = view.findViewById(R.id.saver_description_3);
         saver_description_4 = view.findViewById(R.id.saver_description_4);
         saver_description_5 = view.findViewById(R.id.saver_description_5);
-        join_0_1 = view.findViewById(R.id.join_0_1);
-        join_1_2 = view.findViewById(R.id.join_1_2);
-        join_2_3 = view.findViewById(R.id.join_2_3);
-        join_3_4 = view.findViewById(R.id.join_3_4);
-        join_4_5 = view.findViewById(R.id.join_4_5);
         StartBtn = view.findViewById(R.id.StartBtn);
         createNotificationChannel();
         StartBtn.setOnClickListener(view -> {
@@ -291,20 +273,32 @@ public class Fhome extends Fragment
                 }
 
             }
+            else
+            {
+                createTodayUserLogs();
+                StartBtn.setText("Start routine");
+            }
         });
 
         DocumentReference codesRef = db.collection("UserLogs").document(UID);
         codesRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<String> list = new ArrayList<>();
+                List<String> sortedList = new ArrayList<>();
                 Map<String, Object> map = task.getResult().getData();
-                for (Map.Entry<String, Object> entry : map.entrySet()) {
-                    list.add(entry.getKey());
+                if (map != null) {
+                    for (Map.Entry<String, Object> entry : map.entrySet()) {
+                        list.add(entry.getKey());
+                    }
+                    sortedList = sortDateList(list);
                 }
-                Collections.sort(list, Collections.reverseOrder());
-                list.set(0, "Today");
+                if(sortedList.size()==0)
+                {
+                    sortedList.add("Today");
+                }
+                sortedList.set(0, "Today");
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
-                        android.R.layout.simple_spinner_item, list);
+                        android.R.layout.simple_spinner_item, sortedList);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 searchDates.setSelection(0);
                 searchDates.setAdapter(dataAdapter);
@@ -313,6 +307,23 @@ public class Fhome extends Fragment
         });
     }
 
+    //to sort the list of string which has the dates in format DD-MM-YYYY where latest date is at the first index
+    private List<String> sortDateList(List<String> list)
+    {
+        Collections.sort(list, (o1, o2) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Date d1 = null;
+            Date d2 = null;
+            try {
+                d1 = sdf.parse(o1);
+                d2 = sdf.parse(o2);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return d2.compareTo(d1);
+        });
+        return list;
+    }
     private void setTimeline(int index,String position)
     {
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());

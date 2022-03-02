@@ -1,18 +1,10 @@
-package com.example.m3;
+package com.example.m3.HomeMenus;
 
-import android.annotation.SuppressLint;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +13,9 @@ import android.widget.TextView;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.m3.extras.AlarmReceiver;
+import com.example.m3.Intros.About;
+import com.example.m3.R;
+import com.example.m3.SystemSettings;
 
 import java.util.Calendar;
 

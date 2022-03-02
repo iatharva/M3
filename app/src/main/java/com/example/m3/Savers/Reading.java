@@ -1,9 +1,8 @@
-package com.example.m3;
+package com.example.m3.Savers;
 
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -19,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.m3.Home;
+import com.example.m3.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;

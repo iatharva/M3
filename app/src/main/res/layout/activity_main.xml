@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".Intros.MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"

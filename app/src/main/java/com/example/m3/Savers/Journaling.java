@@ -1,4 +1,4 @@
-package com.example.m3;
+package com.example.m3.Savers;
 
 import static android.content.ContentValues.TAG;
 
@@ -16,12 +16,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.m3.Home;
+import com.example.m3.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -14,7 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.m3.extras.LogoutDialog;
+import com.example.m3.HomeMenus.Fhome;
+import com.example.m3.HomeMenus.Profile;
+import com.example.m3.HomeMenus.Settings;
+import com.example.m3.Intros.IntroScreen1;
+import com.example.m3.Extras.LogoutDialog;
 
 public class Home extends AppCompatActivity {
 
@@ -65,7 +68,7 @@ public class Home extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.helpButtonHeader){
             //Add intro activity
-            Intent i = new Intent(Home.this,IntroScreen1.class);
+            Intent i = new Intent(Home.this, IntroScreen1.class);
             //Intent i = new Intent(Home.this,InitialAffirmationSettings.class);
             startActivity(i);
         }

@@ -1,4 +1,4 @@
-package com.example.m3;
+package com.example.m3.Savers;
 
 import static android.content.ContentValues.TAG;
 
@@ -9,19 +9,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.m3.Home;
+import com.example.m3.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,11 +33,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class Visualization extends AppCompatActivity {
+public class Affirmations extends AppCompatActivity {
 
-    public TextView visualizationTitle,readMore;
+    public ListView affirmationList;
     public FloatingActionButton toDoneScreenBtn;
-    public ImageView image;
     private FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     public String UID;
@@ -43,23 +44,11 @@ public class Visualization extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualization);
+        setContentView(R.layout.activity_affirmations);
         vibe = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        affirmationList = findViewById(R.id.affirmationList);
         toDoneScreenBtn = findViewById(R.id.toDoneScreenBtn);
-        visualizationTitle = findViewById(R.id.T1Desc4);
-        readMore = findViewById(R.id.T1Desc2);
         fAuth = FirebaseAuth.getInstance();
-        image = findViewById(R.id.Image);
-
-        //for making link clickable
-        readMore.setMovementMethod(LinkMovementMethod.getInstance());
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            readMore.setText(Html.fromHtml("<a href='https://www.unfinishedsuccess.com/the-importance-of-visualizing-your-goals/'>read more</a>", Html.FROM_HTML_MODE_LEGACY));
-        } else {
-            readMore.setText(Html.fromHtml("<a href='https://www.unfinishedsuccess.com/the-importance-of-visualizing-your-goals/'>read more</a>"));
-        }
-
-        //Shows the dialog
         toDoneScreenBtn.setOnClickListener(view -> {
             showCustomDialog();
         });
@@ -78,48 +67,51 @@ public class Visualization extends AppCompatActivity {
     public void onBackPressed()
     {
         super.onBackPressed();
-        startActivity(new Intent(Visualization.this, Home.class));
+        startActivity(new Intent(Affirmations.this, Home.class));
         finish();
     }
 
-    //Gets the data required
-    public void getUserSettings()
-    {
+    //Gets the data to show on screen
+    public void getUserSettings() {
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
-        DocumentReference visref = db.collection("VisualizationSettings").document(UID);
-        visref.get().addOnSuccessListener(documentSnapshot -> {
+        DocumentReference affref = db.collection("AffirmationSettings").document(UID);
+        affref.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists())
             {
-                String vName=documentSnapshot.getString("VName");
-                String VLink= documentSnapshot.getString("VLink");
-                visualizationTitle.setText(vName);
-                Picasso
-                        .get()
-                        .load(VLink)
-                        .placeholder( R.drawable.loadinganimation)
-                        .into(image);
+                List<String> affirmations=(List<String>)documentSnapshot.get("Sentences");
+                getAffirmationSettings(affirmations);
             }
         });
-    }
 
-    //Shows the alert dialog upon completion of activity
+    }
+    //Shows the custom dialog on activity completion
     private void showCustomDialog()
     {
         getUserTimeLogs();
         vibe.vibrate(100);
-        AlertDialog.Builder builder = new AlertDialog.Builder(Visualization.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Affirmations.this);
         final View customLayout = getLayoutInflater().inflate(R.layout.dialog_completedactivity, null);
         //message
         TextView message = customLayout.findViewById(R.id.message);
-        message.setText("Visualizations completed !");
+        message.setText("Affirmations completed !");
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
-            //To go to next activity
-            Intent intent = new Intent(Visualization.this, Exercises.class);
+            Intent intent = new Intent(Affirmations.this, Visualization.class);
             startActivity(intent);
         });
         builder.setCancelable(false);
         builder.setView(customLayout);
         builder.show();
+    }
+
+    //Returns the list of affirmations
+    private void getAffirmationSettings(List<String> affirmations) {
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,affirmations);
+        ViewGroup.LayoutParams params = affirmationList.getLayoutParams();
+        params.height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70*affirmations.size(), getResources().getDisplayMetrics());
+        params.width = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, getResources().getDisplayMetrics());
+        affirmationList.setLayoutParams(params);
+        affirmationList.setAdapter(adapter);
+        registerForContextMenu(affirmationList);
     }
 
     //Get the specific date TimeLogs
@@ -142,7 +134,7 @@ public class Visualization extends AppCompatActivity {
     {
         String timestamp = new SimpleDateFormat("dd-MMM HH:mm a", Locale.getDefault()).format(new Date());
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        timeLogsArray[2] = timestamp;
+        timeLogsArray[1] = timestamp;
         DocumentReference usertimelogref = db.collection("UserTimeLogs").document(UID);
         usertimelogref
                 .update(today+"-TimeLog", Arrays.asList(timeLogsArray))
@@ -153,7 +145,7 @@ public class Visualization extends AppCompatActivity {
         List<Boolean> ActivityLogString = new ArrayList<>();
         for(int i=0;i<6;i++)
         {
-            if(i<=2)
+            if(i<=1)
             {
                 ActivityLogString.add(true);
             }

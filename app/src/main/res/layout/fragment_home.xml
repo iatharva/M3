@@ -5,7 +5,7 @@
     xmlns:attv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fhome">
+    tools:context=".HomeMenus.Fhome">
 
     <RelativeLayout
         android:layout_height="wrap_content"
@@ -55,15 +55,15 @@
             android:layout_marginTop="20dp"
             android:text="@string/start_the_routine" />
 
-    <com.white.progressview.CircleProgressView
-        android:id="@+id/circle_progress"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/AutoTypeLabel"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_toEndOf="@+id/StartBtn"
-        android:padding="10dp" />
+        <com.white.progressview.CircleProgressView
+            android:id="@+id/circle_progress"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/AutoTypeLabel"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/StartBtn"
+            android:padding="10dp" />
 
         <LinearLayout
             android:id="@+id/timeline_view"

@@ -1,29 +1,20 @@
-package com.example.m3.extras;
+package com.example.m3.Extras;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.PowerManager;
-import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.example.m3.MainActivity;
 import com.example.m3.R;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class AlarmReceiver extends BroadcastReceiver {
     @Override

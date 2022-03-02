@@ -707,4 +707,5 @@ public class SystemSettings extends AppCompatActivity {
                 }
             }
         }
-    }}
+    }
+}

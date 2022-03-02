@@ -17,67 +17,67 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
         <activity
-            android:name=".InitialExercisesSettings"
+            android:name=".InitialSettings.InitialExercisesSettings"
             android:exported="false" />
         <activity
-            android:name=".InitialVisualizationSettings"
+            android:name=".InitialSettings.InitialVisualizationSettings"
             android:exported="false" />
         <activity
-            android:name=".InitialAffirmationsSettings"
+            android:name=".InitialSettings.InitialAffirmationsSettings"
             android:exported="false" />
         <activity
-            android:name=".InitialSilenceSettings"
+            android:name=".InitialSettings.InitialSilenceSettings"
             android:exported="false" />
         <activity
-            android:name=".Journaling"
+            android:name=".Savers.Journaling"
             android:exported="false" />
         <activity
-            android:name=".Reading"
+            android:name=".Savers.Reading"
             android:exported="false" />
         <activity
-            android:name=".Exercises"
+            android:name=".Savers.Exercises"
             android:exported="false" />
         <activity
-            android:name=".Visualization"
+            android:name=".Savers.Visualization"
             android:exported="false" />
         <activity
-            android:name=".Affirmations"
+            android:name=".Savers.Affirmations"
             android:exported="false" />
         <activity
-            android:name=".ActivityCompleted"
+            android:name=".Savers.ActivityCompleted"
             android:exported="false" />
         <activity
-            android:name=".Silence"
+            android:name=".Savers.Silence"
             android:exported="false" />
         <activity
-            android:name=".About"
+            android:name=".Intros.About"
             android:exported="false" />
         <activity
             android:name=".SystemSettings"
             android:exported="false" />
         <activity
-            android:name=".IntroScreen3"
+            android:name=".Intros.IntroScreen3"
             android:exported="false" />
         <activity
-            android:name=".IntroScreen2"
+            android:name=".Intros.IntroScreen2"
             android:exported="false" />
         <activity
-            android:name=".IntroScreen1"
+            android:name=".Intros.IntroScreen1"
             android:exported="false" />
         <activity
-            android:name=".CreateNewAccount"
+            android:name=".Account.CreateNewAccount"
             android:exported="false" />
         <activity
-            android:name=".ForgetPassword"
+            android:name=".Account.ForgetPassword"
             android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".Account.LogIn"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Intros.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -87,7 +87,7 @@
         </activity>
 
         <receiver
-            android:name=".extras.AlarmReceiver"
+            android:name=".Extras.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 

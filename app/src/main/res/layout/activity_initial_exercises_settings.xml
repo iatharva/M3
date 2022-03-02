@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InitialExercisesSettings">
+    xmlns:attv="http://schemas.android.com/apk/res-auto"
+    tools:context=".InitialSettings.InitialExercisesSettings">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/exercise_settings"
+            android:textColor="@color/black"
+            android:textSize="29sp"
+            android:textStyle="bold" />
+
+        <com.dragankrstic.autotypetextview.AutoTypeTextView
+            android:id="@+id/subTitle1"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="15sp"
+            attv:typingPrecision="1" />
+
+        <TextView
+            android:id="@+id/subTitleT1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subTitle1"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/exercises"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/exerciseList"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@id/subTitleT1"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/subTitleT2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/exerciseList"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/pranayams"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ListView
+            android:id="@+id/pranayamList"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_below="@id/subTitleT2"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/toNextScreenBtn"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/subTitle1"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|end"
+            android:layout_marginTop="400dp"
+            android:layout_marginEnd="27dp"
+            android:src="@drawable/arrowright" />
+
+    </RelativeLayout>
+
+</ScrollView>

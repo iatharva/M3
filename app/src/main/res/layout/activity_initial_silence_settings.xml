@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:attv="http://schemas.android.com/apk/res-auto"
-    tools:context=".InitialSilenceSettings">
+    tools:context=".InitialSettings.InitialSilenceSettings">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,8 +38,8 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="15dp"
             android:text="@string/music"
-            android:textSize="20sp"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     <RadioGroup
         android:id="@+id/musicGroup"

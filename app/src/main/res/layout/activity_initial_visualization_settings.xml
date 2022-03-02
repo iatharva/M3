@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:attv="http://schemas.android.com/apk/res-auto"
-    tools:context=".InitialVisualizationSettings">
+    tools:context=".InitialSettings.InitialVisualizationSettings">
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,6 +26,43 @@
         android:layout_marginEnd="10dp"
         android:textSize="15sp"
         attv:typingPrecision="1" />
+
+    <TextView
+        android:id="@+id/subTitleT1"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/visualization_name"
+        android:textColor="@color/black"
+        android:layout_below="@id/subTitle1"/>
+
+    <EditText
+        android:id="@+id/visualizationTitle"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/subTitleT1"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/subTitleT2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/visualization_image"
+        android:textColor="@color/black"
+        android:layout_below="@id/visualizationTitle"/>
+
+    <ImageView
+        android:id="@+id/visualizationImage"
+        android:layout_height="wrap_content"
+        android:layout_width="360dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/subTitleT2"
+        android:src="@drawable/addimageicon"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toNextScreenBtn"

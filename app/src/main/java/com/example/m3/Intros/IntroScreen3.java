@@ -1,14 +1,17 @@
-package com.example.m3;
+package com.example.m3.Intros;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.Slide;
-import android.transition.TransitionInflater;
-import android.view.View;
 import android.widget.Toast;
 
+import com.example.m3.Home;
+import com.example.m3.InitialSettings.InitialAffirmationsSettings;
+import com.example.m3.InitialSettings.InitialExercisesSettings;
+import com.example.m3.InitialSettings.InitialSilenceSettings;
+import com.example.m3.InitialSettings.InitialVisualizationSettings;
+import com.example.m3.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -59,14 +62,14 @@ public class IntroScreen3 extends AppCompatActivity {
                                     if (documentSnapshot3.exists())
                                     {
                                         Toast.makeText(IntroScreen3.this, "Welcome back!", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(IntroScreen3.this,Home.class);
+                                        Intent i = new Intent(IntroScreen3.this, Home.class);
                                         startActivity(i);
 
                                     }
                                     else
                                     {
                                         Toast.makeText(IntroScreen3.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(IntroScreen3.this,InitialExercisesSettings.class);
+                                        Intent i = new Intent(IntroScreen3.this, InitialExercisesSettings.class);
                                         startActivity(i);
                                     }
                                 });
@@ -74,7 +77,7 @@ public class IntroScreen3 extends AppCompatActivity {
                             else
                             {
                                 Toast.makeText(IntroScreen3.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(IntroScreen3.this,InitialVisualizationSettings.class);
+                                Intent i = new Intent(IntroScreen3.this, InitialVisualizationSettings.class);
                                 startActivity(i);
                             }
                         });
@@ -82,7 +85,7 @@ public class IntroScreen3 extends AppCompatActivity {
                     else
                     {
                         Toast.makeText(IntroScreen3.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(IntroScreen3.this,InitialAffirmationsSettings.class);
+                        Intent i = new Intent(IntroScreen3.this, InitialAffirmationsSettings.class);
                         startActivity(i);
                     }
                 });
@@ -90,7 +93,7 @@ public class IntroScreen3 extends AppCompatActivity {
             else
             {
                 Toast.makeText(IntroScreen3.this, "Glad to meet you, Welcome!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(IntroScreen3.this,InitialSilenceSettings.class);
+                Intent i = new Intent(IntroScreen3.this, InitialSilenceSettings.class);
                 startActivity(i);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.m3;
+package com.example.m3.InitialSettings;
 
 import static android.content.ContentValues.TAG;
 
@@ -19,11 +19,12 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
-import com.example.m3.extras.LogoutDialog;
+import com.example.m3.Intros.IntroScreen1;
+import com.example.m3.R;
+import com.example.m3.Extras.LogoutDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -56,12 +57,9 @@ public class InitialAffirmationsSettings extends AppCompatActivity {
         toNextScreenBtn = findViewById(R.id.toNextScreenBtn);
         subTitle1.setTextAutoTyping("Click on plus add some affirmations");
         addAffBtn.setOnClickListener(view -> AddAffirmationSettings());
-        toNextScreenBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(InitialAffirmationsSettings.this, InitialExercisesSettings.class);
-                startActivity(intent);
-            }
+        toNextScreenBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(InitialAffirmationsSettings.this, InitialVisualizationSettings.class);
+            startActivity(intent);
         });
     }
 
@@ -224,7 +222,7 @@ public class InitialAffirmationsSettings extends AppCompatActivity {
         }
         if (item.getItemId() == R.id.helpButtonHeader){
             //Add intro activity
-            Intent i = new Intent(InitialAffirmationsSettings.this,IntroScreen1.class);
+            Intent i = new Intent(InitialAffirmationsSettings.this, IntroScreen1.class);
             //Intent i = new Intent(Home.this,InitialAffirmationSettings.class);
             startActivity(i);
         }

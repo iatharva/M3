@@ -1,11 +1,9 @@
-package com.example.m3.extras;
+package com.example.m3.Extras;
 
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
-
-import androidx.core.app.NotificationCompat;
 
 public class App extends Application {
     public static final String CHANNEL_1_ID = "channel1";

@@ -1,4 +1,4 @@
-package com.example.m3;
+package com.example.m3.HomeMenus;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.airbnb.lottie.L;
+import com.example.m3.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;

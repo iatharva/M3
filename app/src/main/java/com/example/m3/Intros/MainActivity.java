@@ -1,21 +1,22 @@
-package com.example.m3;
-
-import static android.content.ContentValues.TAG;
+package com.example.m3.Intros;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.m3.Account.LogIn;
+import com.example.m3.Home;
+import com.example.m3.InitialSettings.InitialAffirmationsSettings;
+import com.example.m3.InitialSettings.InitialExercisesSettings;
+import com.example.m3.InitialSettings.InitialSilenceSettings;
+import com.example.m3.InitialSettings.InitialVisualizationSettings;
+import com.example.m3.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -87,14 +88,14 @@ public class MainActivity extends AppCompatActivity {
                                     if (documentSnapshot3.exists())
                                     {
                                         Toast.makeText(MainActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(MainActivity.this,Home.class);
+                                        Intent i = new Intent(MainActivity.this, Home.class);
                                         startActivity(i);
 
                                     }
                                     else
                                     {
                                         Toast.makeText(MainActivity.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(MainActivity.this,InitialExercisesSettings.class);
+                                        Intent i = new Intent(MainActivity.this, InitialExercisesSettings.class);
                                         startActivity(i);
                                     }
                                 });
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 Toast.makeText(MainActivity.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(MainActivity.this,InitialVisualizationSettings.class);
+                                Intent i = new Intent(MainActivity.this, InitialVisualizationSettings.class);
                                 startActivity(i);
                             }
                         });
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     else
                     {
                         Toast.makeText(MainActivity.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
-                        Intent i = new Intent(MainActivity.this,InitialAffirmationsSettings.class);
+                        Intent i = new Intent(MainActivity.this, InitialAffirmationsSettings.class);
                         startActivity(i);
                     }
                 });
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             else
             {
                 Toast.makeText(MainActivity.this, "Glad to meet you, Welcome!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(MainActivity.this,InitialSilenceSettings.class);
+                Intent i = new Intent(MainActivity.this, InitialSilenceSettings.class);
                 startActivity(i);
             }
         });
