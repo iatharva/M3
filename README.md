@@ -35,18 +35,20 @@
 - [x] Think on E
 - [x] Think on R
 - [x] Work on E
-
+- [x] Add Home -> Home UI
+- [x] Add animations
+- [x] Write Journal Feature
+- [x] Work on R
 #### Work in progress
 
 - [ ] Add Logic for Alarm (Work in Progress)
 - [ ] Test Alarm Logic (Work in Progress)
-- [ ] Add Home -> Home UI (Work in Progress)
 - [ ] Bug in System Settings -> Exercises (Work in Progress)
+- [ ] Delay in launching Home
 
 #### Yet to start
 
-- [ ] Write Journal Feature
 - [ ] Alarm user on specific time (to start the routine of morning tasks i.e. S,A,V,E,R)
 - [ ] Notify user about his tasks (different time in day)
 - [ ] Notify user to write journal and add to-do for tomorrow
-- [ ] Work on R
+
