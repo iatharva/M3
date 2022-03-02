@@ -281,7 +281,7 @@ public class SystemSettings extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(this,"Please enter something in textbox" + newDuration,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Please enter something in textbox",Toast.LENGTH_SHORT).show();
             }
         }
         else
@@ -299,7 +299,7 @@ public class SystemSettings extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(this,"Please enter something in textbox" + newDuration,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Please enter something in textbox",Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -549,7 +549,6 @@ public class SystemSettings extends AppCompatActivity {
     }
 
     //Shows the Input Dialog box on UI to update affirmations
-    //AddExtra paramter for new
     private void showAffirmationDialog(int position,String [] affirmations,Boolean NewAff) {
         AlertDialog.Builder builder = new AlertDialog.Builder(SystemSettings.this);
         final EditText updatedAffirmation = new EditText(SystemSettings.this);

@@ -120,8 +120,7 @@ public class CreateNewAccount extends AppCompatActivity {
                         if(task1.isSuccessful()) {
                             //Success Case
                             AddAccountBtn.setText(R.string.create_account);
-                            Toast.makeText(CreateNewAccount.this,"Welcome to M3", Toast.LENGTH_LONG).show();
-                            FirebaseAuth.getInstance().signOut();
+                            Toast.makeText(CreateNewAccount.this,"Account created succesfully!", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(CreateNewAccount.this, IntroScreen1.class);
                             startActivity(i);
                         } else{

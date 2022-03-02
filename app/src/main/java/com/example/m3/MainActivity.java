@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
             if (mFirebaseUser != null) {
                 new Handler().postDelayed(() -> {
                     //Success case (Be on Home screen)
-                    Intent i = new Intent(MainActivity.this, Home.class);
-                    startActivity(i);
+                    CheckNewUserSettings();
                     finish();
                 }, SPLASH_TIME_OUT);
             } else {
@@ -67,4 +66,61 @@ public class MainActivity extends AppCompatActivity {
         fAuth.addAuthStateListener(mAuthStateListener);
     }
 
+    public void CheckNewUserSettings()
+    {
+        fAuth = FirebaseAuth.getInstance();
+        UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        //Check for musicsettings
+        db.collection("MusicSettings").document(UID).get().addOnSuccessListener(documentSnapshot -> {
+            if(documentSnapshot.exists())
+            {
+                //Check for affirmationsettings
+                db.collection("AffirmationSettings").document(UID).get().addOnSuccessListener(documentSnapshot1 -> {
+                    if (documentSnapshot1.exists())
+                    {
+                        //Check for VisualizationSettings
+                        db.collection("VisualizationSettings").document(UID).get().addOnSuccessListener(documentSnapshot2 -> {
+                            if (documentSnapshot2.exists())
+                            {
+                                //Check for ExerciseSettings
+                                db.collection("ExerciseSettings").document(UID).get().addOnSuccessListener(documentSnapshot3 -> {
+                                    if (documentSnapshot3.exists())
+                                    {
+                                        Toast.makeText(MainActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(MainActivity.this,Home.class);
+                                        startActivity(i);
+
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(MainActivity.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(MainActivity.this,InitialExercisesSettings.class);
+                                        startActivity(i);
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                Toast.makeText(MainActivity.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(MainActivity.this,InitialVisualizationSettings.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(MainActivity.this,InitialAffirmationsSettings.class);
+                        startActivity(i);
+                    }
+                });
+            }
+            else
+            {
+                Toast.makeText(MainActivity.this, "Glad to meet you, Welcome!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(MainActivity.this,InitialSilenceSettings.class);
+                startActivity(i);
+            }
+        });
+    }
 }

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:attv="http://schemas.android.com/apk/res-auto"
-    tools:context=".InitialAffirmationsSettings">
+    tools:context=".InitialVisualizationSettings">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
-        android:text="@string/affirmation_settings"
+        android:text="@string/visualization_settings"
         android:textColor="@color/black"
         android:textSize="29sp"
         android:textStyle="bold" />
@@ -27,23 +27,6 @@
         android:textSize="15sp"
         attv:typingPrecision="1" />
 
-    <ImageView
-        android:id="@+id/addAffBtn"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/subTitle1"
-        android:layout_marginStart="40dp"
-        android:src="@drawable/addicon" />
-
-    <ListView
-        android:id="@+id/affirmationList"
-        android:layout_width="300dp"
-        android:layout_height="190dp"
-        android:layout_below="@id/addAffBtn"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/toNextScreenBtn"
         android:layout_width="80dp"
@@ -51,8 +34,7 @@
         android:layout_below="@id/subTitle1"
         android:layout_alignParentEnd="true"
         android:layout_gravity="bottom|end"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="27dp"
         android:src="@drawable/arrowright" />
-
 </RelativeLayout>

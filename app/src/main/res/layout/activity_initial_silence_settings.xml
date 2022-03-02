@@ -105,7 +105,7 @@
             android:id="@+id/durationGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/subTitleT1"
+            android:layout_below="@+id/subTitleT2"
             android:layout_marginStart="30dp">
 
             <RadioButton

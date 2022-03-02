@@ -17,6 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
         <activity
+            android:name=".InitialExercisesSettings"
+            android:exported="false" />
+        <activity
+            android:name=".InitialVisualizationSettings"
+            android:exported="false" />
+        <activity
             android:name=".InitialAffirmationsSettings"
             android:exported="false" />
         <activity

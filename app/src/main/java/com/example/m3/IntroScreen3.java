@@ -29,18 +29,7 @@ public class IntroScreen3 extends AppCompatActivity {
         nextBtn3 = findViewById(R.id.nextBtn3);
 
         nextBtn3.setOnClickListener(view -> {
-            if(CheckNewUser())
-            {
-                Toast.makeText(IntroScreen3.this, "Glad to meet you, Welcome!", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(IntroScreen3.this,Home.class);
-                startActivity(i);
-            }
-            else
-            {
-                //Create initial settings
-                Intent i = new Intent(IntroScreen3.this,Home.class);
-                startActivity(i);
-            }
+            CheckNewUserSettings();
         });
     }
 
@@ -51,15 +40,59 @@ public class IntroScreen3 extends AppCompatActivity {
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
     }
 
-    public boolean CheckNewUser()
+    public void CheckNewUserSettings()
     {
-        final boolean[] result = new boolean[1];
+        //Check for musicsettings
         db.collection("MusicSettings").document(UID).get().addOnSuccessListener(documentSnapshot -> {
             if(documentSnapshot.exists())
-                result[0] = false;
+            {
+                //Check for affirmationsettings
+                db.collection("MusicSettings").document(UID).get().addOnSuccessListener(documentSnapshot1 -> {
+                    if (documentSnapshot1.exists())
+                    {
+                        //Check for VisualizationSettings
+                        db.collection("MusicSettings").document(UID).get().addOnSuccessListener(documentSnapshot2 -> {
+                            if (documentSnapshot2.exists())
+                            {
+                                //Check for ExerciseSettings
+                                db.collection("MusicSettings").document(UID).get().addOnSuccessListener(documentSnapshot3 -> {
+                                    if (documentSnapshot3.exists())
+                                    {
+                                        Toast.makeText(IntroScreen3.this, "Welcome back!", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(IntroScreen3.this,Home.class);
+                                        startActivity(i);
+
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(IntroScreen3.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(IntroScreen3.this,InitialExercisesSettings.class);
+                                        startActivity(i);
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                Toast.makeText(IntroScreen3.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(IntroScreen3.this,InitialVisualizationSettings.class);
+                                startActivity(i);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        Toast.makeText(IntroScreen3.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(IntroScreen3.this,InitialAffirmationsSettings.class);
+                        startActivity(i);
+                    }
+                });
+            }
             else
-                result[0] = true;
+            {
+                Toast.makeText(IntroScreen3.this, "Glad to meet you, Welcome!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(IntroScreen3.this,InitialSilenceSettings.class);
+                startActivity(i);
+            }
         });
-        return result[0];
     }
 }
