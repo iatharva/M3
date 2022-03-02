@@ -31,7 +31,7 @@ public class About extends AppCompatActivity {
 
         socialBtn1.setOnClickListener(view -> {
             //Open Github release page in browser
-            String url = "https://github.com/iatharva/M3/releases/tag/alpha";
+            String url = "https://github.com/iatharva/M3/releases/tag/beta";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);

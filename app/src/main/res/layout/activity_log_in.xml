@@ -1,92 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     tools:context=".Account.LogIn">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/m3logoonly" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/miracle_morning_mentor"
-        android:fontFamily="@font/nunito" />
-    <Space
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/background_animation"
         android:layout_width="match_parent"
-        android:layout_height="20sp"/>
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loginbackgroundanimation.json"
+        app:lottie_loop="true" />
 
-    <EditText
-        android:id="@+id/EmailField"
-        android:hint="@string/email"
-        android:layout_width="230sp"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:autofillHints="Email"
-        android:fontFamily="@font/nunito"/>
-
-    <EditText
-        android:id="@+id/PasswordField"
-        android:paddingTop="20sp"
-        android:hint="@string/password"
-        android:layout_width="230sp"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:autofillHints="Password"
-        android:fontFamily="@font/nunito"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@android:color/black"/>
-
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30sp"
-        tools:ignore="SmallSp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/LogInBtn"
-        android:layout_width="150sp"
-        android:layout_height="50sp"
-        android:fontFamily="@font/nunito"
-        android:text="@string/log_in"
-        android:textAllCaps="false"
-        android:textSize="18sp" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="230dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loginanimation.json"
+            app:lottie_loop="true" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="5sp"
-        tools:ignore="SmallSp" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/miracle_morning_mentor"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/nunito" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5sp"/>
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_become_cool_as_cucumber"
+            android:fontFamily="@font/nunito" />
 
-    <Button
-        android:id="@+id/ForgetPasswordBtn"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:text="@string/forget_password"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="12sp" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20sp"/>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="25sp"/>
+        <EditText
+            android:id="@+id/EmailField"
+            android:hint="@string/email"
+            android:layout_width="230sp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:autofillHints="Email"
+            android:fontFamily="@font/nunito"/>
 
-    <Button
-        android:id="@+id/CreateAccountBtn"
-        android:layout_height="wrap_content"
-        android:layout_width="200sp"
-        android:background="@android:color/transparent"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textAllCaps="false"
-        android:text="@string/create_a_new_account"
-        android:fontFamily="@font/nunito"/>
-</LinearLayout>
+        <EditText
+            android:id="@+id/PasswordField"
+            android:paddingTop="20sp"
+            android:hint="@string/password"
+            android:layout_width="230sp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:autofillHints="Password"
+            android:fontFamily="@font/nunito"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@android:color/black"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            tools:ignore="SmallSp" />
+
+        <Button
+            android:id="@+id/LogInBtn"
+            android:layout_width="180sp"
+            android:layout_height="50sp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/log_in"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="35sp"
+            tools:ignore="SmallSp" />
+
+        <Button
+            android:id="@+id/ForgetPasswordBtn"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/forget_password"
+            android:textAllCaps="false"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/CreateAccountBtn"
+            android:layout_height="wrap_content"
+            android:layout_width="250sp"
+            android:background="@android:color/transparent"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:text="@string/create_a_new_account"/>
+    </LinearLayout>
+</RelativeLayout>

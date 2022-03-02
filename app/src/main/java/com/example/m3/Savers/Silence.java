@@ -61,7 +61,7 @@ public class Silence extends AppCompatActivity {
         TimerOriginal = findViewById(R.id.TimerOriginal);
         MName = findViewById(R.id.MName);
         toDoneScreenBtn = findViewById(R.id.toDoneScreenBtn);
-        //toDoneScreenBtn.setVisibility(View.GONE);
+        toDoneScreenBtn.setVisibility(View.GONE);
         //Takes to next screen
         toDoneScreenBtn.setOnClickListener(view -> {
             showCustomDialog();

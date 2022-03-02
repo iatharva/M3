@@ -39,20 +39,21 @@
 
     <ImageButton
         android:id="@+id/StartBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/animation_view"
-        android:layout_marginStart="155dp"
-        android:background="@color/white"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@id/T1Desc1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="165dp"
+        android:background="@null"
+        android:contentDescription="@string/play_pause"
         android:scaleType="fitCenter"
-        android:src="@drawable/playbutton"
-        android:contentDescription="@string/play_pause" />
+        android:src="@drawable/playbutton" />
 
     <TextView
         android:id="@+id/Timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/StartBtn"
+        android:layout_below="@id/animation_view"
         android:layout_marginStart="155dp"
         android:textColor="@color/black"
         android:textSize="30sp" />
@@ -61,7 +62,7 @@
         android:id="@+id/TimerOriginal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/StartBtn"
+        android:layout_below="@id/animation_view"
         android:visibility="invisible"
         android:layout_marginStart="155dp" />
 

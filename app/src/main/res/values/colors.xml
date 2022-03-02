@@ -20,4 +20,6 @@
     <color name="secondaryColor">#edf448</color>
     <color name="secondaryLightColor">#ffff7d</color>
     <color name="secondaryDarkColor">#b7c100</color>
+
+    <color name="animationColor">#8dbddd</color>
 </resources>
