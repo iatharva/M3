@@ -21,16 +21,17 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/T1Desc1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/T1"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="60dp"
-        android:text="@string/these_are_the_daily_activities_you_have_choosen_please_complete_the_following_then_click_on_button" />
+        <TextView
+            android:id="@+id/T1Desc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/T1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/these_are_the_daily_activities_you_have_choosen_please_complete_the_following_then_click_on_button" />
 
     <TextView
         android:id="@+id/TrackExercise"
@@ -44,16 +45,17 @@
         android:textColor="@color/black"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/T1Desc2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/TrackExercise"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:paddingStart="0dp"
-        android:paddingEnd="60dp"
-        android:text="@string/exercises_to_do" />
+        <TextView
+            android:id="@+id/T1Desc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TrackExercise"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:paddingStart="0dp"
+            android:paddingEnd="60dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/exercises_to_do" />
 
     <ListView
         android:id="@+id/ExerciseList"
@@ -73,6 +75,7 @@
             android:layout_marginTop="10dp"
             android:paddingStart="0dp"
             android:paddingEnd="60dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/pranayam_to_do" />
 
     <ListView

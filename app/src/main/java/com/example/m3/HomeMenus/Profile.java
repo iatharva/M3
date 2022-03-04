@@ -1,5 +1,6 @@
 package com.example.m3.HomeMenus;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,27 +8,23 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.airbnb.lottie.L;
+import com.example.m3.ProfileOptions.JournalLogs;
+import com.example.m3.ProfileOptions.MoodAnalysis;
+import com.example.m3.ProfileOptions.ViewProfile;
 import com.example.m3.R;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.m3.ProfileOptions.SeeRanking;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 public class Profile extends Fragment {
 
-    public EditText EmailField,FNameField,LNameField;
-    public TextView ProfileTitle,DateText,creationDate;
+    public TextView ProfileTitle,DateText,creationDate,T1,T1Desc,T2,T2Desc,T3,T3Desc,T4,T4Desc;
     public String UID,Email,FName,LName,Dob;
     private FirebaseAuth fAuth;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -39,14 +36,53 @@ public class Profile extends Fragment {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
         ProfileTitle = view.findViewById(R.id.ProfileTitle);
         creationDate = view.findViewById(R.id.creationDate);
-        EmailField = view.findViewById(R.id.EmailField);
-        FNameField = view.findViewById(R.id.FNameField);
-        LNameField = view.findViewById(R.id.LNameField);
-        DateText = view.findViewById(R.id.DateText);
-        fAuth = FirebaseAuth.getInstance();
+        T1 = view.findViewById(R.id.T1);
+        T2 = view.findViewById(R.id.T2);
+        T3 = view.findViewById(R.id.T3);
+        T4 = view.findViewById(R.id.T4);
+        T1Desc = view.findViewById(R.id.T1Desc);
+        T2Desc = view.findViewById(R.id.T2Desc);
+        T3Desc = view.findViewById(R.id.T3Desc);
+        T4Desc = view.findViewById(R.id.T4Desc);
 
-        ProfileTitle.setOnClickListener(view -> {
-            getUserData();
+        //View Profile to update the info
+        T1.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), ViewProfile.class);
+            startActivity(i);
+        });
+        T1Desc.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), ViewProfile.class);
+            startActivity(i);
+        });
+
+        //See your ranking
+        T2.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), SeeRanking.class);
+            startActivity(i);
+        });
+        T2Desc.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), SeeRanking.class);
+            startActivity(i);
+        });
+
+        //Journal logs
+        T3.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), JournalLogs.class);
+            startActivity(i);
+        });
+        T3Desc.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), JournalLogs.class);
+            startActivity(i);
+        });
+
+        //Mood analysis
+        T4.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), MoodAnalysis.class);
+            startActivity(i);
+        });
+        T4Desc.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), MoodAnalysis.class);
+            startActivity(i);
         });
 
         return view;
@@ -58,53 +94,15 @@ public class Profile extends Fragment {
         super.onResume();
         getUserData();
     }
-
-    /**
-     * Calculate the Age from Data of Birth of user
-     */
-    private int getAge(int year, int month, int day) {
-        int age = 0;
-        Calendar calendar = Calendar.getInstance();
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH)+1;
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-
-        if (currentMonth > month) {
-            age = currentYear - year;
-        } else if (currentMonth == month) {
-            if (currentDay >= day) {
-                age = currentYear - year;
-            } else {
-                age = currentYear - year - 1;
-            }
-        } else {
-            age = currentYear - year - 1;
-        }
-        return age;
-    }
-
     public void getUserData()
     {
+        fAuth = FirebaseAuth.getInstance();
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
         Date currDate = new Date(Objects.requireNonNull(fAuth.getCurrentUser().getMetadata().getCreationTimestamp()));
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = dateFormat.format(currDate);
         creationDate.setText("created on "+date);
-        DocumentReference typeref = db.collection("Users").document(UID);
-        typeref.get().addOnSuccessListener(documentSnapshot -> {
-            if (documentSnapshot.exists()) {
-                Email=documentSnapshot.getString("Email");
-                FName=documentSnapshot.getString("FName");
-                LName =documentSnapshot.getString("LName");
-                Dob=documentSnapshot.getString("Dob");
-
-                EmailField.setText(Email);
-                FNameField.setText(FName);
-                LNameField.setText(LName);
-                String[] dob = Dob.split("-");
-                int age = getAge(Integer.parseInt(dob[2]),Integer.parseInt(dob[1]),Integer.parseInt(dob[0]));
-                DateText.setText("User Age : "+String.valueOf(age));
-            }
-        });
     }
+
+
 }

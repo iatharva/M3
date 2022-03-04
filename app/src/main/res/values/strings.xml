@@ -120,6 +120,19 @@
     <string name="click_to_add_image">Click to add image</string>
     <string name="pranayams">Pranayams</string>
     <string name="to_become_cool_as_cucumber">to become cool as cucumber in daily life</string>
+    <string name="profile_details">Profile Details</string>
+    <string name="edit_and_view_profile_info">edit and view profile info</string>
+    <string name="journal_logs">Journal Logs</string>
+    <string name="revisit_your_old_journals">revisit your old journals</string>
+    <string name="see_your_ranking">See Your Ranking</string>
+    <string name="to_see_ranking_among_other_users">to see ranking among other users</string>
+    <string name="mood_analysis">Mood analysis</string>
+    <string name="more_info_about_your_mood_feeling">more info about your mood/feeling</string>
+    <string name="profile_info">Profile info</string>
+    <string name="update_name">Update Name</string>
+    <string name="enter_email_to_verify">Enter Email to verify</string>
+    <string name="i_know_it">I know it</string>
+    <string name="rankings">Rankings</string>
 
     <!--durations array
     <string-array name="durations">

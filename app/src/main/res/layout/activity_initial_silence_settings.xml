@@ -22,6 +22,7 @@
 
         <com.dragankrstic.autotypetextview.AutoTypeTextView
             android:id="@+id/subTitle1"
+            android:textColor="@color/defaultTextColor"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginStart="30dp"

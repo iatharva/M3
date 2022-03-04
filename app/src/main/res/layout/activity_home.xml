@@ -17,10 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@+id/frameLayout"
-        android:scaleType="fitXY"
         android:rotation="180"
-        app:lottie_fileName="menubackground.json"
+        android:scaleType="fitXY"
         app:lottie_autoPlay="true"
+        app:lottie_fileName="menubackground.json"
         app:lottie_loop="true" />
 
     <Button
@@ -31,6 +31,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginBottom="25sp"
         android:backgroundTint="@color/black"
+        android:textColor="@color/white"
         android:text="@string/home" />
 
     <Button
@@ -42,6 +43,7 @@
         android:layout_marginEnd="110dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/black"
+        android:textColor="@color/white"
         android:text="@string/profile" />
 
     <ImageButton
@@ -53,6 +55,6 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="25dp"
         android:backgroundTint="@color/black"
-        android:src="@drawable/settingsiconsmallwhite"/>
+        android:src="@drawable/settingsiconsmallwhite" />
 
 </RelativeLayout>

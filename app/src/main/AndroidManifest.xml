@@ -17,6 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
         <activity
+            android:name=".ProfileOptions.MoodAnalysis"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileOptions.JournalLogs"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileOptions.SeeRanking"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileOptions.ViewProfile"
+            android:exported="false" />
+        <activity
             android:name=".InitialSettings.InitialExercisesSettings"
             android:exported="false" />
         <activity

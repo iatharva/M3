@@ -1,95 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeMenus.Profile">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/ProfileTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/profile"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/ProfileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/profile"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/creationDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@id/ProfileTitle"/>
+        <TextView
+            android:id="@+id/creationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ProfileTitle"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="150dp"
-        android:text="@string/first_name"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/T1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="150dp"
+            android:text="@string/profile_details"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/FNameField"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="190dp"
-        android:editable="false"
-        android:importantForAutofill="no" />
+        <TextView
+            android:id="@+id/T1Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T1"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/edit_and_view_profile_info"
+            android:textSize="15sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="250dp"
-        android:text="@string/last_name"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <View
+            android:id="@+id/T1End"
+            android:layout_width="230dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/T1Desc"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/black" />
 
-    <EditText
-        android:id="@+id/LNameField"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="290dp"
-        android:editable="false"
-        android:importantForAutofill="no" />
+        <TextView
+            android:id="@+id/T2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T1End"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/see_your_ranking"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="350dp"
-        android:text="@string/email"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/T2Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T2"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/to_see_ranking_among_other_users"
+            android:textSize="15sp" />
 
-    <EditText
-        android:id="@+id/EmailField"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="26dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="390dp"
-        android:editable="false"
-        android:importantForAutofill="no" />
+        <View
+            android:id="@+id/T2End"
+            android:layout_width="230dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_below="@+id/T2Desc"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp" />
 
-    <TextView
-        android:id="@+id/DateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="450dp"
-        android:text="@string/user_age"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/T3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T2End"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/journal_logs"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/T3Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T3"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/revisit_your_old_journals"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/T3End"
+            android:layout_width="230dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_below="@+id/T3Desc"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp" />
+
+        <TextView
+            android:id="@+id/T4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T3End"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/mood_analysis"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/T4Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/T4"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/more_info_about_your_mood_feeling"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/T4End"
+            android:layout_width="230dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_below="@+id/T4Desc"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp" />
+
+    </RelativeLayout>
+
+</ScrollView>

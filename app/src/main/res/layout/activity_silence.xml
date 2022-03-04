@@ -26,6 +26,7 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/let_s_start_with_that_daily_mediation_activity_being_with_yourself_let_all_of_your_thoughts_flow_through" />
 
     <com.airbnb.lottie.LottieAnimationView

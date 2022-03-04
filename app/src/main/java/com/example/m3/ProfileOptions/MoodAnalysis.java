@@ -1,8 +1,10 @@
-package com.example.m3;
+package com.example.m3.ProfileOptions;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.m3.R;
 
 public class MoodAnalysis extends AppCompatActivity {
 

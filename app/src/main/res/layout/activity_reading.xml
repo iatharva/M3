@@ -26,6 +26,7 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/to_keep_track_of_your_reading_habit_you_can_enter_the_data_now_or_skip_it_for_later" />
 
     <TextView
@@ -37,8 +38,9 @@
         android:layout_marginTop="25dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:textSize="18sp"
-        android:text="@string/reading_type" />
+        android:text="@string/reading_type"
+        android:textColor="@color/defaultTextColor"
+        android:textSize="18sp" />
 
     <!--Toggle Code here-->
     <LinearLayout
@@ -58,6 +60,7 @@
             android:paddingHorizontal="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:textColor="@color/defaultTextColor"
             android:layout_marginEnd="20dp" />
 
         <TextView
@@ -67,6 +70,7 @@
             android:paddingHorizontal="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/articles" />
 
     </LinearLayout>
@@ -80,6 +84,7 @@
         android:layout_marginTop="25dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/how_many_pages_articles_have_you_read"
         android:textSize="18sp" />
 
@@ -105,6 +110,7 @@
         android:layout_marginTop="25dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/book_name_notes" />
 
     <EditText

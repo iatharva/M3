@@ -26,6 +26,7 @@
         android:layout_marginTop="15dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/remember_user_if_you_see_your_goal_you_are_more_likely_to_achieve_it"
         android:textSize="15sp" />
 
@@ -37,11 +38,11 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="5dp"
         android:clickable="true"
-        android:textColor="@color/primaryColor"
+        android:focusable="true"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
         android:text="@string/read_more"
-        android:focusable="true" />
+        android:textColor="@color/primaryColor" />
 
     <TextView
         android:id="@+id/T1Desc3"
@@ -52,7 +53,8 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="@string/you_will_achieve_it" />
+        android:text="@string/you_will_achieve_it"
+        android:textColor="@color/defaultTextColor" />
 
     <TextView
         android:id="@+id/T1Desc4"
@@ -63,7 +65,7 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
-        android:text="@string/you_will_achieve_it" />
+        android:text="@string/i_know_it" />
 
     <ImageView
         android:id="@+id/Image"

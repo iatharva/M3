@@ -30,6 +30,7 @@
             android:layout_marginTop="5dp"
             android:paddingStart="0dp"
             android:paddingEnd="60dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/speak_your_mind_how_you_felt_through_out_the_day_any_highlight_which_made_it_special" />
 
         <EditText
@@ -81,6 +82,7 @@
             android:layout_marginTop="5dp"
             android:paddingStart="0dp"
             android:paddingEnd="60dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/which_feeling_you_felt_mostly_throughout_the_day" />
 
         <Spinner
@@ -102,6 +104,7 @@
             android:layout_marginTop="5dp"
             android:paddingStart="0dp"
             android:paddingEnd="60dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/how_intense_is_that_feeling" />
 
         <SeekBar

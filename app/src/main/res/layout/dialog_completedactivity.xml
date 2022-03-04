@@ -26,6 +26,7 @@
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
         android:textSize="19sp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/activity_completed" />
 
     <com.airbnb.lottie.LottieAnimationView

@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/made_by_ai_and_hm"
         android:textSize="13sp" />
 

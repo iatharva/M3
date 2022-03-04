@@ -217,8 +217,9 @@ public class Fhome extends Fragment
                     if(arrayActivityLog[arrayActivityLog.length-1]==true)
                     {
                         StartBtn.setVisibility(View.GONE);
-                        circle_progress.setProgressInTime(100,2500);
+                        circle_progress.setProgressInTime(0,100,2500);
                         //set all data
+                        setTimeline(0,"Last");
                     }
                     else
                     {
@@ -227,6 +228,7 @@ public class Fhome extends Fragment
                         {
                             StartBtn.setText("Start routine");
                             circle_progress.setProgressInTime(0,2500);
+                            setTimeline(0,"Middle");
                         }
                         else
                         {
@@ -260,6 +262,10 @@ public class Fhome extends Fragment
                             else if(currentActivityIndex==4)
                             {
                                 circle_progress.setProgressInTime(0,83,2500);
+                            }
+                            else if(currentActivityIndex==5)
+                            {
+                                circle_progress.setProgressInTime(0,100,2500);
                             }
                             setTimeline(currentActivityIndex,"Middle");
                         }
@@ -324,6 +330,7 @@ public class Fhome extends Fragment
         });
         return list;
     }
+
     private void setTimeline(int index,String position)
     {
         String today = new SimpleDateFormat("dd-MM-yyyy").format(new Date());

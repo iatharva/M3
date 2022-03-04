@@ -59,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/surviving_through_the_day_while_living_the_same_routine"/>
 
     </LinearLayout>

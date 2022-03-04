@@ -47,6 +47,7 @@
         android:layout_marginTop="5dp"
         android:paddingStart="0dp"
         android:paddingEnd="60dp"
+        android:textColor="@color/defaultTextColor"
         android:text="@string/activities_completed" />
 
 

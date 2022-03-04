@@ -41,6 +41,7 @@
             android:layout_below="@id/sysSetting1"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/click_to_update_settings" />
 
         <TextView
@@ -110,6 +111,7 @@
             android:layout_below="@id/sysSetting2"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/click_and_hold_to_update_settings" />
 
 
@@ -132,14 +134,15 @@
         android:textColor="@color/primaryColor"
         android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/sysSettingDesc3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/sysSetting3"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/click_to_update_settings" />
+        <TextView
+            android:id="@+id/sysSettingDesc3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sysSetting3"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
+            android:text="@string/click_to_update_settings" />
 
         <TextView
             android:id="@+id/sysSetting3Sub1"
@@ -179,6 +182,7 @@
             android:layout_below="@id/sysSetting4"
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
+            android:textColor="@color/defaultTextColor"
             android:text="@string/click_on_item_to_update_the_settings" />
 
         <TextView
