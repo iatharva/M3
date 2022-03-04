@@ -107,6 +107,7 @@ public class CreateNewAccount extends AppCompatActivity {
                     user.put("FName", FName);
                     user.put("LName", LName);
                     user.put("Dob", DateOfBirth);
+                    user.put("IsPaid", "0");
 
                     //Insert and check if user is data is inserted successfully and user is created
                     db.collection("Users").document(UID).set(user).addOnCompleteListener(task1 -> {

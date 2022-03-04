@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.m3.Home;
@@ -114,16 +115,16 @@ public class Journaling extends AppCompatActivity {
         getUserTimeLogs();
         vibe.vibrate(100);
         AlertDialog.Builder builder = new AlertDialog.Builder(Journaling.this);
-        final ImageView originalVisual = new ImageView(Journaling.this);
-
-        builder.setTitle("Mood:");
-        builder.setMessage("How was your mood throughout the day?");
+        final View customLayout = getLayoutInflater().inflate(R.layout.dialog_completedactivity, null);
+        //message
+        TextView message = customLayout.findViewById(R.id.message);
+        message.setText("Exercises completed !");
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
             Intent intent = new Intent(Journaling.this, ActivityCompleted.class);
             startActivity(intent);
         });
         builder.setCancelable(false);
-        builder.setView(originalVisual);
+        builder.setView(customLayout);
         builder.show();
     }
 
