@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
+import com.example.m3.InitialSettingsCompleted;
 import com.example.m3.Savers.ActivityCompleted;
 import com.example.m3.Intros.IntroScreen1;
 import com.example.m3.R;
@@ -120,7 +121,7 @@ public class InitialExercisesSettings extends AppCompatActivity {
         map.put("Pranayama",selectedPranayamas);
         db.collection("ExerciseSettings").document(UID).set(map, SetOptions.merge()).addOnSuccessListener(aVoid -> {
             Log.d("TAG", "DocumentSnapshot successfully written!");
-            Intent intent = new Intent(InitialExercisesSettings.this, ActivityCompleted.class);
+            Intent intent = new Intent(InitialExercisesSettings.this, InitialSettingsCompleted.class);
             startActivity(intent);
         });
     }
