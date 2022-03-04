@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int SPLASH_TIME_OUT=1500;
+    private static final int SPLASH_TIME_OUT=500;
     private FirebaseAuth fAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        int SPLASH_TIME_OUT = 1700;
+        int SPLASH_TIME_OUT = 500;
         new Handler().postDelayed(() -> logincheck(), SPLASH_TIME_OUT);
     }
 

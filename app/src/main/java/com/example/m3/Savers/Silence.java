@@ -64,6 +64,7 @@ public class Silence extends AppCompatActivity {
         toDoneScreenBtn.setVisibility(View.GONE);
         //Takes to next screen
         toDoneScreenBtn.setOnClickListener(view -> {
+            stopAudio();
             showCustomDialog();
         });
 

@@ -85,7 +85,7 @@
 
         <EditText
             android:id="@+id/EmailField"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/Email"
             android:layout_marginStart="50dp"

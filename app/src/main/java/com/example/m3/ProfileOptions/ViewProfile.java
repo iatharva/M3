@@ -109,12 +109,8 @@ public class ViewProfile extends AppCompatActivity {
                 LName =documentSnapshot.getString("LName");
                 Dob=documentSnapshot.getString("Dob");
 
-                //After 3 characters make all the string "*" in Email
-                StringBuilder sb = new StringBuilder(Email);
-                for (int i = 0; i < Email.length() - 3; i++) {
-                    sb.setCharAt(i, '*');
-                }
-                EmailSecured = sb.toString();
+                //get first 3 characters from string Email
+                EmailSecured = Email.substring(0,3)+"****";
                 EmailField.setHint(EmailSecured);
                 FNameField.setText(FName);
                 LNameField.setText(LName);

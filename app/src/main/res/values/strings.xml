@@ -133,6 +133,7 @@
     <string name="enter_email_to_verify">Enter Email to verify</string>
     <string name="i_know_it">I know it</string>
     <string name="rankings">Rankings</string>
+    <string name="journal_logs">Journal Logs</string>
 
     <!--durations array
     <string-array name="durations">

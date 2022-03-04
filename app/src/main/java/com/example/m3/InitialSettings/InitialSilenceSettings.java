@@ -90,6 +90,7 @@ public class InitialSilenceSettings extends AppCompatActivity {
         });
 
         toNextScreenBtn.setOnClickListener(view -> {
+            stopAudio();
             saveMusicSettings();
         });
     }

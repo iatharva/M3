@@ -349,9 +349,9 @@ public class Fhome extends Fragment
                 {
                     if(index==0)
                     {
-                        saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
-                        saver_image_0.setImageResource(R.drawable.s_filled);
-                        saver_description_0.setText("Completed on "+timeLogsArray[0]);
+                        //saver_image_0.setBackgroundResource(R.drawable.round_corner_filled_saver);
+                        //saver_image_0.setImageResource(R.drawable.s_filled);
+                        //saver_description_0.setText("Completed on "+timeLogsArray[0]);
                     }
                     else if (index==1)
                     {

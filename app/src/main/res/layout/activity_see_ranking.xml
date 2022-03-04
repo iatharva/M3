@@ -24,7 +24,10 @@
         <ListView
             android:id="@+id/listRank"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ProfileTitle"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="50dp"/>
     </RelativeLayout>
 
 </ScrollView>
