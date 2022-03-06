@@ -63,6 +63,7 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.logoutButtonHeader) {
+            //Show logout dialog
             openDialog();
             return true;
         }

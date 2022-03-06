@@ -48,7 +48,7 @@ public class ForgetPassword extends AppCompatActivity {
                     }
                 });
             }else{
-
+                //Show message
                 Toast.makeText(ForgetPassword.this,"Enter the email", Toast.LENGTH_LONG).show();
             }
         });

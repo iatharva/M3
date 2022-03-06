@@ -18,7 +18,7 @@ public class InitialSettingsCompleted extends AppCompatActivity {
         setContentView(R.layout.activity_initial_settings_completed);
         toNextScreenBtn = findViewById(R.id.toNextScreenBtn);
 
-        //Go to affirmations
+        //Go to Home page
         toNextScreenBtn.setOnClickListener(view -> {
             Intent i = new Intent(InitialSettingsCompleted.this, Home.class);
             startActivity(i);

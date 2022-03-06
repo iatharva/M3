@@ -95,6 +95,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
+    //Check if user settings exist for each record
     public void CheckNewUserSettings()
     {
         fAuth = FirebaseAuth.getInstance();
@@ -122,7 +123,7 @@ public class LogIn extends AppCompatActivity {
                                     }
                                     else
                                     {
-                                        Toast.makeText(LogIn.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(LogIn.this, "Glad to see you again, Let's continue setup", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(LogIn.this, InitialExercisesSettings.class);
                                         startActivity(i);
                                     }
@@ -130,7 +131,7 @@ public class LogIn extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(LogIn.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LogIn.this, "Glad to see you again, Let's continue setup", Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(LogIn.this, InitialVisualizationSettings.class);
                                 startActivity(i);
                             }
@@ -138,7 +139,7 @@ public class LogIn extends AppCompatActivity {
                     }
                     else
                     {
-                        Toast.makeText(LogIn.this, "Glad to meet you, Let's continue setup", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogIn.this, "Glad to see you again, Let's continue setup", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(LogIn.this, InitialAffirmationsSettings.class);
                         startActivity(i);
                     }
@@ -146,7 +147,7 @@ public class LogIn extends AppCompatActivity {
             }
             else
             {
-                Toast.makeText(LogIn.this, "Glad to meet you, Welcome!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LogIn.this, "Glad to see you again, Welcome!", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(LogIn.this, InitialSilenceSettings.class);
                 startActivity(i);
             }

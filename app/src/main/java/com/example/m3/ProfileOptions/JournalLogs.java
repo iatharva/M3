@@ -80,7 +80,6 @@ public class JournalLogs extends AppCompatActivity {
                     break;
                 }
             }
-            
         }
 
 

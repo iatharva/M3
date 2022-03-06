@@ -49,6 +49,7 @@ public class Journaling extends AppCompatActivity {
     public Vibrator vibe;
     private Spinner moodSpinner;
     private SeekBar moodScale;
+    private int showMessageOnce=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +68,10 @@ public class Journaling extends AppCompatActivity {
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(charSequence.length() != 0) {
+                if(charSequence.length() != 0 && showMessageOnce==0) {
                     toDoneScreenBtn.setVisibility(View.VISIBLE);
                     Toast.makeText(Journaling.this,"Please also tell me how you feeling before saving journal",Toast.LENGTH_SHORT).show();
+                    showMessageOnce=1;
                 }
             }
             @Override
@@ -118,7 +120,7 @@ public class Journaling extends AppCompatActivity {
         final View customLayout = getLayoutInflater().inflate(R.layout.dialog_completedactivity, null);
         //message
         TextView message = customLayout.findViewById(R.id.message);
-        message.setText("Exercises completed !");
+        message.setText("Journaling completed !");
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
             Intent intent = new Intent(Journaling.this, ActivityCompleted.class);
             startActivity(intent);

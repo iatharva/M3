@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
+import com.example.m3.ProfileOptions.SeeRanking;
 import com.example.m3.R;
 import com.example.m3.Extras.AlarmReceiver;
 import com.example.m3.Savers.Affirmations;
@@ -53,7 +55,7 @@ public class Fhome extends Fragment
 {
     private ImageView saver_image_0,saver_image_1,saver_image_2,saver_image_3,saver_image_4,saver_image_5;
     private TextView saver_description_0,saver_description_1,saver_description_2,saver_description_3,saver_description_4,saver_description_5;
-    AutoTypeTextView AutoTypeLabel;
+    private AutoTypeTextView AutoTypeLabel;
     private String UID,FName,Dob,Count;
     private int originalCount;
     private FirebaseAuth fAuth;
@@ -320,6 +322,33 @@ public class Fhome extends Fragment
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 searchDates.setSelection(0);
                 searchDates.setAdapter(dataAdapter);
+
+                /*
+                searchDates.setOnItemClickListener((parent, view, position, id) -> {
+                    //Show History Starts
+
+                    //Show History End
+                });
+                */
+                searchDates.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                        if(position==0)
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parentView) {
+                        // your code here
+                    }
+
+                });
 
             }
         });

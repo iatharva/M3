@@ -138,6 +138,7 @@ public class CreateNewAccount extends AppCompatActivity {
 
     }
 
+    //Create Count of Logs record of new user
     private void createCountLogs(String uid) {
         Map<String, Object> map = new HashMap<>();
         map.put(uid,"0");
