@@ -25,6 +25,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class SeeRanking extends AppCompatActivity {
     private TextView myRank,myCount,myDate,myRankTitle;
     private LottieAnimationView animation_view;
     private ImageView shareRank;
-    private LinearLayout userCard;
+    private RelativeLayout userCard;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +95,7 @@ public class SeeRanking extends AppCompatActivity {
 
                                     Intent intent = new Intent(Intent.ACTION_SEND);
                                     intent.setType("image/*");
-                                    intent.putExtra(Intent.EXTRA_TEXT, "Check out my rank in M3");
+                                    intent.putExtra(Intent.EXTRA_TEXT, "Check out my rank in M3\n Join me in the race of having healthy routine :\n https://github.com/iatharva/M3/releases");
                                     intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
                                     SeeRanking.this.startActivity(Intent.createChooser(intent, "Share Image"));
 
@@ -261,7 +262,7 @@ public class SeeRanking extends AppCompatActivity {
 
         String[] userNameSplit = usersNameArray[index-1].split(" ");
         myRankTitle.setText(userNameSplit[0]+"'s Rank");
-        myCount.setText(Integer.toString(userDataArray[index-1])+" logs");
+        myCount.setText(Integer.toString(userDataArray[index-1])+" days");
         String[] dateSplit = date.split(" ");
         myDate.setText(dateSplit[0]);
     }
