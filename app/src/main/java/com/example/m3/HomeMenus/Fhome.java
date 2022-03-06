@@ -323,13 +323,6 @@ public class Fhome extends Fragment
                 searchDates.setSelection(0);
                 searchDates.setAdapter(dataAdapter);
 
-                /*
-                searchDates.setOnItemClickListener((parent, view, position, id) -> {
-                    //Show History Starts
-
-                    //Show History End
-                });
-                */
                 searchDates.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
