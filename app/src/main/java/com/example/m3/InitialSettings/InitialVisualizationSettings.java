@@ -72,6 +72,7 @@ public class InitialVisualizationSettings extends AppCompatActivity {
         toNextScreenBtn.setOnClickListener(view -> {
             Intent intent = new Intent(InitialVisualizationSettings.this, InitialExercisesSettings.class);
             startActivity(intent);
+            finish();
         });
     }
 

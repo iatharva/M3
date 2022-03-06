@@ -8,14 +8,17 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.m3.Intros.IntroScreen1;
 import com.example.m3.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -29,6 +32,7 @@ public class CreateNewAccount extends AppCompatActivity {
     public DatePickerDialog.OnDateSetListener mDateSetListener;
     public Button AddAccountBtn;
     private FirebaseAuth fAuth;
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +117,7 @@ public class CreateNewAccount extends AppCompatActivity {
                     db.collection("Users").document(UID).set(user).addOnCompleteListener(task1 -> {
                         if(task1.isSuccessful()) {
                             //Success Case
+                            createCountLogs(UID);
                             AddAccountBtn.setText(R.string.create_account);
                             Toast.makeText(CreateNewAccount.this,"Account created succesfully!", Toast.LENGTH_LONG).show();
                             Intent i = new Intent(CreateNewAccount.this, IntroScreen1.class);
@@ -131,5 +136,13 @@ public class CreateNewAccount extends AppCompatActivity {
             });
         });
 
+    }
+
+    private void createCountLogs(String uid) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(uid,"0");
+        db.collection("OtherLogs").document("CountLogs").set(map, SetOptions.merge()).addOnSuccessListener(aVoid -> {
+            Log.d("TAG", "DocumentSnapshot successfully written!");
+        });
     }
 }

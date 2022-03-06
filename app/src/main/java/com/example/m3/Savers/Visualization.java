@@ -118,6 +118,7 @@ public class Visualization extends AppCompatActivity {
             //To go to next activity
             Intent intent = new Intent(Visualization.this, Exercises.class);
             startActivity(intent);
+            finish();
         });
         builder.setCancelable(false);
         builder.setView(customLayout);

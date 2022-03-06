@@ -67,7 +67,7 @@ public class ViewProfile extends AppCompatActivity {
             return;
         }
         if(TextUtils.isEmpty(Email)){
-            Toast.makeText(getApplicationContext(),"Please enter email",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Please verify your email",Toast.LENGTH_SHORT).show();
             return;
         }
         if(!emailEntered.equals(correctEmail))

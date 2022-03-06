@@ -123,6 +123,7 @@ public class InitialExercisesSettings extends AppCompatActivity {
             Log.d("TAG", "DocumentSnapshot successfully written!");
             Intent intent = new Intent(InitialExercisesSettings.this, InitialSettingsCompleted.class);
             startActivity(intent);
+            finish();
         });
     }
 

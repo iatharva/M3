@@ -87,6 +87,7 @@ public class Exercises extends AppCompatActivity {
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
             Intent intent = new Intent(Exercises.this, Reading.class);
             startActivity(intent);
+            finish();
         });
         builder.setCancelable(false);
         builder.setView(customLayout);

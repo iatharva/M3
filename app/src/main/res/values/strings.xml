@@ -135,6 +135,10 @@
     <string name="rankings">Rankings</string>
     <string name="your_account_setup_is_completed">Your account setup is completed!</string>
     <string name="now_you_can_start_using_the_app">Now you can start using the app</string>
+    <string name="your_rank">Your Rank</string>
+    <string name="joined_on">Joined on</string>
+    <string name="rank_list">Rank List</string>
+    <string name="total_logs">Total Logs</string>
 
     <!--durations array
     <string-array name="durations">

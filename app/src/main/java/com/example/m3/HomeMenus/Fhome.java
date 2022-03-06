@@ -1,6 +1,8 @@
 package com.example.m3.HomeMenus;
 
 
+import static android.content.ContentValues.TAG;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dragankrstic.autotypetextview.AutoTypeTextView;
 import com.example.m3.R;
@@ -51,7 +54,8 @@ public class Fhome extends Fragment
     private ImageView saver_image_0,saver_image_1,saver_image_2,saver_image_3,saver_image_4,saver_image_5;
     private TextView saver_description_0,saver_description_1,saver_description_2,saver_description_3,saver_description_4,saver_description_5;
     AutoTypeTextView AutoTypeLabel;
-    private String UID,FName,Dob;
+    private String UID,FName,Dob,Count;
+    private int originalCount;
     private FirebaseAuth fAuth;
     private Button StartBtn;
     private Spinner searchDates;
@@ -80,7 +84,7 @@ public class Fhome extends Fragment
         saver_description_4 = view.findViewById(R.id.saver_description_4);
         saver_description_5 = view.findViewById(R.id.saver_description_5);
         StartBtn = view.findViewById(R.id.StartBtn);
-        createNotificationChannel();
+        //createNotificationChannel();
         StartBtn.setOnClickListener(view -> {
 
             DocumentReference userlogref = db.collection("UserLogs").document(UID);
@@ -164,7 +168,15 @@ public class Fhome extends Fragment
     {
         super.onResume();
         fAuth = FirebaseAuth.getInstance();
-        getUserData();
+        UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
+        DocumentReference typeref = db.collection("OtherLogs").document("CountLogs");
+        typeref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                Count=documentSnapshot.getString(UID);
+                originalCount = Integer.parseInt(Count);
+                getUserData(originalCount);
+            }
+        });
         //Logic for notification
         //Use for affirmation
 /*
@@ -177,15 +189,15 @@ public class Fhome extends Fragment
                 time+tenSecondsInMillis,pendingIntent);
  */
         //Call setAlarm method in ALarmReceiver class to set notification with title "Heloo" and message "hehe"
-        AlarmReceiver a  = new AlarmReceiver();
-        a.setAlarm(requireActivity(),0,0,"Heloo","hehe", true);
+        //AlarmReceiver a  = new AlarmReceiver();
+        //a.setAlarm(requireActivity(),0,0,"Heloo","hehe", true);
         
 
     }
     /**
      * Gets the user data and make call to typeWriterMessages()
      */
-    public void getUserData()
+    public void getUserData(int originalCount)
     {
         UID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
         DocumentReference typeref = db.collection("Users").document(UID);
@@ -274,14 +286,14 @@ public class Fhome extends Fragment
                 }
                 else
                 {
-                    createTodayUserLogs();
+                    createTodayUserLogs(originalCount);
                     StartBtn.setText("Start routine");
                 }
 
             }
             else
             {
-                createTodayUserLogs();
+                createTodayUserLogs(originalCount);
                 StartBtn.setText("Start routine");
             }
         });
@@ -447,7 +459,7 @@ public class Fhome extends Fragment
     }
 
     //Create Array for recording Time Logs of the user
-    private void createTodayUserLogs() {
+    private void createTodayUserLogs(int originalCount) {
         //create boolean with 6 elements in list all set to false
         List<Boolean> ActivityLog = new ArrayList<>();
         for(int i=0;i<6;i++)
@@ -475,6 +487,12 @@ public class Fhome extends Fragment
         db.collection("UserTimeLogs").document(UID).set(map2, SetOptions.merge()).addOnSuccessListener(aVoid1 -> {
             Log.d("TAG", "DocumentSnapshot successfully written!");
         });
+
+        //Increase the count
+        originalCount++;
+        String updatedCount = Integer.toString(originalCount);
+        DocumentReference logref = db.collection("OtherLogs").document("CountLogs");
+        logref.update(UID,updatedCount).addOnFailureListener(e -> Log.w(TAG, "Duration not updated. Error :", e));
     }
 
     /**

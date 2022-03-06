@@ -60,6 +60,7 @@ public class InitialAffirmationsSettings extends AppCompatActivity {
         toNextScreenBtn.setOnClickListener(view -> {
             Intent intent = new Intent(InitialAffirmationsSettings.this, InitialVisualizationSettings.class);
             startActivity(intent);
+            finish();
         });
     }
 

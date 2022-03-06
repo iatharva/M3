@@ -22,6 +22,7 @@ public class ActivityCompleted extends AppCompatActivity {
         toNextScreenBtn.setOnClickListener(view -> {
             Intent i = new Intent(ActivityCompleted.this, Home.class);
             startActivity(i);
+            finish();
         });
     }
 }

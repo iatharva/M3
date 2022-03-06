@@ -219,6 +219,7 @@ public class Silence extends AppCompatActivity {
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
             Intent intent = new Intent(Silence.this, Affirmations.class);
             startActivity(intent);
+            finish();
         });
         builder.setCancelable(false);
         builder.setView(customLayout);

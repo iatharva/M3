@@ -146,6 +146,4 @@ public class Profile extends Fragment {
         builder.show();
 
     }
-
-
 }

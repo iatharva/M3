@@ -122,6 +122,7 @@ public class Journaling extends AppCompatActivity {
         builder.setPositiveButton("Go ahead", (dialogInterface, i) -> {
             Intent intent = new Intent(Journaling.this, ActivityCompleted.class);
             startActivity(intent);
+            finish();
         });
         builder.setCancelable(false);
         builder.setView(customLayout);

@@ -22,6 +22,7 @@ public class InitialSettingsCompleted extends AppCompatActivity {
         toNextScreenBtn.setOnClickListener(view -> {
             Intent i = new Intent(InitialSettingsCompleted.this, Home.class);
             startActivity(i);
+            finish();
         });
     }
 }

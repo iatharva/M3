@@ -115,6 +115,7 @@ public class InitialSilenceSettings extends AppCompatActivity {
 
         Intent intent = new Intent(InitialSilenceSettings.this, InitialAffirmationsSettings.class);
         startActivity(intent);
+        finish();
         
     }
 
