@@ -136,9 +136,9 @@
     <string name="your_account_setup_is_completed">Your account setup is completed!</string>
     <string name="now_you_can_start_using_the_app">Now you can start using the app</string>
     <string name="your_rank">Your Rank</string>
-    <string name="joined_on">Joined on</string>
+    <string name="joined_on">Joined M3 on</string>
     <string name="rank_list">Rank List</string>
-    <string name="total_logs">Total Logs</string>
+    <string name="routine_completed">Routine completed</string>
     <string name="this_section_is_still_under_development">This section is still under development</string>
 
     <!--durations array

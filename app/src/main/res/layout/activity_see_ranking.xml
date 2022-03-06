@@ -21,13 +21,23 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
+        <ImageView
+            android:id="@+id/shareRank"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/ProfileTitle"
+            android:src="@drawable/shareiconblack"
+            android:padding="10dp" />
+
         <LinearLayout
             android:id="@+id/userCard"
             android:layout_width="match_parent"
             android:gravity="center"
             android:layout_height="230dp"
             android:layout_below="@id/ProfileTitle"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
@@ -35,6 +45,7 @@
                 android:id="@+id/animation_view"
                 android:layout_width="150dp"
                 android:layout_height="250dp"
+                android:layout_marginEnd="10dp"
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="joggingrankanimation.json"
                 app:lottie_loop="true" />
@@ -46,12 +57,13 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/myRankTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/your_rank"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="23sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -61,16 +73,16 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="10dp"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="19sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="@string/total_logs"
+                    android:text="@string/routine_completed"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -79,16 +91,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="5dp"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/joined_on"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -97,6 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="5dp"
+                    android:textSize="17sp"
                     android:textColor="@color/defaultTextColor"/>
             </LinearLayout>
 
