@@ -141,6 +141,8 @@
     <string name="routine_completed">Routine completed</string>
     <string name="this_section_is_still_under_development">This section is still under development</string>
     <string name="_169_m3">© M3</string>
+    <string name="this_is_how_you_felt_most_of_the_time">This is how you felt most of the time</string>
+    <string name="this_was_the_intensity_of_emotions_which_you_felt">This was the intensity of emotions which you felt</string>
 
     <!--durations array
     <string-array name="durations">

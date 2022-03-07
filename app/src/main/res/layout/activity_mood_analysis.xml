@@ -22,13 +22,47 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/T1Desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/MoodTitle"
             android:layout_marginStart="50dp"
             android:layout_marginTop="50dp"
-            android:layout_below="@+id/MoodTitle"
-            android:text="@string/this_section_is_still_under_development"
+            android:text="@string/this_is_how_you_felt_most_of_the_time"
             android:textColor="@color/defaultTextColor" />
+
+        <org.eazegraph.lib.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@id/T1Desc"
+            android:layout_marginTop="15dp"
+            android:padding="8dp"
+            app:egLegendTextSize="18sp"
+            app:egUsePieRotation="true"
+            app:egValueTextSize="36sp"/>
+
+        <TextView
+            android:id="@+id/T2Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/piechart"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/this_was_the_intensity_of_emotions_which_you_felt"
+            android:textColor="@color/defaultTextColor" />
+
+        <org.eazegraph.lib.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/T2Desc"
+            android:padding="10dp"
+            app:egFixedBarWidth="true"
+            app:egBarWidth="20dp"
+            app:egLegendHeight="40dp"/>
+
     </RelativeLayout>
 
 </ScrollView>
