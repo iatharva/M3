@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileOptions.MoodAnalysis">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <TextView
             android:id="@+id/MoodTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:text="@string/mood_analysis"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/T1Desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/MoodTitle"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/this_is_how_you_felt_most_of_the_time"
-            android:textColor="@color/defaultTextColor" />
+    <TextView
+        android:id="@+id/T1Desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/MoodTitle"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/this_is_how_you_felt_most_of_the_time"
+        android:textColor="@color/defaultTextColor" />
 
         <org.eazegraph.lib.charts.PieChart
             android:id="@+id/piechart"
@@ -42,15 +38,15 @@
             app:egUsePieRotation="true"
             app:egValueTextSize="36sp"/>
 
-        <TextView
-            android:id="@+id/T2Desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/piechart"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="15dp"
-            android:text="@string/this_was_the_intensity_of_emotions_which_you_felt"
-            android:textColor="@color/defaultTextColor" />
+    <TextView
+        android:id="@+id/T2Desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/piechart"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/this_was_the_intensity_of_emotions_which_you_felt"
+        android:textColor="@color/defaultTextColor" />
 
         <org.eazegraph.lib.charts.BarChart
             android:id="@+id/barchart"
@@ -63,6 +59,4 @@
             app:egBarWidth="20dp"
             app:egLegendHeight="40dp"/>
 
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

@@ -81,7 +81,7 @@ public class MoodAnalysis extends AppCompatActivity {
         //Create map 
         Map<String, Integer> map = new HashMap<>();
 
-        //For loop over emotions
+        //Counting frequency of emotions
         for(int i=0;i<emotions.length;i++)
         {
             if(map.containsKey(emotions[i]))
@@ -136,7 +136,6 @@ public class MoodAnalysis extends AppCompatActivity {
 
         for(int i=0;i<datesArray.length;i++)
         {
-
             barchart.addBar(new BarModel(datesArray[i],scale[i],Color.parseColor(colorMaster[i%9])));
         }
         barchart.startAnimation();

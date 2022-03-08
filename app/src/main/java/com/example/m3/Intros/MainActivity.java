@@ -31,9 +31,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).hide();
-
-        //Check if user is logged in or not
         fAuth = FirebaseAuth.getInstance();
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        int SPLASH_TIME_OUT = 500;
+        new Handler().postDelayed(() -> logincheck(), SPLASH_TIME_OUT);
         mAuthStateListener = firebaseAuth -> {
             FirebaseUser mFirebaseUser = firebaseAuth.getCurrentUser();
             if (mFirebaseUser != null) {
@@ -51,13 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 }, SPLASH_TIME_OUT);
             }
         };
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        int SPLASH_TIME_OUT = 500;
-        new Handler().postDelayed(() -> logincheck(), SPLASH_TIME_OUT);
     }
 
     /**

@@ -35,7 +35,7 @@
     <string name="about_description1">This app will help you create a morning ritual which will improve your health and increase brain stimulation.</string>
     <string name="about_description2">This application is developed as <b>MCA Semester III college project</b>.</string>
     <string name="about_description3">This app is developed by <b>Atharva Ikhar (AI)</b> and <b>Harshada Mali (HM)</b></string>
-    <string name="version_info">(v0.6.08)</string>
+    <string name="version_info">(v0.6.12)</string>
     <string name="github_logo">Github logo</string>
     <string name="about_description4">This application is <b>currently in pre-release phase</b> with current version :</string>
     <string name="release_logo">Release logo</string>
