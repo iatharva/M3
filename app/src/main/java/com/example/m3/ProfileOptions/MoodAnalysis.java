@@ -29,8 +29,8 @@ public class MoodAnalysis extends AppCompatActivity {
     private PieChart piechart;
     private BarChart barchart;
     final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String[] moodMaster = new String[]{"Happy","Sad","Anxious","Nervous","Excited","Depressed","Neutral", "ExistentialCrisis","AmazinglyHappy"};
-    private String[] colorMaster = new String[]{"#fff130","#225a87","#ad1717","#a4e8fc","#fca41e","#4a4a4a","#bba78e","#000000","#00945a"};
+    private final String[] moodMaster = new String[]{"Happy","Sad","Anxious","Nervous","Excited","Depressed","Neutral", "ExistentialCrisis","AmazinglyHappy"};
+    private final String[] colorMaster = new String[]{"#fff130","#225a87","#ad1717","#a4e8fc","#fca41e","#4a4a4a","#bba78e","#000000","#00945a"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,7 +131,6 @@ public class MoodAnalysis extends AppCompatActivity {
             }
             
         }
-
         piechart.startAnimation();
 
         for(int i=0;i<datesArray.length;i++)
@@ -139,6 +138,5 @@ public class MoodAnalysis extends AppCompatActivity {
             barchart.addBar(new BarModel(datesArray[i],scale[i],Color.parseColor(colorMaster[i%9])));
         }
         barchart.startAnimation();
-
     }
 }
