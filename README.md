@@ -47,11 +47,12 @@
 - [x] Add sharing app feature
 - [x] Add exception handling for new users
 - [x] Resolve Delay in launching Home
+- [x] Add Logic for Alarm
+- [x] Test Alarm Logic
 
 #### Work in progress
 
-- [ ] Add Logic for Alarm (Work in Progress)
-- [ ] Test Alarm Logic (Work in Progress)
+
 
 #### Yet to start
 
