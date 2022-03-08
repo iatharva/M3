@@ -39,16 +39,22 @@
 - [x] Add animations
 - [x] Write Journal Feature
 - [x] Work on R
+- [x] Add Mood analysis
+- [x] Revamp Profile screen
+- [x] Add journal Logs
+- [x] Add ranking
+- [x] Add feature of sharing rank
+- [x] Add sharing app feature
+- [x] Add exception handling for new users
+- [x] Resolve Delay in launching Home
+
 #### Work in progress
 
 - [ ] Add Logic for Alarm (Work in Progress)
 - [ ] Test Alarm Logic (Work in Progress)
-- [ ] Bug in System Settings -> Exercises (Work in Progress)
-- [ ] Delay in launching Home
 
 #### Yet to start
 
-- [ ] Alarm user on specific time (to start the routine of morning tasks i.e. S,A,V,E,R)
 - [ ] Notify user about his tasks (different time in day)
 - [ ] Notify user to write journal and add to-do for tomorrow
 
