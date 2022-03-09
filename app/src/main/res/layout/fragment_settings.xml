@@ -78,12 +78,12 @@
         android:layout_marginStart="50dp" />
 
     <TextView
-        android:id="@+id/aboutBtn"
+        android:id="@+id/supportBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="450dp"
-        android:text="@string/about_us"
+        android:text="@string/user_support"
         android:textColor="@color/primaryColor"
         android:textSize="20sp" />
 
@@ -92,6 +92,23 @@
         android:layout_height="1dp"
         android:background="@color/black"
         android:layout_marginTop="500dp"
+        android:layout_marginStart="50dp" />
+
+    <TextView
+        android:id="@+id/aboutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="550dp"
+        android:text="@string/about_us"
+        android:textColor="@color/primaryColor"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="230dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="600dp"
         android:layout_marginStart="50dp" />
 
 </RelativeLayout>

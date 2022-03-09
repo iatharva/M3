@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_cover"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="left"
+    android:padding="16dp"
+    android:orientation="vertical"
+    tools:ignore="UnusedAttribute">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/defaultTextColor"
+        android:autoLink="email"
+        android:text="mentalhealthtrackerproject@gmail.com"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:textColor="@color/defaultTextColor"
+        android:text="@string/if_you_by_any_means_need_to_contact_us_about_any_query_or_suggestion_or_feedback_you_can_mail_us_at_below_email" />
+
+</LinearLayout>

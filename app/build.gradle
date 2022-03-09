@@ -89,4 +89,9 @@ dependencies {
     //For Graphs and displaying data
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
+
+    //expandable layout
+    //implementation 'com.ms-square:expandableTextView:0.1.4'
+    //implementation "com.github.skydoves:expandablelayout:1.0.7"
+    implementation'com.alespero:expandable-cardview:0.8'
 }

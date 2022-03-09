@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_cover"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="left"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:ignore="UnusedAttribute">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:textColor="@color/defaultTextColor"
+        android:text="@string/no_you_cannot_add_your_past_day_s_routine_log_yet_n_n_but_we_understand_that_user_can_be_busy_and_forget_to_log_that_s_why_user_can_log_anytime_till_11_59_pm_of_that_day_about_their_routine" />
+</LinearLayout>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Support">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/T1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/user_support"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/T1Desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/T1"
+            android:text="@string/frequently_asked_questions"
+            android:textColor="@color/defaultTextColor"
+            android:textSize="18sp"/>
+
+        <com.alespero.expandablecardview.ExpandableCardView
+            android:id="@+id/faq1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/T1Desc"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/primaryColor"
+            app:animationDuration="300"
+            app:expandOnClick="true"
+            app:icon="@drawable/questionicon30"
+            app:inner_view="@layout/faq1_child"
+            app:startExpanded="false"
+            app:title="How to contact us?" />
+
+        <com.alespero.expandablecardview.ExpandableCardView
+            android:id="@+id/faq2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/faq1"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/primaryColor"
+            app:animationDuration="300"
+            app:expandOnClick="true"
+            app:icon="@drawable/questionicon30"
+            app:inner_view="@layout/faq2_child"
+            app:startExpanded="false"
+            app:title="How to get access for paid feature?" />
+
+        <com.alespero.expandablecardview.ExpandableCardView
+            android:id="@+id/faq3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/faq2"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/primaryColor"
+            app:animationDuration="300"
+            app:expandOnClick="true"
+            app:icon="@drawable/questionicon30"
+            app:inner_view="@layout/faq3_child"
+            app:startExpanded="false"
+            app:title="How to report a bug?" />
+
+        <com.alespero.expandablecardview.ExpandableCardView
+            android:id="@+id/faq4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/faq3"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/primaryColor"
+            app:animationDuration="300"
+            app:expandOnClick="true"
+            app:icon="@drawable/questionicon30"
+            app:inner_view="@layout/faq4_child"
+            app:startExpanded="false"
+            app:title="Can I add past routine log?" />
+
+        <com.alespero.expandablecardview.ExpandableCardView
+            android:id="@+id/faq5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/faq4"
+            android:background="@color/defaultTextColor"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            app:icon="@drawable/questionicon30"
+            app:inner_view="@layout/faq5_child"
+            app:expandOnClick="true"
+            app:animationDuration="300"
+            app:startExpanded="false"
+            app:title="How can I view my past journals?" />
+
+        <com.alespero.expandablecardview.ExpandableCardView
+            android:id="@+id/faq6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/faq5"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/defaultTextColor"
+            app:animationDuration="300"
+            app:expandOnClick="true"
+            app:icon="@drawable/questionicon30"
+            app:inner_view="@layout/faq6_child"
+            app:startExpanded="false"
+            app:title="Can I edit my submitted journal?" />
+
+    </RelativeLayout>
+</ScrollView>

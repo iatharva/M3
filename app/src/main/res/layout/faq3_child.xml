@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_cover"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="left"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:ignore="UnusedAttribute">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textColor="@color/defaultTextColor"
+        android:text="@string/you_can_write_us_about_the_bug_on_below_mail_n_we_will_try_to_resolve_it_as_soon_as_possible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/defaultTextColor"
+        android:autoLink="email"
+        android:text="@string/mentalhealthtrackerproject_gmail_com"/>
+</LinearLayout>

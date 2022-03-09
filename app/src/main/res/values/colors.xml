@@ -17,9 +17,9 @@
     <color name="primaryLightColor">#75fab7</color>
     <color name="primaryDarkColor">#00945a</color>
 
-    <color name="secondaryColor">#edf448</color>
-    <color name="secondaryLightColor">#ffff7d</color>
-    <color name="secondaryDarkColor">#b7c100</color>
+    <color name="secondaryColor">#979C30</color>
+    <color name="secondaryLightColor">#A3A34C</color>
+    <color name="secondaryDarkColor">#838A02</color>
 
     <color name="animationColor">#8dbddd</color>
 </resources>

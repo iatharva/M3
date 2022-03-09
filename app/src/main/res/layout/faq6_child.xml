@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_cover"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:ignore="UnusedAttribute">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:textColor="@color/defaultTextColor"
+        android:text="@string/currently_we_don_t_support_editing_a_journal_once_submitted_n_to_avoid_submitting_incomplete_journal_we_urge_you_to_add_journal_add_the_end_of_the_day_n_n_don_t_worry_we_are_working_on_this_feature_currently" />
+</LinearLayout>

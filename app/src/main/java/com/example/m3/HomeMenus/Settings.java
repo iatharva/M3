@@ -15,12 +15,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.m3.Intros.About;
 import com.example.m3.R;
+import com.example.m3.Support;
 import com.example.m3.SystemSettings;
 
 import java.util.Calendar;
 
 public class Settings extends Fragment {
-    public TextView tncBtn,alarmBtn,sysBtn,aboutBtn;
+    public TextView tncBtn,alarmBtn,sysBtn,aboutBtn,supportBtn;
     public NotificationManagerCompat notificationManager;
     private Calendar mCalendar;
     private int mYear, mMonth, mHour, mMinute, mDay;
@@ -38,6 +39,7 @@ public class Settings extends Fragment {
         sysBtn = view.findViewById(R.id.sysBtn);
         tncBtn = view.findViewById(R.id.tncBtn);
         aboutBtn = view.findViewById(R.id.aboutBtn);
+        supportBtn = view.findViewById(R.id.supportBtn);
         notificationManager = NotificationManagerCompat.from(requireActivity());
         //Buttons which redirects to required pages/activities/fragment
 
@@ -59,6 +61,12 @@ public class Settings extends Fragment {
             String url = "https://www.app-privacy-policy.com/live.php?token=WiEp6mEK8zAcqW7bxc9834c0MQCV8pqE";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
+            startActivity(i);
+        });
+
+        //Button which leads to FAQ
+        supportBtn.setOnClickListener(view -> {
+            Intent i = new Intent(getActivity(), Support.class);
             startActivity(i);
         });
 

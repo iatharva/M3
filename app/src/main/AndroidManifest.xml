@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.M3">
         <activity
+            android:name=".Support"
+            android:exported="false" />
+        <activity
             android:name=".InitialSettingsCompleted"
             android:exported="false" />
         <activity
