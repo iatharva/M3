@@ -51,7 +51,9 @@ logo credit - <a href="https://github.com/realocity">realocity</a>
 - [x] Resolve Delay in launching Home
 - [x] Add Logic for Alarm
 - [x] Test Alarm Logic
-
+- [x] Add User Support FAQ
+- [x] Add UI for FAQ
+ 
 #### Work in progress
 
 
