@@ -1,6 +1,8 @@
 # M3
 <center><img src="https://socialify.git.ci/iatharva/M3/image?description=1&font=Raleway&language=1&name=1&owner=1&stargazers=1&theme=Dark" alt="M3" width="640" height="320" />
 </center>
+logo credit - <a href="https://github.com/realocity">realocity</a>
+
 
 ### Project Progress
 
@@ -47,11 +49,12 @@
 - [x] Add sharing app feature
 - [x] Add exception handling for new users
 - [x] Resolve Delay in launching Home
+- [x] Add Logic for Alarm
+- [x] Test Alarm Logic
 
 #### Work in progress
 
-- [ ] Add Logic for Alarm (Work in Progress)
-- [ ] Test Alarm Logic (Work in Progress)
+
 
 #### Yet to start
 
