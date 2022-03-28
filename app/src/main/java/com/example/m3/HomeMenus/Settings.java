@@ -2,6 +2,7 @@ package com.example.m3.HomeMenus;
 
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
@@ -90,7 +92,11 @@ public class Settings extends Fragment {
         mTimePicker = new TimePickerDialog(getActivity(),AlertDialog.THEME_HOLO_LIGHT, (timePicker, selectedHour, selectedMinute) -> {
             hour[0] =selectedHour; minute[0] =selectedMinute;
         }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false);
-        mTimePicker.setTitle("Wake up Time");
+        //}, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), false);
+        mTimePicker.setTitle("Select new Wake up Time");
+        mTimePicker.setOnCancelListener(dialog -> Toast.makeText(getActivity(),"Time will be same as before",Toast.LENGTH_SHORT).show());
+        mTimePicker.setOnDismissListener(dialog -> Toast.makeText(getActivity(),"Time updated. Will be applied & used from tomorrow",Toast.LENGTH_SHORT).show());
+
         mTimePicker.show();
 
         //set the notification for everyday at the hour[0]:minute[0]
