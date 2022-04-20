@@ -53,12 +53,8 @@ logo credit - <a href="https://github.com/realocity">realocity</a>
 - [x] Test Alarm Logic
 - [x] Add User Support FAQ
 - [x] Add UI for FAQ
- 
-#### Work in progress
 
-
-
-#### Yet to start
+#### Future Scope
 
 - [ ] Notify user about his tasks (different time in day)
 - [ ] Notify user to write journal and add to-do for tomorrow
